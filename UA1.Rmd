@@ -1,0 +1,81 @@
+# Flujos de trabajo de Minería de datos y técnicas de preprocesamiento
+
+## Definiendo Minería de datos
+
+A continuación se presentan tres definiciones fundamentales de la disciplina:
+
+1. **Enfoque de Proceso KDD**: La minería de datos es una etapa específica dentro del proceso de Descubrimiento de Conocimiento en Bases de Datos (KDD) que consiste en la aplicación de algoritmos de análisis y descubrimiento que producen una enumeración de patrones sobre los datos [@fayyad1996].
+
+2. **Enfoque de Descubrimiento de Conocimiento**: Se define como el proceso de descubrir patrones interesantes y conocimiento a partir de grandes cantidades de datos almacenados en bases de datos, almacenes de datos (data warehouses) u otros depósitos de información [@han2011].
+
+3. **Enfoque Estadístico**: Es el análisis de conjuntos de datos observacionales (frecuentemente grandes) con el fin de encontrar relaciones insospechadas y resumir los datos de formas novedosas que sean tanto comprensibles como útiles para el propietario de los mismos [@hand2001].
+
+## Flujos de Trabajo
+
+La estructuración de proyectos de minería de datos se rige por marcos metodológicos que aseguran la replicabilidad y calidad del conocimiento extraído.
+
+### KDD (Knowledge Discovery in Databases)
+
+* **Origen**: Propuesto por @fayyad1996 en el ámbito académico para distinguir el proceso global de descubrimiento de la etapa específica de aplicación de algoritmos.
+* **Fases**: 1. Selección, 2. Preprocesamiento, 3. Transformación, 4. Minería de datos, 5. Interpretación/Evaluación.
+* **Enfoque**: Científico y centrado en la purificación técnica de los datos.
+
+### CRISP-DM (Cross-Industry Standard Process for Data Mining)
+
+* **Origen**: Surgió de un consorcio europeo a finales de los 90 (NCR, SPSS, Daimler-Benz) para crear un estándar no propietario adaptado a la industria [@chapman2000].
+* **Fases**: 1. Comprensión del Negocio, 2. Comprensión de los Datos, 3. Preparación de los Datos, 4. Modelado, 5. Evaluación, 6. Despliegue.
+* **Enfoque**: Cíclico e iterativo, priorizando los objetivos del negocio.
+
+### SEMMA
+
+* **Origen**: Desarrollado por el SAS Institute como metodología operativa para su software Enterprise Miner [@matignon2007].
+* **Fases**: 1. Sample (Muestreo), 2. Explore (Exploración), 3. Modify (Modificación), 4. Model (Modelado), 5. Assess (Evaluación).
+* **Enfoque**: Técnico-estadístico, orientado a la experimentación en laboratorio.
+
+### OSEMN
+
+* **Origen**: Acuñado por @mason2010 para simplificar el flujo de trabajo en la ciencia de datos moderna basada en scripts (R/Python).
+* **Fases**: 1. Obtain (Obtener), 2. Scrub (Limpiar), 3. Explore (Explorar), 4. Model (Modelar), 5. iNterpret (Interpretar).
+* **Enfoque**: Pragmático y ágil, ideal para entornos de desarrollo rápido y programación fluida.
+
+| Característica | KDD | CRISP-DM | SEMMA | OSEMN |
+| :--- | :--- | :--- | :--- | :--- |
+| **Autor / Referencia** | @fayyad1996 | @chapman2000 | @matignon2007 | @mason2010 |
+| **Origen** | Academia (Ciencias de la Computación) | Consorcio Industrial (NCR, SPSS, Daimler) | Sector Software (SAS Institute) | Ciencia de Datos Moderna (Agile) |
+| **Enfoque Principal** | Proceso científico de extracción de conocimiento. | Integración de los objetivos de negocio. | Experimentación técnica y estadística. | Programación ágil y flujo de código. |
+| **Fases Clave** | Selección, Preprocesamiento, Transformación, Minería, Interpretación. | Negocio, Datos, Preparación, Modelado, Evaluación, Despliegue. | Sample, Explore, Modify, Model, Assess. | Obtain, Scrub, Explore, Model, iNterpret. |
+| **Uso Ideal** | Investigación y desarrollo (I+D). | Gestión de proyectos corporativos. | Análisis en laboratorios estadísticos. | Prototipado rápido en R o Python. |
+
+> Actividad 1: El Dilema de la Metodología (Análisis Crítico)
+
+**Instrucción:** Analice los siguientes dos escenarios y asigne la metodología que considere más adecuada. Posteriormente, identifique una "falla o limitación" de esa metodología para ese caso específico.
+
+1. **Escenario A:** Una institución bancaria requiere un modelo de riesgo crediticio altamente auditable por entes reguladores, donde cada paso de la transformación de datos debe estar documentado estadísticamente.
+2. **Escenario B:** Un equipo de marketing digital necesita probar rápidamente si un nuevo algoritmo de recomendación mejora los clics en una campaña que dura solo 48 horas.
+
+**Guía de respuesta para el estudiante:**
+* Escenario A: [Metodología sugerida entre CRISP-DM o SEMMA].
+* Crítica: ¿Qué aspecto de esta metodología podría retrasar el proyecto?
+* Escenario B: [Metodología sugerida entre KDD o OSEMN].
+* Crítica: ¿Qué riesgo se corre al priorizar la velocidad sobre el rigor?
+
+> Actividad 2: Ingeniería Inversa de Procesos (Diferenciación)
+
+**Instrucción:** Se presenta una lista de 4 acciones clave realizadas en un proyecto de análisis de sentimientos. Clasifique cada acción según el flujo de trabajo indicado.
+
+| Acción Realizada | Fase en CRISP-DM | Fase en OSEMN |
+| :--- | :--- | :--- |
+| Definir que el éxito es reducir las quejas en un 20%. | | |
+| Eliminar emojis y stop-words de los tweets. | | |
+| Ejecutar un análisis exploratorio para ver palabras frecuentes. | | |
+| Presentar una gráfica de barras con los resultados al director. | | |
+
+**Pregunta de reflexión:** ¿Por qué el flujo de @mason2010 es más natural para un analista que trabaja solo, mientras que el de @chapman2000 es indispensable para un equipo que trabaja para un cliente externo?
+
+Lectura sugerida: https://ijisr.issr-journals.org/abstract.php?article=IJISR-14-281-04
+
+## Conceptos básicos
+
+## PCA
+
+## Agrupamiento

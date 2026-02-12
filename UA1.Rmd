@@ -76,6 +76,38 @@ Lectura sugerida: https://ijisr.issr-journals.org/abstract.php?article=IJISR-14-
 
 ## Conceptos básicos
 
+- Dataset Conjunto de datos de interés, puede estar conformado por:
+  * Dataset estructurados: Formato tabular
+  * Dataset no estructurado: No tabular; multimedia, texto, sensores.
+
+- Métodos de minería de datos
+  * Pre procesamiento: Son métodos previos al modelado central; Agrupamiento, Componentes principales (reducción de variables)
+    + Agrupamiento: Crear grupos a partir de las similitudes de las variables
+    + Componentes principales (reducción de variables): Se crean variables nuevas (componentes) y se trabaja con las principales
+  * Predictivos: Son métodos que buscan *predecir*
+
+$$ X \rightarrow Y \quad Y_{t} \rightarrow Y_{t+1}$$
+
+  * Asociación: Trabajan con dataset de *transacciones*, su objetivo es identificar reglas de asociación "*fuertes*"
+
+
+## Flujo de trabajo en R
+
+Existe la librería *tidyverse* que se acopla muy bien a los flujos de trabajo vistos
+
+```{r}
+library(tidyverse)
+data("USArrests")
+View(USArrests)
+
+mean(USArrests$Murder)
+USArrests %>% summarise(mean(Murder))
+
+```
+
+
+
+
 ## PCA
 
 ## Agrupamiento

@@ -1,0 +1,31 @@
+--- 
+title: "Minería de Datos II"
+subtitle: "Economía e Inteligencia de Negocios"
+author: "MSc. Alvaro Chirino Gutierrez"
+description: "Apuntes para la materia de Minería de Datos II"
+date: "Periodo I-2026"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook: default
+  bookdown::epub_book: default
+documentclass: book
+graphics: yes
+github-repo: alvarolimber/md26
+bibliography: ref.bib
+nocite: '@*'
+pandoc_args: ["-Fpandoc-crossref"]
+---
+
+# Prefacio {-}
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.link='https://www.crcpress.com/product/isbn/9781138700109'}
+#knitr::include_graphics('_fig/cover.png', dpi = NA)
+if(3==2){
+bookdown::clean_book(TRUE)
+bookdown::render_book("index.Rmd", "bookdown::gitbook")
+}
+```
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Este documento de [Alvaro Chirino](https://twitter/alvarochirinog) esta bajo la licencia de <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+## Referencias  {-}

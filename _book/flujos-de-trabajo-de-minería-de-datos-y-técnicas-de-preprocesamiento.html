@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Flujos de trabajo de Minería de datos y técnicas de preprocesamiento | Minería de Datos II</title>
+  <meta name="description" content="Apuntes para la materia de Minería de Datos II" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Flujos de trabajo de Minería de datos y técnicas de preprocesamiento | Minería de Datos II" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Apuntes para la materia de Minería de Datos II" />
+  <meta name="github-repo" content="alvarolimber/md26" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Flujos de trabajo de Minería de datos y técnicas de preprocesamiento | Minería de Datos II" />
+  
+  <meta name="twitter:description" content="Apuntes para la materia de Minería de Datos II" />
+  
+
+<meta name="author" content="MSc. Alvaro Chirino Gutierrez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#referencias"><i class="fa fa-check"></i>Referencias</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="UA1.html"><a href="#flujos-de-trabajo-de-miner%C3%ADa-de-datos-y-t%C3%A9cnicas-de-preprocesamiento"><i class="fa fa-check"></i><b>1</b> Flujos de trabajo de Minería de datos y técnicas de preprocesamiento</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="UA1.html"><a href="#definiendo-miner%C3%ADa-de-datos"><i class="fa fa-check"></i><b>1.1</b> Definiendo Minería de datos</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="UA1.html"><a href="#motivaci%C3%B3n-para-la-miner%C3%ADa-de-datos"><i class="fa fa-check"></i><b>1.1.1</b> Motivación para la Minería de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><i class="fa fa-check"></i><b>1.2</b> Flujos de Trabajo</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#kdd-knowledge-discovery-in-databases"><i class="fa fa-check"></i><b>1.2.1</b> KDD (Knowledge Discovery in Databases)</a></li>
+<li class="chapter" data-level="1.2.2" data-path="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#crisp-dm-cross-industry-standard-process-for-data-mining"><i class="fa fa-check"></i><b>1.2.2</b> CRISP-DM (Cross-Industry Standard Process for Data Mining)</a></li>
+<li class="chapter" data-level="1.2.3" data-path="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#semma"><i class="fa fa-check"></i><b>1.2.3</b> SEMMA</a></li>
+<li class="chapter" data-level="1.2.4" data-path="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#osemn"><i class="fa fa-check"></i><b>1.2.4</b> OSEMN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="UA1.html"><a href="#conceptos-b%C3%A1sicos"><i class="fa fa-check"></i><b>1.3</b> Conceptos básicos</a></li>
+<li class="chapter" data-level="1.4" data-path="UA1.html"><a href="#importaci%C3%B3n-de-datos"><i class="fa fa-check"></i><b>1.4</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#pasos-iniciales"><i class="fa fa-check"></i><b>1.4.1</b> Pasos iniciales</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="UA1.html"><a href="#limpieza-y-depuraci%C3%B3n"><i class="fa fa-check"></i><b>1.5</b> Limpieza y depuración</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="UA1.html"><a href="#transformaci%C3%B3n"><i class="fa fa-check"></i><b>1.5.1</b> Transformación</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="UA1.html"><a href="#exploraci%C3%B3n-de-datos"><i class="fa fa-check"></i><b>1.6</b> Exploración de datos</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="UA1.html"><a href="#exploraci%C3%B3n-y-calidad-de-los-datos"><i class="fa fa-check"></i><b>1.6.1</b> Exploración y calidad de los datos</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="UA1.html"><a href="#reducci%C3%B3n-de-dimensionalidad-componentes-principales"><i class="fa fa-check"></i><b>1.7</b> Reducción de dimensionalidad: Componentes principales</a></li>
+<li class="chapter" data-level="1.8" data-path="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#clustering-agrupamiento"><i class="fa fa-check"></i><b>1.8</b> Clustering, Agrupamiento</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#medidas-de-disimilaridad"><i class="fa fa-check"></i><b>1.8.1</b> Medidas de (Di)similaridad</a></li>
+<li class="chapter" data-level="1.8.2" data-path="UA1.html"><a href="#m%C3%A9todos-de-clustering"><i class="fa fa-check"></i><b>1.8.2</b> Métodos de clustering</a></li>
+<li class="chapter" data-level="1.8.3" data-path="UA1.html"><a href="#k-center-clustering-no-jer%C3%A1rquicos"><i class="fa fa-check"></i><b>1.8.3</b> K-center Clustering (no jerárquicos)</a></li>
+<li class="chapter" data-level="1.8.4" data-path="UA1.html"><a href="#cluster-jer%C3%A1rquico"><i class="fa fa-check"></i><b>1.8.4</b> Cluster Jerárquico</a></li>
+<li class="chapter" data-level="1.8.5" data-path="UA1.html"><a href="#validaci%C3%B3n-cluster"><i class="fa fa-check"></i><b>1.8.5</b> Validación cluster</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Minería de Datos II</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Flujos de trabajo de Minería de datos y técnicas de preprocesamiento<a href="#flujos-de-trabajo-de-miner%C3%ADa-de-datos-y-t%C3%A9cnicas-de-preprocesamiento" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="definiendo-minería-de-datos" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Definiendo Minería de datos<a href="#definiendo-miner%C3%ADa-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación se presentan tres definiciones fundamentales de la disciplina:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Enfoque de Proceso KDD</strong>: La minería de datos es una etapa específica dentro del proceso de Descubrimiento de Conocimiento en Bases de Datos (KDD) que consiste en la aplicación de algoritmos de análisis y descubrimiento que producen una enumeración de patrones sobre los datos <span class="citation">(Fayyad, Piatetsky-Shapiro, and Smyth 1996)</span>.</p></li>
+<li><p><strong>Enfoque de Descubrimiento de Conocimiento</strong>: Se define como el proceso de descubrir patrones interesantes y conocimiento a partir de grandes cantidades de datos almacenados en bases de datos, almacenes de datos (data warehouses) u otros depósitos de información <span class="citation">(<strong>han2011?</strong>)</span>.</p></li>
+<li><p><strong>Enfoque Estadístico</strong>: Es el análisis de conjuntos de datos observacionales (frecuentemente grandes) con el fin de encontrar relaciones insospechadas y resumir los datos de formas novedosas que sean tanto comprensibles como útiles para el propietario de los mismos <span class="citation">(<strong>hand2001?</strong>)</span>.</p></li>
+</ol>
+<div id="motivación-para-la-minería-de-datos" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Motivación para la Minería de datos<a href="#motivaci%C3%B3n-para-la-miner%C3%ADa-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>(<em>Variedad</em>) Los métodos de recolección de datos han evolucionado muy rápidamente.</li>
+<li>(<em>Volumen</em>) Las bases de datos han crecido exponencialmente</li>
+<li>(<em>Usuarios</em>) Estos datos contienen información útil para las empresas, países, etc.</li>
+<li>(<em>Tecnología</em>) El tamaño hace que la inspección manual sea casi imposible</li>
+<li>(<em>Método</em>) Se requieren métodos de análisis de datos automáticos para optimizar el uso de estos enormes conjuntos de datos</li>
+</ul>
+</div>
+</div>
+<div id="flujos-de-trabajo" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Flujos de Trabajo<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#flujos-de-trabajo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La estructuración de proyectos de minería de datos se rige por marcos metodológicos que aseguran la replicabilidad y calidad del conocimiento extraído.</p>
+<div id="kdd-knowledge-discovery-in-databases" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> KDD (Knowledge Discovery in Databases)<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#kdd-knowledge-discovery-in-databases" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Origen</strong>: Propuesto por <span class="citation">Fayyad, Piatetsky-Shapiro, and Smyth (1996)</span> en el ámbito académico para distinguir el proceso global de descubrimiento de la etapa específica de aplicación de algoritmos.</li>
+<li><strong>Fases</strong>: 1. Selección, 2. Preprocesamiento, 3. Transformación, 4. Minería de datos, 5. Interpretación/Evaluación.</li>
+<li><strong>Enfoque</strong>: Científico y centrado en la purificación técnica de los datos.</li>
+</ul>
+</div>
+<div id="crisp-dm-cross-industry-standard-process-for-data-mining" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> CRISP-DM (Cross-Industry Standard Process for Data Mining)<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#crisp-dm-cross-industry-standard-process-for-data-mining" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Origen</strong>: Surgió de un consorcio europeo a finales de los 90 (NCR, SPSS, Daimler-Benz) para crear un estándar no propietario adaptado a la industria <span class="citation">(Chapman et al. 2000)</span>.</li>
+<li><strong>Fases</strong>: 1. Comprensión del Negocio, 2. Comprensión de los Datos, 3. Preparación de los Datos, 4. Modelado, 5. Evaluación, 6. Despliegue.</li>
+<li><strong>Enfoque</strong>: Cíclico e iterativo, priorizando los objetivos del negocio.</li>
+</ul>
+</div>
+<div id="semma" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> SEMMA<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#semma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Origen</strong>: Desarrollado por el SAS Institute como metodología operativa para su software Enterprise Miner <span class="citation">(Matignon 2007)</span>.</li>
+<li><strong>Fases</strong>: 1. Sample (Muestreo), 2. Explore (Exploración), 3. Modify (Modificación), 4. Model (Modelado), 5. Assess (Evaluación).</li>
+<li><strong>Enfoque</strong>: Técnico-estadístico, orientado a la experimentación en laboratorio.</li>
+</ul>
+</div>
+<div id="osemn" class="section level3 hasAnchor" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> OSEMN<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#osemn" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Origen</strong>: Acuñado por <span class="citation">Mason and Wiggins (2010)</span> para simplificar el flujo de trabajo en la ciencia de datos moderna basada en scripts (R/Python).</li>
+<li><strong>Fases</strong>: 1. Obtain (Obtener), 2. Scrub (Limpiar), 3. Explore (Explorar), 4. Model (Modelar), 5. iNterpret (Interpretar).</li>
+<li><strong>Enfoque</strong>: Pragmático y ágil, ideal para entornos de desarrollo rápido y programación fluida.</li>
+</ul>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Característica</th>
+<th align="left">KDD</th>
+<th align="left">CRISP-DM</th>
+<th align="left">SEMMA</th>
+<th align="left">OSEMN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Autor / Referencia</strong></td>
+<td align="left"><span class="citation">Fayyad, Piatetsky-Shapiro, and Smyth (1996)</span></td>
+<td align="left"><span class="citation">Chapman et al. (2000)</span></td>
+<td align="left"><span class="citation">Matignon (2007)</span></td>
+<td align="left"><span class="citation">Mason and Wiggins (2010)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Origen</strong></td>
+<td align="left">Academia (Ciencias de la Computación)</td>
+<td align="left">Consorcio Industrial (NCR, SPSS, Daimler)</td>
+<td align="left">Sector Software (SAS Institute)</td>
+<td align="left">Ciencia de Datos Moderna (Agile)</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Enfoque Principal</strong></td>
+<td align="left">Proceso científico de extracción de conocimiento.</td>
+<td align="left">Integración de los objetivos de negocio.</td>
+<td align="left">Experimentación técnica y estadística.</td>
+<td align="left">Programación ágil y flujo de código.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Fases Clave</strong></td>
+<td align="left">Selección, Preprocesamiento, Transformación, Minería, Interpretación.</td>
+<td align="left">Negocio, Datos, Preparación, Modelado, Evaluación, Despliegue.</td>
+<td align="left">Sample, Explore, Modify, Model, Assess.</td>
+<td align="left">Obtain, Scrub, Explore, Model, iNterpret.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Uso Ideal</strong></td>
+<td align="left">Investigación y desarrollo (I+D).</td>
+<td align="left">Gestión de proyectos corporativos.</td>
+<td align="left">Análisis en laboratorios estadísticos.</td>
+<td align="left">Prototipado rápido en R o Python.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Actividad 1: El Dilema de la Metodología (Análisis Crítico)</p>
+</blockquote>
+<p><strong>Instrucción:</strong> Analice los siguientes dos escenarios y asigne la metodología que considere más adecuada. Posteriormente, identifique una “falla o limitación” de esa metodología para ese caso específico.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Escenario A:</strong> Una institución bancaria requiere un modelo de riesgo crediticio altamente auditable por entes reguladores, donde cada paso de la transformación de datos debe estar documentado estadísticamente.</li>
+<li><strong>Escenario B:</strong> Un equipo de marketing digital necesita probar rápidamente si un nuevo algoritmo de recomendación mejora los clics en una campaña que dura solo 48 horas.</li>
+</ol>
+<p><strong>Guía de respuesta para el estudiante:</strong>
+* Escenario A: [Metodología sugerida entre CRISP-DM o SEMMA].
+* Crítica: ¿Qué aspecto de esta metodología podría retrasar el proyecto?
+* Escenario B: [Metodología sugerida entre KDD o OSEMN].
+* Crítica: ¿Qué riesgo se corre al priorizar la velocidad sobre el rigor?</p>
+<blockquote>
+<p>Actividad 2: Ingeniería Inversa de Procesos (Diferenciación)</p>
+</blockquote>
+<p><strong>Instrucción:</strong> Se presenta una lista de 4 acciones clave realizadas en un proyecto de análisis de sentimientos. Clasifique cada acción según el flujo de trabajo indicado.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Acción Realizada</th>
+<th align="left">Fase en CRISP-DM</th>
+<th align="left">Fase en OSEMN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Definir que el éxito es reducir las quejas en un 20%.</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Eliminar emojis y stop-words de los tweets.</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Ejecutar un análisis exploratorio para ver palabras frecuentes.</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Presentar una gráfica de barras con los resultados al director.</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pregunta de reflexión:</strong> ¿Por qué el flujo de <span class="citation">Mason and Wiggins (2010)</span> es más natural para un analista que trabaja solo, mientras que el de <span class="citation">Chapman et al. (2000)</span> es indispensable para un equipo que trabaja para un cliente externo?</p>
+<p>Lectura sugerida: <a href="https://ijisr.issr-journals.org/abstract.php?article=IJISR-14-281-04" class="uri">https://ijisr.issr-journals.org/abstract.php?article=IJISR-14-281-04</a></p>
+</div>
+</div>
+<div id="conceptos-básicos" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Conceptos básicos<a href="#conceptos-b%C3%A1sicos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><em>Dataset</em>: Colección de datos para el análisis
+<ul>
+<li>Estructurado: Formato tabular (filas y columnas)</li>
+<li>No estructurado: Audios, imágenes, texto, video, ondas, etc.</li>
+</ul></li>
+<li>Métodos de minería de datos
+<ul>
+<li>Pre procesamiento: Son métodos previos al modelado central; Agrupamiento, Componentes principales (reducción de variables)
+<ul>
+<li>Agrupamiento: Crear grupos a partir de las similitudes de las variables</li>
+<li>Componentes principales (reducción de variables): Se crean variables nuevas (componentes) y se trabaja con las principales</li>
+</ul></li>
+<li>Predictivos: Son métodos que buscan <em>predecir</em></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[ X \rightarrow Y \quad Y_{t} \rightarrow Y_{t+1}\]</span></p>
+<ul>
+<li><p>Asociación: Trabajan con dataset de <em>transacciones</em>, su objetivo es identificar reglas de asociación “<em>fuertes</em>”</p></li>
+<li><p><em>Analítica de datos</em></p>
+<ul>
+<li>Descriptiva</li>
+<li>Exploratoria: Agrupamiento, componentes principales, correspondencia</li>
+<li>Predictiva: Clasificación, asociación, regresión</li>
+<li>Prescriptiva</li>
+</ul></li>
+<li><p><em>Almacén de datos</em> (data warehouse)</p>
+<ul>
+<li>ETL, ELT</li>
+</ul></li>
+</ul>
+</div>
+<div id="importación-de-datos" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Importación de datos<a href="#importaci%C3%B3n-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se refiere al proceso de cargar/definir el dataset.</p>
+<ul>
+<li><em>Fuente de datos</em>: Origen de los datos</li>
+<li><em>Formato de los datos</em>: Extensión de los archivos</li>
+</ul>
+<div id="pasos-iniciales" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Pasos iniciales<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#pasos-iniciales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Tipo de dataset</li>
+<li>Tamaño del dataset: Filas y columnas</li>
+<li>Tipos de atributo/variables (formato/clase)</li>
+<li>Exploración inicial</li>
+<li>Record linkage (enlace entre registros)</li>
+</ul>
+</div>
+</div>
+<div id="limpieza-y-depuración" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Limpieza y depuración<a href="#limpieza-y-depuraci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Ordenamiento de los datos</li>
+<li>Adecuación de formatos
+<ul>
+<li>Numérico</li>
+<li>Cadena/texto</li>
+<li>Lógico</li>
+<li>Factor (nominal, ordinal)</li>
+<li>Fechas (lubridate)</li>
+</ul></li>
+<li>Limpieza de texto
+<ul>
+<li>Mayúscula/minúscula</li>
+<li>Espacios en blanco</li>
+<li>Ortografía</li>
+<li>Errores de transcripción</li>
+<li>Extracción/reemplazo</li>
+</ul></li>
+</ul>
+<div id="transformación" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Transformación<a href="#transformaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Agregación</li>
+<li>Selección (columnas/variables) y filtrado (filas/unidades)</li>
+<li>Creación de variables (mutate)</li>
+<li>Binarización (0/1 F/T)</li>
+<li>Discretización (cut, quantile)</li>
+<li>Estandarización</li>
+</ul>
+<p><span class="math display">\[z=\frac{x-\bar{x}}{\sigma}\]</span><br />
+- Normalización Max/min (0 - 1)</p>
+<p><span class="math display">\[y=\frac{x-min_x}{max_x-min_x}\]</span></p>
+</div>
+</div>
+<div id="exploración-de-datos" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Exploración de datos<a href="#exploraci%C3%B3n-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se refiere al proceso de descubrir, conocer el dataset.</p>
+<ul>
+<li>Estadísticas descriptivas</li>
+<li>Inferencia descriptiva</li>
+<li>Visualización</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#cb1-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(ExPanDaR)<span class="co">#dashboard shiny</span></span>
+<span id="cb1-3"><a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(GGally)<span class="co"># ggplot</span></span></code></pre></div>
+<div id="exploración-y-calidad-de-los-datos" class="section level3 hasAnchor" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> Exploración y calidad de los datos<a href="#exploraci%C3%B3n-y-calidad-de-los-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Errores en la recolección</li>
+<li>Falta de calibración de los instrumentos de medición</li>
+<li>Precisión, sesgo y exactitud</li>
+<li>Valores inconsistentes</li>
+<li>Observaciones duplicadas</li>
+<li>Valores atípicos</li>
+<li>Valores perdidos (no confundir con los valores de no aplica)</li>
+</ul>
+</div>
+</div>
+<div id="reducción-de-dimensionalidad-componentes-principales" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Reducción de dimensionalidad: Componentes principales<a href="#reducci%C3%B3n-de-dimensionalidad-componentes-principales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display">\[S_y^2=\frac{\sum (y_i-\bar{y})^2}{n-1}\]</span></p>
+<p><span class="math display">\[S_{xy}=\frac{\sum (y_i-\bar{y})(x_i-\bar{x})}{n-1}\]</span></p>
+<p><span class="math display">\[\rho_{xy}=\frac{S_{xy}}{S_x S_y}\quad -1\leq \rho_{xy} \leq1\]</span></p>
+<p>El método de Análisis de Componentes Principales se ocupa de explicar la estructura de varianza y covarianza de un grupo de variables a través de unas pocas combinaciones lineales de este grupo de variables. En general sus objetivos son (1) la <em>reducción de los datos</em> y (2) la <em>interpretación</em>.</p>
+<p>Algebráicamente, los componentes principales son combinaciones lineales de <span class="math inline">\(p\)</span> variables aleatorias <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, , <span class="math inline">\(X_p\)</span>. Geométricamente, estas combinaciones lineales representan la selección de un nuevo sistema de coordenadas obtenido por rotación de del sistema original con <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, , <span class="math inline">\(X_p\)</span> como los ejes de coordenadas. Los nuevos ejes representan la dirección con la máxima variabilidad y provee una simple y más parsimoniosa descripción de la estructura de la covarianza.</p>
+<p>Los componentes principales dependen únicamente de la matriz de covarianza <span class="math inline">\(\Sigma\)</span> o la matriz de correlaciones <span class="math inline">\(\rho\)</span> (Matriz estandarizada de <span class="math inline">\(\Sigma\)</span>) de <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, , <span class="math inline">\(X_p\)</span>. Su desarrollo no requiere de ningún supuesto de normalidad multivariada, sin embargo, componentes principales derivados de poblaciones normales multivariantes tienen un gran uso en la interpretación en términos de elipsoide de densidad constante.</p>
+<p>Sea la matriz <span class="math inline">\(\mathbf{X}\)</span> compuesta de <span class="math inline">\(p\)</span> vectores aleatorios <span class="math inline">\(\mathbf{X}=[X_1, X_2, \ldots, X_p ]\)</span> que tiene la matriz de covarianza <span class="math inline">\(\Sigma\)</span> con valores propios <span class="math inline">\(\lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_p \geq 0\)</span>.</p>
+<p>Considere la combinación lineal:</p>
+<p><span class="math display">\[
+\begin{array}{rrr}
+Y_1     = &amp; a_1^{&#39;} \mathbf{X} = &amp; a_{11} X_1 + a_{12} X_2 + \ldots a_{1p} X_p \\
+Y_2     = &amp; a_2^{&#39;} \mathbf{X} = &amp; a_{21} X_1 + a_{22} X_2 + \ldots a_{2p} X_p\\
+\vdots  = &amp; \vdots &amp; \vdots \\
+Y_p     = &amp; a_p^{&#39;} \mathbf{X} = &amp; a_{p1} X_1 + a_{p2} X_2 + \ldots a_{pp} X_p\\
+\end{array}
+\]</span>
+Equivalente a:</p>
+<p><span class="math display">\[
+\mathbf{Y}= \left[  
+\begin{array}{c}
+Y_1\\
+Y_2\\
+\vdots\\
+Y_p\\
+\end{array}
+\right] = \left[  
+\begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1p} \\
+a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2p} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{21} &amp; a_{p2} &amp; \ldots &amp; a_{pp} \\
+\end{array}
+\right] \left[
+\begin{array}{c}
+X_1\\
+X_2\\
+\vdots\\
+X_p\\
+\end{array}
+\right] = \mathbf{A X}
+\]</span></p>
+<p>La combinación lineal <span class="math inline">\(\mathbf{Y}=\mathbf{AX}\)</span> tiene:</p>
+<p><span class="math display">\[
+\mu_y=E(\mathbf{Y})=E(\mathbf{AX})=A \mu_x
+\]</span></p>
+<p><span class="math display">\[
+\Sigma_y=Cov(\mathbf{Y})=Cov(\mathbf{AX})=A \Sigma_x A^{&#39;}
+\]</span></p>
+<p>En base a lo anterior, se obtiene:</p>
+<p><span class="math display">\[
+Var(Y_i)=a_{i ,(1xp)}^{&#39;} \Sigma_{x,(pxp)} a_{i, (px1)} \quad i=1, 2, \ldots, p
+\]</span></p>
+<p><span class="math display">\[
+Cov(Y_i,Y_k)=a_i^{&#39;} \Sigma_x a_k \quad i,k=1, 2, \ldots, p
+\]</span></p>
+<p>Los componentes principales son combinaciones lineales incorrelacionadas, tal que <span class="math inline">\(\ref{cp5}\)</span> es lo más grande posible.</p>
+<p>El primer componente principal es la combinación lineal con máxima varianza. Entonces se debe maximizar <span class="math inline">\(Var(Y_1)=a_1^{&#39;} \Sigma a_1\)</span>. Es claro que <span class="math inline">\(Var(Y_1)\)</span> puede ser incrementada multiplicando a <span class="math inline">\(a_1\)</span> por alguna constante. Para eliminar esta indeterminación, es conveniente restringir los coeficientes del vector. Por lo tanto se define.</p>
+<p><span class="math display">\[
+\begin{array}{rcl}
+\text{Primer componente principal} &amp; = &amp; \text{Combinacion lineal} \quad a_1^{&#39;}X \quad \text{que maximiza} \\
+                                   &amp;   &amp; Var(a_1^{&#39;}X) \quad \text{sujeto a} \quad a_1^{&#39;} a_1=1\\
+\text{Segundo componente principal} &amp; = &amp; \text{Combinacion lineal} \quad a_2^{&#39;}X \quad \text{que maximiza} \\
+                                   &amp;   &amp; Var(a_2^{&#39;}X) \quad \text{sujeto a} \quad a_2^{&#39;} a_2=1 \quad y \\                                                    &amp;   &amp; Cov(a_1^{&#39;}X,a_2^{&#39;}X)=0              
+\end{array}
+\]</span></p>
+<p>Para el <span class="math inline">\(i-esimo\)</span> paso:</p>
+<p><span class="math display">\[
+\begin{array}{rcl}
+i-esimo \text{ componente principal} &amp; = &amp; \text{Combinacion lineal} \quad a_i^{&#39;}X \quad \text{que maximiza} \\
+                                   &amp;   &amp; Var(a_i^{&#39;}X) \quad \text{sujeto a} \quad a_i^{&#39;} a_i=1 \quad y \\                                                    &amp;   &amp; Cov(a_i^{&#39;}X,a_k^{&#39;}X)=0 \quad para \quad k&lt;i             
+\end{array}
+\]</span></p>
+<p><span class="math display">\[\Sigma_{(pxp)}= A_{(p*p)} \Lambda_{(p*p)} A^t_{(p*p)} \]</span></p>
+<p>El aspecto central de componentes principales es trabajar con menos variables, sea <span class="math inline">\(m&lt;p\)</span>, el método de componentes busca a partir de <span class="math inline">\(m\)</span>, los siguiente:</p>
+<p><span class="math display">\[\Sigma_{(pxp)} \approx  A_{(p*m)} \Lambda_{(m*m)} A^t_{(m*p)}\]</span>
+Los pasos sugeridos para iniciar el análisis de componentes principales son:</p>
+<ol style="list-style-type: decimal">
+<li><em>Identificar las variables</em> de interés dentro de la matriz de datos, si las variables tienen las <em>mismas escalas</em> se recomienda emplear la matriz de <em>covarianza</em>, si las escalas son <em>diferentes</em>, se recomienda trabajar con la matriz de <em>correlaciones</em>.</li>
+<li>Obtener los componentes principales, los <em>eigen valores</em> y la matriz de <em>eigen vectores</em></li>
+<li>(Opcional) Eliminar las variables redundantes,</li>
+</ol>
+<ul>
+<li>se sugiere identificar las variables del conjunto de datos correlacionadas con los últimos componentes.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>(Opcional) Calcular nuevamente los componentes principales excluyendo las variables identificadas en el paso previo</li>
+<li>Elegir el <em>número de componentes a retener</em> <span class="math inline">\(m\)</span> (scree plot, tamaño de los eigen valores, etc)</li>
+<li>Analizar los resultados y usar los componentes</li>
+</ol>
+<p>Usos de componentes principales.</p>
+<ul>
+<li>Detección de valores atípicos</li>
+<li>Identificación de posibles factores</li>
+<li>Los primeros componentes se pueden usar como indicadores</li>
+<li>Eliminan la multicolinealidad de un modelo de regresión múltiple</li>
+</ul>
+<p><span class="math display">\[V(Y_1)=\lambda_1\]</span>
+<span class="math display">\[Y_1=a_{11} X_1+a_{21}X_2+\ldots + a_{p1}X_p \]</span></p>
+</div>
+<div id="clustering-agrupamiento" class="section level2 hasAnchor" number="1.8">
+<h2><span class="header-section-number">1.8</span> Clustering, Agrupamiento<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#clustering-agrupamiento" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El clustering es un método cuyo objetivo es el de <em>crear grupos</em> en base a las relaciones <em>multivariantes</em> que existen en los datos, este método es un método previo a las técnicas de “<em>clasificación</em>” que existen. La base del clustering es la definición de la <strong>similaridad entre las filas</strong>. Similaridad es definida como una función de distancia entre un par de filas.</p>
+<p>Es importante distinguir la existencia de grupos <em>naturales</em> dentro de los datos, normalmente estos grupos son características naturales de las observaciones de interés.</p>
+<p>Ejemplo de aplicación</p>
+<ul>
+<li>En las escuelas o universidades, con base a las notas se puede tener grupos. Esto puede servir para estrategias de apoyo.</li>
+<li>En la banca se pueden crear grupos basados en las características de los clientes de créditos/ahorro. Esto puede servir para mejorar servicios o incrementar personal.</li>
+<li>En los hospitales sobre la base de datos de pacientes, para tener perfil de los pacientes…</li>
+</ul>
+<div id="medidas-de-disimilaridad" class="section level3 hasAnchor" number="1.8.1">
+<h3><span class="header-section-number">1.8.1</span> Medidas de (Di)similaridad<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#medidas-de-disimilaridad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dado el objetivo del clustering, el aspecto mas importante dentro de estos métodos es utilizar de forma correcta la <em>medida</em> de (<em>di</em>)<em>similaridad</em> para los casos dentro de la base de datos.</p>
+<p>La definición de las <em>medidas de distancia</em> es <em>crucial</em> para aplicar estos modelos. Funciones de distancia incorrecta pueden generar sesgos en los resultados y ser un problema para etapas posteriores de la mineria de datos. Debemos distinguir las funciones de distancia según la <strong>naturaleza de las variables</strong>.</p>
+<p>Sean las filas <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> dentro de una base de datos, estos vectores tienen una dimensión <span class="math inline">\(p\)</span>, es decir, se observan <span class="math inline">\(p\)</span> variables para las 2 observaciones.</p>
+<p><strong>Distancia Euclideana</strong>: Variables numéricas</p>
+<p><span class="math display">\[d(x,y)=\sqrt{\sum_{i=1}^p{(x_i-y_i)^2}}\]</span></p>
+<p>Donde los <span class="math inline">\(x_i\)</span> y <span class="math inline">\(_y_i\)</span> son los valores para la variable <span class="math inline">\(i\)</span> de las observaciones <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span>.</p>
+<p><strong>Distancia Manhattan:</strong> Variables numéricas, <span class="math inline">\(p\)</span> grande</p>
+<p><span class="math display">\[d(x,y)=\sum_{i=1}^p{|x_i-y_i|}\]</span></p>
+<p><strong>Distancia Minkowski:</strong> Variables numéricas, <span class="math inline">\(p\)</span> grande</p>
+<p><span class="math display">\[d(x,y)=\left(\sum_{i=1}^p{|x_i-y_i|^d}\right)^{1/d}\]</span></p>
+<p>Se recomienda que d sea cercano a 0 cuando p sea grande</p>
+<div id="distancias-para-variables-nominales-todas-nominales" class="section level4 hasAnchor" number="1.8.1.1">
+<h4><span class="header-section-number">1.8.1.1</span> Distancias para variables nominales (todas nominales)<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#distancias-para-variables-nominales-todas-nominales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En este caso la mejor estrategia es llevar las variables con sus categorías a variables <em>binarias</em>. Existen múltiples medidas de distancia para variables binarias, muchas de estas medidas son aproximaciones a las medidas mas conocidas. Entre ellas:</p>
+<p>Sean las filas <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span> que contienen los valores binarios de las variables de estudio. Sea <span class="math inline">\(A\)</span> el total de <span class="math inline">\(1\)</span> que existe en <span class="math inline">\(i\)</span>, <span class="math inline">\(B\)</span> el total de <span class="math inline">\(1\)</span> que existe en <span class="math inline">\(j\)</span> y sea <span class="math inline">\(J\)</span> el total de casos en los que los <span class="math inline">\(1\)</span> ocurren simultaneamente en <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>.</p>
+<ul>
+<li>Euclideana</li>
+</ul>
+<p><span class="math display">\[d_{ij}=\sqrt{A+B-2J}\]</span></p>
+<ul>
+<li>Manhattan</li>
+</ul>
+<p><span class="math display">\[d_{ij}=A+B-2J\]</span></p>
+<ul>
+<li>Bray</li>
+</ul>
+<p><span class="math display">\[d_{ij}=\frac{A+B-2J}{A+B}\]</span></p>
+<ul>
+<li>Binomial</li>
+</ul>
+<p><span class="math display">\[d_{ij}=log(2)(A+B-2J)\]</span></p>
+</div>
+<div id="distancias-para-variables-mixtas-cuantitativas-nominales-ordinales" class="section level4 hasAnchor" number="1.8.1.2">
+<h4><span class="header-section-number">1.8.1.2</span> Distancias para variables mixtas (cuantitativas, nominales, ordinales)<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#distancias-para-variables-mixtas-cuantitativas-nominales-ordinales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Una de los mayores desafíos es cuando las variables son mixtas, es decir cuantitativas y cualitativas.</p>
+<p>La mejor distancias para estos casos es la distancia de <em>Gower</em>.</p>
+<p><span class="math display">\[d_{ij} = d(i,j) = \frac{\sum_{k=1}^p w_k \delta_{ij}^{(k)} d_{ij}^{(k)}}{
+      \sum_{k=1}^p w_k \delta_{ij}^{(k)}}\]</span></p>
+</div>
+</div>
+<div id="métodos-de-clustering" class="section level3 hasAnchor" number="1.8.2">
+<h3><span class="header-section-number">1.8.2</span> Métodos de clustering<a href="#m%C3%A9todos-de-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Partición (k-center)</li>
+<li>Jerárquicos (dendograma)</li>
+<li><strong>Basados en densidad:</strong> Identifican regiones de alta densidad de puntos en el espacio de datos; DBSCAN (Density-Based Spatial Clustering of Applications with Noise) y HDBSCAN (Hierarchical Density-Based Spatial Clustering of Applications with Noise).</li>
+<li><strong>Basados en cuadrículas (grid):</strong> Dividen el espacio de datos en una cuadrícula de celdas regulares. Cada celda de la cuadrícula se considera un cluster potencial. El algoritmo cuenta el número de puntos en cada celda y luego identifica clusters como las celdas que contienen un número alto de puntos</li>
+</ul>
+</div>
+<div id="k-center-clustering-no-jerárquicos" class="section level3 hasAnchor" number="1.8.3">
+<h3><span class="header-section-number">1.8.3</span> K-center Clustering (no jerárquicos)<a href="#k-center-clustering-no-jer%C3%A1rquicos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20190812011831/Screenshot-2019-08-12-at-1.09.42-AM.png" /></p>
+<div id="algoritmo" class="section level4 hasAnchor" number="1.8.3.1">
+<h4><span class="header-section-number">1.8.3.1</span> Algoritmo<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#algoritmo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol start="0" style="list-style-type: decimal">
+<li>Definición del valor de <span class="math inline">\(k\)</span>.</li>
+<li>Partición de las observaciones en <span class="math inline">\(k\)</span> grupos (de forma aleatoria), obtener el vector de centros de cada grupo (centroides). Se puede trabajar con la media, la mediana o el medoide.</li>
+<li>Para cada observación calcular las distancia euclidiana (u otra) a los centroides y reasignar la observación en base a la menor distancia, re calcular los centroides en base a la re asignación de cada observación</li>
+<li>Repetir el paso 2 hasta que que ya no existan más re asignaciones</li>
+</ol>
+<p>El valor de <span class="math inline">\(k\)</span> respecto el número de grupos (“cluster”) puede ser definido con base a un criterio de utilidad propia o basado en un criterio estadístico.</p>
+<ul>
+<li>Utilidad: El investigador define el valor</li>
+<li>Estadístico: Analizar la buena “pertenencia” a los grupos</li>
+</ul>
+</div>
+</div>
+<div id="cluster-jerárquico" class="section level3 hasAnchor" number="1.8.4">
+<h3><span class="header-section-number">1.8.4</span> Cluster Jerárquico<a href="#cluster-jer%C3%A1rquico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El objetivo es obtener una <em>jerarquía</em> de posibles soluciones que van desde un solo grupo a <span class="math inline">\(n\)</span> grupos, donde <span class="math inline">\(n\)</span> es el número de observaciones en el conjunto de datos.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Dendrogram_of_mtDNA_Europe.jpg" /></p>
+<div id="algoritmo-1" class="section level4 hasAnchor" number="1.8.4.1">
+<h4><span class="header-section-number">1.8.4.1</span> Algoritmo<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#algoritmo-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Se inicia con <span class="math inline">\(n\)</span> grupos y se genera una matriz de <span class="math inline">\(nxn\)</span> de distancias, <span class="math inline">\(D=\{d_{ik}\}\)</span></li>
+<li>Buscar en la matriz de distancia los pares de cluster más cercanos entre ellos, <em>los cluster mas similares</em>, si definimos los clusters <span class="math inline">\(V\)</span> y <span class="math inline">\(U\)</span>, estamos interesados en encontrar <span class="math inline">\(d_{UV}\)</span></li>
+<li>Unir los cluster <span class="math inline">\(U\)</span> y <span class="math inline">\(V\)</span>, re etiquetar el nuevo cluster como <span class="math inline">\(UV\)</span>. Actualizar la matriz de distancias a) remover las filas y columnas correspondientes a <span class="math inline">\(U\)</span> y <span class="math inline">\(V\)</span> b) incluimos las nuevas filas y columnas para el nuevo cluster <span class="math inline">\(UV\)</span>.</li>
+<li>Repetimos el paso 2 y 3 un total de <span class="math inline">\(n-1\)</span> veces.</li>
+</ol>
+<p>El momento de definir el cluster más cercano, se puede emplear los siguientes enlaces:</p>
+<ul>
+<li>Single linkage (enlace simple)</li>
+<li>Complete linkage (enlace completo)</li>
+<li>Average linkage (enlace promedio)</li>
+<li>Centroid method (Método del centroide)</li>
+<li>Ward’s method (Método de Ward’s)</li>
+</ul>
+<p><img src="_fig/enlace.png" /></p>
+<blockquote>
+<p>Nota: Se debe elegir la matriz de distancias acorde a la naturaleza de los datos, se recomienda:</p>
+</blockquote>
+<ul>
+<li>Todas Numéricas: Euclideana o Manhatan</li>
+<li>Todas nominales: Transformación a binarias y usar la distancia binomial</li>
+<li>Mixtas: Distancia de Gower</li>
+</ul>
+<blockquote>
+<p>Nota: El dendograma es muy útil para ver las relaciones que existen basadas en las distancias y la creación de las jerarquías, a partir de estos se puede definir un <span class="math inline">\(k\)</span> (de forma visual)</p>
+</blockquote>
+<blockquote>
+<p>Nota: El dendograma pierde su utilidad cuando la cantidad de observaciones es muy alta,</p>
+</blockquote>
+</div>
+</div>
+<div id="validación-cluster" class="section level3 hasAnchor" number="1.8.5">
+<h3><span class="header-section-number">1.8.5</span> Validación cluster<a href="#validaci%C3%B3n-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>La estructura de los cluster es aleatoria (¿funciona?)</li>
+<li>¿Cómo definimos el valor de <span class="math inline">\(K\)</span>?
+<ul>
+<li>Coeficiente de silueta</li>
+<li>Método de Elbow (investigar)</li>
+</ul></li>
+</ul>
+<div id="silhouette-coefficient" class="section level4 hasAnchor" number="1.8.5.1">
+<h4><span class="header-section-number">1.8.5.1</span> Silhouette coefficient<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#silhouette-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[s_i=\frac{b_i-a_i}{max(a_i,b_i)}\]</span></p>
+<ol style="list-style-type: decimal">
+<li>Se obtiene para la observación <span class="math inline">\(i\)</span> el promedio de distancia a todos los objetos en el mismo cluster (<span class="math inline">\(a_i\)</span>)</li>
+<li>Se obtiene para la observación <span class="math inline">\(i\)</span> el promedio de distancia a todos los objetos de los otros clusters (<span class="math inline">\(b_i\)</span>)</li>
+<li>Se define a <span class="math inline">\(s_i\)</span> como el coeficiente, con un recorrido entre <span class="math inline">\([-1,1]\)</span>, para cada observación <span class="math inline">\(i\)</span></li>
+</ol>
+<p>Idealmente se espera que <span class="math inline">\(a_i &lt; b_i\)</span> y los <span class="math inline">\(a_i\)</span> cercanos a <span class="math inline">\(0\)</span>.</p>
+
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div class="csl-entry">
+Bramer, Max. 2020. <em>Principles of <span>Data</span> <span>Mining</span></em>. Undergraduate <span>Topics</span> in <span>Computer</span> <span>Science</span>. London: Springer London. <a href="https://doi.org/10.1007/978-1-4471-7493-6">https://doi.org/10.1007/978-1-4471-7493-6</a>.
+</div>
+<div class="csl-entry">
+Buttrey, Samuel. 2017. <em>A <span>Data</span> <span>Scientist</span>’s <span>Guide</span> to <span>Acquiring</span>, <span>Cleaning</span> and <span>Managing</span> <span>Data</span> in <span>R</span></em>. 1st ed. Wiley. <a href="https://doi.org/10.1002/9781119080053">https://doi.org/10.1002/9781119080053</a>.
+</div>
+<div class="csl-entry">
+Chapman, Pete, Julian Clinton, Randy Kerber, Thomas Khabaza, Thomas Reinartz, Colin Shearer, and Rudiger Wirth. 2000. <span>“CRISP-DM 1.0: Step-by-Step Data Mining Guide.”</span> SPSS.
+</div>
+<div class="csl-entry">
+Cichosz, Pawel. n.d. <span>“Data <span>Mining</span> <span>Algorithms</span>.”</span>
+</div>
+<div class="csl-entry">
+Fayyad, Usama, Gregory Piatetsky-Shapiro, and Padhraic Smyth. 1996. <span>“From Data Mining to Knowledge Discovery in Databases.”</span> <em>AI Magazine</em> 17 (3): 37–54.
+</div>
+<div class="csl-entry">
+Hand, D. J., Heikki Mannila, and Padhraic Smyth. 2001. <em>Principles of Data Mining</em>. Adaptive Computation and Machine Learning. Cambridge, Mass: MIT Press.
+</div>
+<div class="csl-entry">
+<span>“Machine <span>Learning</span> with <span>R</span> <span>Cookbook</span>.”</span> n.d.
+</div>
+<div class="csl-entry">
+Mason, Hilary, and Chris Wiggins. 2010. <span>“A Taxonomy of Data Science.”</span> <em>Dataists</em>.
+</div>
+<div class="csl-entry">
+Matignon, Randall. 2007. <em>Data Mining Using SAS Enterprise Miner: A Case Study Approach</em>. John Wiley &amp; Sons.
+</div>
+<div class="csl-entry">
+<span>“Practical <span>Data</span> <span>Cleaning</span> - 19 <span>Essential</span> <span>Tips</span> to <span>Scrub</span> <span>Your</span> <span>Dirty</span> <span>Data</span> (and Keep Your Boss Happy).”</span> n.d.
+</div>
+<div class="csl-entry">
+SAS Institute. 2017. <em>SAS Enterprise Miner 14.3: SEMMA Methodology</em>.
+</div>
+<div class="csl-entry">
+Tan, Pang-Ning, Michael Steinbach, and Vipin Kumar. 2014. <em>Introduction to Data Mining</em>. New internat. edition. Always Learning. Harlow: Pearson.
+</div>
+<div class="csl-entry">
+———. n.d. <span>“Introduction to <span>Data</span> <span>Mining</span>.”</span>
+</div>
+<div class="csl-entry">
+Torgo, Luis. n.d. <span>“Data <span>Mining</span> with <span>R</span>.”</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

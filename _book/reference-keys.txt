@@ -25,3 +25,4 @@ cluster-jerárquico
 algoritmo-1
 validación-cluster
 silhouette-coefficient
+ejercicio-práctico-segmentación-de-perfiles-académicos-para-admisión-universitaria

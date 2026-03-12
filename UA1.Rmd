@@ -434,11 +434,10 @@ $$s_i=\frac{b_i-a_i}{max(a_i,b_i)}$$
 
 Idealmente se espera que $a_i < b_i$ y los $a_i$ cercanos a $0$. 
 
-> Ejercicio Práctico: Segmentación de Perfiles Académicos para Admisión Universitaria
+### Ejercicio Práctico: Segmentación de Perfiles Académicos para Admisión Universitaria
 
-Objetivo: Aplicar agrupamiento para identificar patrones en los perfiles de estudiantes que aspiran a ingresar a la universidad.
-
-Dataset: https://www.kaggle.com/datasets/akshaydattatraykhare/data-for-admission-in-the-university
+- **Objetivo:** Aplicar agrupamiento para identificar patrones en los perfiles de estudiantes que aspiran a ingresar a la universidad.
+- **Dataset:** https://www.kaggle.com/datasets/akshaydattatraykhare/data-for-admission-in-the-university
 
 1. Pertinencia de las Variables
   - Identificar variables y discutir su validez en el cálculo de distancias. Es necesario alguna transformación

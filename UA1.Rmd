@@ -441,7 +441,7 @@ Objetivo: Aplicar agrupamiento para identificar patrones en los perfiles de estu
 Dataset: https://www.kaggle.com/datasets/akshaydattatraykhare/data-for-admission-in-the-university
 
 1. Pertinencia de las Variables
-  - Identificar variables continuas vs. discretas (Rating, Research) y su validez en el cálculo de distancias.
+  - Identificar variables y discutir su validez en el cálculo de distancias. Es necesario alguna transformación
   - Discutir si incluir variables de "percepción" (SOP, LOR) altera la objetividad del agrupamiento.
 2. Tratamiento de Datos
   - Comparar visualmente las magnitudes de las variables.

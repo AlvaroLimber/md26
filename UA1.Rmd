@@ -433,3 +433,25 @@ $$s_i=\frac{b_i-a_i}{max(a_i,b_i)}$$
 3. Se define a $s_i$ como el coeficiente, con un recorrido entre $[-1,1]$, para cada observación $i$
 
 Idealmente se espera que $a_i < b_i$ y los $a_i$ cercanos a $0$. 
+
+> Ejercicio Práctico: Segmentación de Perfiles Académicos para Admisión Universitaria
+
+Objetivo: Aplicar agrupamiento para identificar patrones en los perfiles de estudiantes que aspiran a ingresar a la universidad.
+
+Dataset: https://www.kaggle.com/datasets/akshaydattatraykhare/data-for-admission-in-the-university
+
+1. Pertinencia de las Variables
+  - Identificar variables continuas vs. discretas (Rating, Research) y su validez en el cálculo de distancias.
+  - Discutir si incluir variables de "percepción" (SOP, LOR) altera la objetividad del agrupamiento.
+2. Tratamiento de Datos
+  - Comparar visualmente las magnitudes de las variables.
+  - Discutir si es estrictamente necesario estandarizar (Z-score) o normalizar (0-1) para evitar que variables con rangos grandes dominen la distancia.
+  - Analizar cómo la falta de **escalamiento** afecta a un algoritmo que busca minimizar la distancia máxima.
+3. Definición de K
+  - Aplicar métodos de Codo (Elbow) y Silueta (Silhouette).
+  - Definir un K final
+4. Aplicación de Algoritmos
+5. Discusión de Resultados
+  - Contrastar la estabilidad de los grupos entre el enfoque jerárquico y el kcenter
+  - Seleccionar el modelo ideal
+  - Describir el perfil del "estudiante tipo" de cada cluster.

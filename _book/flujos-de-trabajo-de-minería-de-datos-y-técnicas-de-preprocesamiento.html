@@ -726,6 +726,42 @@ Los pasos sugeridos para iniciar el análisis de componentes principales son:</p
 <li>Se define a <span class="math inline">\(s_i\)</span> como el coeficiente, con un recorrido entre <span class="math inline">\([-1,1]\)</span>, para cada observación <span class="math inline">\(i\)</span></li>
 </ol>
 <p>Idealmente se espera que <span class="math inline">\(a_i &lt; b_i\)</span> y los <span class="math inline">\(a_i\)</span> cercanos a <span class="math inline">\(0\)</span>.</p>
+<blockquote>
+<p>Ejercicio Práctico: Segmentación de Perfiles Académicos para Admisión Universitaria</p>
+</blockquote>
+<p>Objetivo: Aplicar agrupamiento para identificar patrones en los perfiles de estudiantes que aspiran a ingresar a la universidad.</p>
+<p>Dataset: <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/data-for-admission-in-the-university" class="uri">https://www.kaggle.com/datasets/akshaydattatraykhare/data-for-admission-in-the-university</a></p>
+<ol style="list-style-type: decimal">
+<li>Pertinencia de las Variables</li>
+</ol>
+<ul>
+<li>Identificar variables continuas vs. discretas (Rating, Research) y su validez en el cálculo de distancias.</li>
+<li>Discutir si incluir variables de “percepción” (SOP, LOR) altera la objetividad del agrupamiento.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Tratamiento de Datos</li>
+</ol>
+<ul>
+<li>Comparar visualmente las magnitudes de las variables.</li>
+<li>Discutir si es estrictamente necesario estandarizar (Z-score) o normalizar (0-1) para evitar que variables con rangos grandes dominen la distancia.</li>
+<li>Analizar cómo la falta de <strong>escalamiento</strong> afecta a un algoritmo que busca minimizar la distancia máxima.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Definición de K</li>
+</ol>
+<ul>
+<li>Aplicar métodos de Codo (Elbow) y Silueta (Silhouette).</li>
+<li>Definir un K final</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Aplicación de Algoritmos</li>
+<li>Discusión de Resultados</li>
+</ol>
+<ul>
+<li>Contrastar la estabilidad de los grupos entre el enfoque jerárquico y el kcenter</li>
+<li>Seleccionar el modelo ideal</li>
+<li>Describir el perfil del “estudiante tipo” de cada cluster.</li>
+</ul>
 
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div class="csl-entry">

@@ -301,10 +301,12 @@ div.csl-indent {
 <div id="regresión-cuantílica" class="section level3 hasAnchor" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Regresión Cuantílica<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-cuant%C3%ADlica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>El modelo no se enfoca en la media condicional, sino en el cuantil <span class="math inline">\(\tau\)</span>:</p>
-<p><span class="math display">\[Q_{y|x}(\tau) = \beta_0(\tau) + \beta_1(\tau) x_{1} + \beta_2(\tau) x_{2} + \ldots\]</span>
-* <strong>Variable dependiente:</strong> <span class="math inline">\(y \in \mathbb{R}\)</span>
-* <strong>Regresores:</strong> <span class="math inline">\(x_1, x_2, \ldots\)</span> (pueden ser continuos o categóricos).
-* <strong>Función de pérdida (Check Function):</strong></p>
+<p><span class="math display">\[Q_{y|x}(\tau) = \beta_0(\tau) + \beta_1(\tau) x_{1} + \beta_2(\tau) x_{2} + \ldots\]</span></p>
+<ul>
+<li><strong>Variable dependiente:</strong> <span class="math inline">\(y \in \mathbb{R}\)</span></li>
+<li><strong>Regresores:</strong> <span class="math inline">\(x_1, x_2, \ldots\)</span> (pueden ser continuos o categóricos).</li>
+<li><strong>Función de pérdida (Check Function):</strong></li>
+</ul>
 <p><span class="math display">\[\rho_\tau(u) = u (\tau - \mathbb{1}\{u &lt; 0\})\]</span></p>
 <p>A diferencia de OLS/MCO, donde los errores <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2)\)</span>, aquí se asume que el cuantil <span class="math inline">\(\tau\)</span> de la distribución de los errores condicionales es cero: <span class="math inline">\(P(y_i \leq x_i&#39; \beta_\tau | x_i) = \tau\)</span>.</p>
 </div>

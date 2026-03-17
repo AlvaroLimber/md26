@@ -83,6 +83,7 @@ $$Y=\frac{e^{X\beta+\epsilon}}{1+e^{X\beta+\epsilon}}$$
 El modelo no se enfoca en la media condicional, sino en el cuantil $\tau$:
 
 $$Q_{y|x}(\tau) = \beta_0(\tau) + \beta_1(\tau) x_{1} + \beta_2(\tau) x_{2} + \ldots$$
+
 * **Variable dependiente:** $y \in \mathbb{R}$
 * **Regresores:** $x_1, x_2, \ldots$ (pueden ser continuos o categóricos).
 * **Función de pérdida (Check Function):**

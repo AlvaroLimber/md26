@@ -1,0 +1,40 @@
+---
+title: "**MINERÍA DE DATOS II**"
+subtitle: "Laboratorio I"
+author: "MSc. Alvaro Chirino"
+date: "Marzo, 2026"
+output: 
+  pdf_document:
+    number_sections: false
+editor_options: 
+  chunk_output_type: console
+---
+
+Se debe subir a la plataforma un solo archivo con las respuestas a las tres preguntas, ya sea .R o .Rmd. El archivo debe llamarse: 
+
+$$lab1\_apellido.R \quad ó \quad lab1\_apellido.Rmd$$
+
+# Pregunta 1. Componentes principales (50 pts)
+
+Usando el dataset de https://www.kaggle.com/datasets/mohansacharya/graduate-admissions (sobre el archivo Admission_Predict_Ver1.1.csv), omita la variable *Serial* y responda:
+
+  - (10 pt.) ¿Qué es mejor usar en este caso para un ACP, la matriz de varianzas y covarianzas o la matriz de correlación?. Justifique su respuesta y use ese enfoque para las siguientes preguntas.
+  - (20 pts.) Retenga los componentes que expliquen al menos el 70% de la variabilidad. ¿Qué explican los componentes retenidos? 
+  - (10 pt.) Reproduzca la matriz elegida ($\rho$ ó $\Sigma$) con los componentes retenidos. 
+  - (10 pts) ¿Qué variable esta más conectada al último componente principal?. Omita esa variable y vuelva a realizar el ACP, ¿cuántos componentes ahora deben retenerse?
+
+# Pregunta 2. Agrupamiento (50 pts)
+
+Usando el dataset de la encuesta a hogares 2024, a nivel de los hogares, usando la *SECCIÓN 7 ACCESO A LA ALIMENTACIÓN EN LOS HOGARES* (EH2024_Seguridad_Alimentaria.sav)
+
+* Preparación de los datos (10 pts.)
+  - Cree 8 variables binarias que identifique si el informante responde **Si** sobre las 8 preguntas de la sección
+  - Filtre el dataset de tal manera que se conserven casos de los departamentos de La Paz, Cochabamba y Santa Cruz
+  - Crear una variable binaria que identifique si el hogar esta en el área rural
+* K-center (20 pts.). Usando las 8 variables binarias creadas y la variable para rural, identificar el mejor valor de k entre 2 y 6 para los métodos kmedia, kmediana y kmedoide
+  - Para los **datos originales**
+  - Para los **datos estandarizados** 
+* Jerarquico (20 pts.). Usando las 8 variables binarias creadas y la variable para rural, identificar el mejor valor de k entre 2 y 6 para los enlaces simple, completo, promedio 
+  - Para los **datos originales**
+  - Para los **datos estandarizados** 
+* Identifique el mejor modelo entre los anteriores y describa el significado de cada grupo. (5 pts.)

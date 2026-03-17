@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Minería de Datos II</title>
+  <title>2 Minería de Datos Supervisada: Clasificación y Predicción | Minería de Datos II</title>
   <meta name="description" content="Apuntes para la materia de Minería de Datos II" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Minería de Datos II" />
+  <meta property="og:title" content="2 Minería de Datos Supervisada: Clasificación y Predicción | Minería de Datos II" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Apuntes para la materia de Minería de Datos II" />
   <meta name="github-repo" content="alvarolimber/md26" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Minería de Datos II" />
+  <meta name="twitter:title" content="2 Minería de Datos Supervisada: Clasificación y Predicción | Minería de Datos II" />
   
   <meta name="twitter:description" content="Apuntes para la materia de Minería de Datos II" />
   
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -228,18 +228,148 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="minería-de-datos-supervisada-clasificación-y-predicción" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Minería de Datos Supervisada: Clasificación y Predicción<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#miner%C3%ADa-de-datos-supervisada-clasificaci%C3%B3n-y-predicci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="regresión" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Regresión<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display">\[y=f(x_1,x_2, \ldots)\]</span></p>
+<ul>
+<li><span class="math inline">\(y\)</span> Variable de resultado, dependiente, solo tenemos a una <span class="math inline">\(y\)</span>.</li>
+<li><span class="math inline">\(x_1, x_2, \ldots\)</span>, variables de control, independientes.</li>
+</ul>
+<p>A partir de estas variables:</p>
+<ul>
+<li>¿Cuál es la relación de <span class="math inline">\(x\)</span> sobre <span class="math inline">\(y\)</span>?
+<ul>
+<li>Lineal</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[y_i=\beta_0+\beta_1 x_{i1}+\beta_2 x_{i2}+\ldots+\epsilon_i\]</span>
+<span class="math display">\[E[y_i]=E[\hat{\beta}_0+\hat{\beta}_1 x_{i1}+\hat{\beta}_2 x_{i2}+\ldots]\]</span></p>
+<p><span class="math display">\[\frac{dy}{d x_1}= \beta_1\]</span></p>
+<blockquote>
+<p>Nota: Diferenciar que la regresión busca establecer relaciones basadas en los datos y no asi un proceso <strong>causal</strong>.</p>
+</blockquote>
+<ul>
+<li><p>Polinomial</p></li>
+<li><p>Etc; No lineal,</p></li>
+<li><p>Conocer la naturaleza de <span class="math inline">\(y\)</span> y las variables <span class="math inline">\(x\)</span></p>
+<ul>
+<li><strong><span class="math inline">\(Y\)</span> es cuanti (real), <span class="math inline">\(X\)</span> mixtas:</strong> Modelos lineales (MCO). Busca <span class="math inline">\(E[y|x]\)</span>.</li>
+<li><strong><span class="math inline">\(Y\)</span> es cuanti (discreta <span class="math inline">\(\ge 0\)</span>), <span class="math inline">\(X\)</span> cuanti:</strong> Regresión de Poisson o Binomial Negativa.</li>
+<li><strong><span class="math inline">\(Y\)</span> es cuali nominal binaria, <span class="math inline">\(X\)</span> mixtas:</strong> LOGIT / PROBIT.</li>
+<li><strong><span class="math inline">\(Y\)</span> es cuali ordinal, <span class="math inline">\(X\)</span> mixtas:</strong> Logit / Probit ordenados.</li>
+<li><strong><span class="math inline">\(Y\)</span> con heterocedasticidad o interés en extremos:</strong> <strong>Regresión Cuantílica</strong>. Busca <span class="math inline">\(Q_\tau(y|x)\)</span>.</li>
+<li><strong><span class="math inline">\(Y\)</span> censurada (ej. ingresos truncados en 0):</strong> Modelo TOBIT.</li>
+</ul></li>
+</ul>
+<div id="pasos-para-la-implementación-de-una-regresión" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Pasos para la implementación de una regresión<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#pasos-para-la-implementaci%C3%B3n-de-una-regresi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol start="0" style="list-style-type: decimal">
+<li>Pregunta de investigación, revisión de literatura</li>
+<li>Base datos lista para el modelo (Unidad de investigación)</li>
+<li>Establecer la relación interés</li>
+<li>Definir el modelo de interés</li>
+<li>Optimizar el modelo</li>
+<li>Validar el modelo</li>
+<li>Analizar/Predecir a partir del modelo</li>
+</ol>
+</div>
+<div id="regresión-lineal" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Regresión lineal<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-lineal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[y \in IR\]</span></p>
+<p><span class="math display">\[x_1, x_2, \ldots (mixtas)\]</span></p>
+<p><span class="math display">\[y=\beta_0+\beta_1 x_{1}+\beta_2 x_{2}+\ldots+\epsilon_i\]</span></p>
+<p><span class="math display">\[\epsilon_i\sim N(0, \sigma^2)\]</span></p>
+<p>Las variables <span class="math inline">\(x\)</span> son independientes mutuamente.</p>
+<p>Causalidad vs Correlación</p>
+<p><img src="https://static.wixstatic.com/media/f386a0_2fdc072afcc54d07b4e171954c30a2b5~mv2.png/v1/fill/w_568,h_332,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/f386a0_2fdc072afcc54d07b4e171954c30a2b5~mv2.png" /></p>
+</div>
+<div id="probit-y-logit" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Probit y Logit<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#probit-y-logit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Estrategia, llevar valores binarios a valores continuos. Mediante una función de enlace (<span class="math inline">\(F(Y)\)</span>).</p>
+<p><span class="math display">\[F(Y)=Y&#39;=X \beta +\epsilon\]</span></p>
+<p>Probit:</p>
+<p><span class="math display">\[Y=\Phi (X \beta +\epsilon)\]</span>
+<span class="math display">\[\phi^{-1}(Y)=X \beta +\epsilon\]</span></p>
+<p><span class="math display">\[Y&#39;=X \beta +\epsilon\]</span></p>
+<p>El enlace <span class="math inline">\(F(Y)=\Phi^{-1}(Y)\)</span>, es conocida como probit.</p>
+<p>Logit:</p>
+<p><span class="math display">\[logit(Y)=log\left(\frac{Y}{1-Y}\right)=X\beta+\epsilon\]</span></p>
+<p><span class="math display">\[Y=\frac{e^{X\beta+\epsilon}}{1+e^{X\beta+\epsilon}}\]</span></p>
+</div>
+<div id="regresión-cuantílica" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Regresión Cuantílica<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-cuant%C3%ADlica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El modelo no se enfoca en la media condicional, sino en el cuantil <span class="math inline">\(\tau\)</span>:</p>
+<p><span class="math display">\[Q_{y|x}(\tau) = \beta_0(\tau) + \beta_1(\tau) x_{1} + \beta_2(\tau) x_{2} + \ldots\]</span>
+* <strong>Variable dependiente:</strong> <span class="math inline">\(y \in \mathbb{R}\)</span>
+* <strong>Regresores:</strong> <span class="math inline">\(x_1, x_2, \ldots\)</span> (pueden ser continuos o categóricos).
+* <strong>Función de pérdida (Check Function):</strong></p>
+<p><span class="math display">\[\rho_\tau(u) = u (\tau - \mathbb{1}\{u &lt; 0\})\]</span></p>
+<p>A diferencia de OLS/MCO, donde los errores <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2)\)</span>, aquí se asume que el cuantil <span class="math inline">\(\tau\)</span> de la distribución de los errores condicionales es cero: <span class="math inline">\(P(y_i \leq x_i&#39; \beta_\tau | x_i) = \tau\)</span>.</p>
+</div>
+<div id="recomendación" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Recomendación<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#recomendaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Lo visto en este tema tiene una limitación, es el tratamiento sobre muestras autoponderadas es decir su alcance es limitado.</li>
+<li>Para incorporar este tratamiento en encuestas por muestreo se recomienda usar la librería survey y srvyr</li>
+<li>Se puede usar los métodos de agrupamiento para mejorar el rendimiento del modelo, muchas veces como una variable de estrato.</li>
+<li>Para garantizar que el modelo este libre de multicolinealidad se recomienda usar componentes principales</li>
+</ul>
+
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div class="csl-entry">
+Bramer, Max. 2020. <em>Principles of <span>Data</span> <span>Mining</span></em>. Undergraduate <span>Topics</span> in <span>Computer</span> <span>Science</span>. London: Springer London. <a href="https://doi.org/10.1007/978-1-4471-7493-6">https://doi.org/10.1007/978-1-4471-7493-6</a>.
+</div>
+<div class="csl-entry">
+Buttrey, Samuel. 2017. <em>A <span>Data</span> <span>Scientist</span>’s <span>Guide</span> to <span>Acquiring</span>, <span>Cleaning</span> and <span>Managing</span> <span>Data</span> in <span>R</span></em>. 1st ed. Wiley. <a href="https://doi.org/10.1002/9781119080053">https://doi.org/10.1002/9781119080053</a>.
+</div>
+<div class="csl-entry">
+Chapman, Pete, Julian Clinton, Randy Kerber, Thomas Khabaza, Thomas Reinartz, Colin Shearer, and Rudiger Wirth. 2000. <span>“CRISP-DM 1.0: Step-by-Step Data Mining Guide.”</span> SPSS.
+</div>
+<div class="csl-entry">
+Cichosz, Pawel. n.d. <span>“Data <span>Mining</span> <span>Algorithms</span>.”</span>
+</div>
+<div class="csl-entry">
+Fayyad, Usama, Gregory Piatetsky-Shapiro, and Padhraic Smyth. 1996. <span>“From Data Mining to Knowledge Discovery in Databases.”</span> <em>AI Magazine</em> 17 (3): 37–54.
+</div>
+<div class="csl-entry">
+Hand, D. J., Heikki Mannila, and Padhraic Smyth. 2001. <em>Principles of Data Mining</em>. Adaptive Computation and Machine Learning. Cambridge, Mass: MIT Press.
+</div>
+<div class="csl-entry">
+<span>“Machine <span>Learning</span> with <span>R</span> <span>Cookbook</span>.”</span> n.d.
+</div>
+<div class="csl-entry">
+Mason, Hilary, and Chris Wiggins. 2010. <span>“A Taxonomy of Data Science.”</span> <em>Dataists</em>.
+</div>
+<div class="csl-entry">
+Matignon, Randall. 2007. <em>Data Mining Using SAS Enterprise Miner: A Case Study Approach</em>. John Wiley &amp; Sons.
+</div>
+<div class="csl-entry">
+<span>“Practical <span>Data</span> <span>Cleaning</span> - 19 <span>Essential</span> <span>Tips</span> to <span>Scrub</span> <span>Your</span> <span>Dirty</span> <span>Data</span> (and Keep Your Boss Happy).”</span> n.d.
+</div>
+<div class="csl-entry">
+SAS Institute. 2017. <em>SAS Enterprise Miner 14.3: SEMMA Methodology</em>.
+</div>
+<div class="csl-entry">
+Tan, Pang-Ning, Michael Steinbach, and Vipin Kumar. 2014. <em>Introduction to Data Mining</em>. New internat. edition. Always Learning. Harlow: Pearson.
+</div>
+<div class="csl-entry">
+———. n.d. <span>“Introduction to <span>Data</span> <span>Mining</span>.”</span>
+</div>
+<div class="csl-entry">
+Torgo, Luis. n.d. <span>“Data <span>Mining</span> with <span>R</span>.”</span>
+</div>
+</div>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

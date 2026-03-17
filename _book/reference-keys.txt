@@ -26,3 +26,10 @@ algoritmo-1
 validación-cluster
 silhouette-coefficient
 ejercicio-práctico-segmentación-de-perfiles-académicos-para-admisión-universitaria
+minería-de-datos-supervisada-clasificación-y-predicción
+regresión
+pasos-para-la-implementación-de-una-regresión
+regresión-lineal
+probit-y-logit
+regresión-cuantílica
+recomendación

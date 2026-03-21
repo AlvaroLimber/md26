@@ -1,6 +1,6 @@
 ---
 title: "**MINERÍA DE DATOS II**"
-subtitle: "Laboratorio I"
+subtitle: "Laboratorio I (Solucionario)"
 author: "MSc. Alvaro Chirino"
 date: "Marzo, 2026"
 output: 
@@ -10,10 +10,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-Se debe subir a la plataforma un solo archivo con las respuestas a las tres preguntas, ya sea .R o .Rmd. El archivo debe llamarse: 
-
-$$lab1\_apellido.R \quad ó \quad lab1\_apellido.Rmd$$
-
 # Pregunta 1. Componentes principales (50 pts)
 
 Usando el dataset de https://www.kaggle.com/datasets/mohansacharya/graduate-admissions (sobre el archivo Admission_Predict_Ver1.1.csv), omita la variable *Serial* y responda:
@@ -22,6 +18,42 @@ Usando el dataset de https://www.kaggle.com/datasets/mohansacharya/graduate-admi
   - (20 pts.) Retenga los componentes que expliquen al menos el 70% de la variabilidad. ¿Qué explican los componentes retenidos? 
   - (10 pt.) Reproduzca la matriz elegida ($\rho$ ó $\Sigma$) con los componentes retenidos. 
   - (10 pts) ¿Qué variable esta más conectada al último componente principal?. Omita esa variable y vuelva a realizar el ACP, ¿cuántos componentes ahora deben retenerse?
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+bd<-read.csv("_dataset/Admission_Predict_Ver1.1.csv")
+bd<-bd %>% select(-Serial.No.)
+##################################################
+# - (10 pt.) ¿Qué es mejor usar en este caso para un ACP, la matriz de varianzas y covarianzas o la matriz de correlación?. Justifique su respuesta y use ese enfoque para las siguientes preguntas.
+var(bd)
+cor(bd)#Por la variedad de unidades de medida, este enfoque es mejor
+##################################################
+# - (20 pts.) Retenga los componentes que expliquen al menos el 70% de la variabilidad. ¿Qué explican los componentes retenidos? 
+m1<-prcomp(bd, scale. = T)
+summary(m1)# Se deben retner 2 componentes principales para alcanzar el 70%, se alcanza el 78%
+plot(m1)
+##################################################
+# - (10 pt.) Reproduzca la matriz elegida ($\rho$ ó $\Sigma$) con los componentes retenidos. 
+rho<-cor(bd)
+aux<-eigen(rho)
+rho #orignal
+aux$vectors[, 1:2]%*% diag(aux$values[1:2]) %*% t(aux$vectors[, 1:2])
+#replica con 2 componentes
+##################################################
+# - (10 pts) ¿Qué variable esta más conectada al último componente principal?. Omita esa variable y vuelva a realizar el ACP, ¿cuántos componentes ahora deben retenerse?
+# opción 1, observando la última columna de la matriz de la descomposición
+max(abs(aux$vectors[,8]))
+names(bd)[6]
+m2<-prcomp(bd %>% select(-6), scale. = T)
+summary(m2) # Continuan siendo 2 componenentes a retener
+# Opción 2, mediante la correlación del último componente con el resto de variables
+bdaux<-bd
+bdaux$pc8<-m1$x[,8]
+cor(bdaux)[,9]# mismo resultado
+# Opción 3 biplit
+biplot(m1, c(7,8))# mismo resultado
+```
 
 # Pregunta 2. Agrupamiento (50 pts)
 
@@ -40,7 +72,53 @@ Usando el dataset de la encuesta a hogares 2024, a nivel de los hogares, usando 
 4. Identifique el mejor modelo entre los anteriores y describa el significado de cada grupo. (5 pts.)  
   
 ```{r}
+rm(list=ls())
+library(labelled)
 library(haven)
-bd<-read_spss("~/Downloads/BD_EH2024 (2)/EH2024_Seguridad_Alimentaria.sav")
+library(tidyverse)
+library(cluster)
+library(flexclust)
+library(factoextra)
+library(Kmedians)
+load("_dataset/eh24.RData")
+#1. Preparación de los datos (5 pts.)
+# - Cree 8 variables binarias que identifique si el informante responde **Si** sobre las 8 preguntas de la sección
+bd<-eh24s %>% mutate(sa1= s07a_01==1,
+                 sa2= s07a_02==1,
+                 sa3= s07a_03==1,
+                 sa4= s07a_04==1,
+                 sa5= s07a_05==1,
+                 sa6= s07a_06==1,
+                 sa7= s07a_07==1,
+                 sa8= s07a_08==1)
+#  - Filtre el dataset de tal manera que se conserven casos de los departamentos de La Paz, Cochabamba y Santa Cruz
+bd<-bd %>% filter(depto %in% c(2, 3, 7))
+#  - Crear una variable binaria que identifique si el hogar esta en el área rural
+bd<-bd %>% mutate(rural=area==2) %>% select(sa1:sa8, rural)
+#2. K-center (20 pts.). Usando las 8 variables binarias creadas y la variable para rural, identificar el mejor valor de k entre 2 y 6 para los métodos kmedia, kmediana y kmedoide
+#  - Para los **datos originales**
+fviz_nbclust(bd, kmeans, method = "silhouette", k.max = 6)# Resp 5
+fviz_nbclust(bd, pam, method = "silhouette", k.max = 6)# Resp 6
+#Para mediana lo hacemos manual
+Kmedians(bd %>% sample_n(100), 2)
+
+
+#  - Para los **datos estandarizados** 
+fviz_nbclust(bd %>% scale(), kmeans, method = "silhouette", k.max = 6)# Resp 6
+fviz_nbclust(bd %>% scale(), pam, method = "silhouette", k.max = 6)# Resp 6
+
+
+#3. Jerarquico (20 pts.). Usando las 8 variables binarias creadas y la variable para rural, identificar el mejor valor de k entre 2 y 6 para los enlaces simple, completo, promedio 
+#  - Para los **datos originales**
+fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "single")
+fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "complete")
+fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "average")
+#  - Para los **datos estandarizados** 
+fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "single")
+fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "complete")
+fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "average")
+#4. Identifique el mejor modelo entre los anteriores y describa el significado de cada grupo. (5 pts.)  
+
+
 ```
   

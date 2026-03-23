@@ -31,8 +31,11 @@ cor(bd)#Por la variedad de unidades de medida, este enfoque es mejor
 ##################################################
 # - (20 pts.) Retenga los componentes que expliquen al menos el 70% de la variabilidad. ¿Qué explican los componentes retenidos? 
 m1<-prcomp(bd, scale. = T)
-summary(m1)# Se deben retner 2 componentes principales para alcanzar el 70%, se alcanza el 78%
+summary(m1)# Se deben retener 2 componentes principales para alcanzar el 70%, se alcanza el 78%
 plot(m1)
+biplot(m1)
+# Primer componente: Rendimiento académico, valores bajos del componente alto rendimiento académico
+# Segundo componente: Perfil de investigación, valores altos del componente mejor perfil en investigación
 ##################################################
 # - (10 pt.) Reproduzca la matriz elegida ($\rho$ ó $\Sigma$) con los componentes retenidos. 
 rho<-cor(bd)
@@ -46,12 +49,12 @@ aux$vectors[, 1:2]%*% diag(aux$values[1:2]) %*% t(aux$vectors[, 1:2])
 max(abs(aux$vectors[,8]))
 names(bd)[6]
 m2<-prcomp(bd %>% select(-6), scale. = T)
-summary(m2) # Continuan siendo 2 componenentes a retener
+summary(m2) # Continuan siendo 2 componentes a retener
 # Opción 2, mediante la correlación del último componente con el resto de variables
 bdaux<-bd
 bdaux$pc8<-m1$x[,8]
 cor(bdaux)[,9]# mismo resultado
-# Opción 3 biplit
+# Opción 3 biplot
 biplot(m1, c(7,8))# mismo resultado
 ```
 
@@ -81,6 +84,12 @@ library(flexclust)
 library(factoextra)
 library(Kmedians)
 load("_dataset/eh24.RData")
+###################################
+kmedians_wrapper <- function(x, k) {
+  res <- flexclust::kcca(x, k = k, family = kccaFamily("kmedians"))
+  return(list(cluster = flexclust::clusters(res)))
+}
+###################################
 #1. Preparación de los datos (5 pts.)
 # - Cree 8 variables binarias que identifique si el informante responde **Si** sobre las 8 preguntas de la sección
 bd<-eh24s %>% mutate(sa1= s07a_01==1,
@@ -97,28 +106,87 @@ bd<-bd %>% filter(depto %in% c(2, 3, 7))
 bd<-bd %>% mutate(rural=area==2) %>% select(sa1:sa8, rural)
 #2. K-center (20 pts.). Usando las 8 variables binarias creadas y la variable para rural, identificar el mejor valor de k entre 2 y 6 para los métodos kmedia, kmediana y kmedoide
 #  - Para los **datos originales**
-fviz_nbclust(bd, kmeans, method = "silhouette", k.max = 6)# Resp 5
+set.seed(1400)
+fviz_nbclust(bd, kmeans, method = "silhouette", k.max = 6)# Resp 6
+m1<-kmeans(bd, 6)
+set.seed(1400)
 fviz_nbclust(bd, pam, method = "silhouette", k.max = 6)# Resp 6
-#Para mediana lo hacemos manual
-Kmedians(bd %>% sample_n(100), 2)
-
-
+set.seed(1400)
+m2<-pam(bd, 6)
+set.seed(1400)
+fviz_nbclust(bd, kmedians_wrapper, method = "silhouette", k.max = 6)# Resp 5
+set.seed(1400)
+m3<-kcca(bd, 5, family = kccaFamily("kmedians"))
 #  - Para los **datos estandarizados** 
+set.seed(1400)
 fviz_nbclust(bd %>% scale(), kmeans, method = "silhouette", k.max = 6)# Resp 6
+set.seed(1400)
+m4<-kmeans(bd %>% scale(), 6)
+
+set.seed(1400)
 fviz_nbclust(bd %>% scale(), pam, method = "silhouette", k.max = 6)# Resp 6
+set.seed(1400)
+m5<-pam(bd %>% scale(), 6)
 
+set.seed(1400)
+fviz_nbclust(bd %>% scale(), kmedians_wrapper, method = "silhouette", k.max = 6)# Resp 5
+set.seed(1400)
+m6<-kcca(bd %>% scale(), 2, family = kccaFamily("kmedians"))
+##Coeficientes de silueta por modelo
+mdist<-dist(bd)
+mdists<-dist(bd %>% scale())
+sm1<-mean(silhouette(m1$cluster, mdist)[,3])
+sm2<-mean(silhouette(m2$clustering, mdist)[,3])
+sm3<-mean(silhouette(clusters(m3), mdist)[,3])
+sm4<-mean(silhouette(m4$cluster, mdists)[,3])
+sm5<-mean(silhouette(m5$clustering, mdists)[,3])
+sm6<-mean(silhouette(clusters(m6), mdists)[,3])
 
+kcenter<-data.frame(tipo="kcenter",
+                    centro=rep(c("Media", "Medoide", "Mediana"),2),
+                    data=rep(c("Original", "Estandarizado"), each=3),
+                    sil=c(sm1, sm2, sm3, sm4, sm5, sm6))
 #3. Jerarquico (20 pts.). Usando las 8 variables binarias creadas y la variable para rural, identificar el mejor valor de k entre 2 y 6 para los enlaces simple, completo, promedio 
 #  - Para los **datos originales**
 fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "single")
 fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "complete")
 fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "average")
+m7<-hclust(mdist, method = "single")
+m8<-hclust(mdist, method = "complete")
+m9<-hclust(mdist, method = "average")
 #  - Para los **datos estandarizados** 
-fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "single")
-fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "complete")
-fviz_nbclust(bd, hcut, method = "silhouette", hc_method = "average")
-#4. Identifique el mejor modelo entre los anteriores y describa el significado de cada grupo. (5 pts.)  
+fviz_nbclust(bd %>% scale(), hcut, method = "silhouette", hc_method = "single")
+fviz_nbclust(bd %>% scale(), hcut, method = "silhouette", hc_method = "complete")
+fviz_nbclust(bd %>% scale(), hcut, method = "silhouette", hc_method = "average")
+m10<-hclust(mdists, method = "single")
+m11<-hclust(mdists, method = "complete")
+m12<-hclust(mdists, method = "average")
 
+sm7<-mean(silhouette(cutree(m7, 2) , mdist)[,3])
+sm8<-mean(silhouette(cutree(m8, 2) , mdist)[,3])
+sm9<-mean(silhouette(cutree(m9, 2) , mdist)[,3])
+sm10<-mean(silhouette(cutree(m10, 2) , mdists)[,3])
+sm11<-mean(silhouette(cutree(m11, 2) , mdists)[,3])
+sm12<-mean(silhouette(cutree(m12, 2) , mdists)[,3])
+
+jerar<-data.frame(tipo="Jerarquico",
+                    centro=rep(c("simple", "completo", "promedio"),2),
+                    data=rep(c("Original", "Estandarizado"), each=3),
+                    sil=c(sm7, sm8, sm9, sm10, sm11, sm12))
+#4. Identifique el mejor modelo entre los anteriores y describa el significado de cada grupo. (5 pts.)  
+kcenter
+jerar
+#La mejor aproximación es con los datos originales, kcenter, centro medoide con k=6 según el valor del coeficiente de silueta.
+bd$grupo<-m2$clustering
+bd %>% group_by(grupo) %>% summarise_at(vars(sa1:rural), mean)
+bd %>% count(grupo)
+
+# Grupo 1: Grupo no vulnerable
+# Grupo 2: Grupo vulnerable en las variables 1, 2, 3, 5
+# Grupo 3: Vulnerable en la variable 1
+# Grupo 4: Vulnerable en la variable 1 y 2
+# Grupo 5: Vulnerable en la variable 1, 2 y 3
+# Grupo 6: Grupo de alta vulnerabilidad
 
 ```
   

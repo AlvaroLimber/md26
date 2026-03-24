@@ -88,7 +88,7 @@ $$Q_{y|x}(\tau) = \beta_0(\tau) + \beta_1(\tau) x_{1} + \beta_2(\tau) x_{2} + \l
 * **Regresores:** $x_1, x_2, \ldots$ (pueden ser continuos o categóricos).
 * **Función de pérdida (Check Function):**
 
-$$\rho_\tau(u) = u (\tau - \mathbb{1}\{u < 0\})$$
+$${\displaystyle \rho _{\tau }(u)=u(\tau -\mathbb {I} _{(u<0)})={\begin{cases}(\tau -1)u,&{\text{if }}u<0,\\\tau u,&{\text{if }}u\geq 0,\end{cases}}}$$
     
 A diferencia de OLS/MCO, donde los errores $\epsilon_i \sim N(0, \sigma^2)$, aquí se asume que el cuantil $\tau$ de la distribución de los errores condicionales es cero: $P(y_i \leq x_i' \beta_\tau | x_i) = \tau$.
 

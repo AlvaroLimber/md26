@@ -147,6 +147,7 @@ div.csl-indent {
 }
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -209,6 +210,19 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.3" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#probit-y-logit"><i class="fa fa-check"></i><b>2.1.3</b> Probit y Logit</a></li>
 <li class="chapter" data-level="2.1.4" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-cuant%C3%ADlica"><i class="fa fa-check"></i><b>2.1.4</b> Regresión Cuantílica</a></li>
 <li class="chapter" data-level="2.1.5" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#recomendaci%C3%B3n"><i class="fa fa-check"></i><b>2.1.5</b> Recomendación</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#clasificaci%C3%B3n"><i class="fa fa-check"></i><b>2.2</b> Clasificación</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#pasos-gen%C3%A9ricos"><i class="fa fa-check"></i><b>2.2.1</b> Pasos Genéricos</a></li>
+<li class="chapter" data-level="2.2.2" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#validaci%C3%B3n-y-muestreo-estrategias-contra-el-sesgo"><i class="fa fa-check"></i><b>2.2.2</b> Validación y Muestreo: Estrategias contra el Sesgo</a></li>
+<li class="chapter" data-level="2.2.3" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#taxonom%C3%ADa-de-m%C3%A9todos-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>2.2.3</b> Taxonomía de Métodos de Clasificación</a></li>
+<li class="chapter" data-level="2.2.4" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#medidas-de-calidad-y-evaluaci%C3%B3n-del-desempe%C3%B1o"><i class="fa fa-check"></i><b>2.2.4</b> Medidas de Calidad y Evaluación del Desempeño</a></li>
+<li class="chapter" data-level="2.2.5" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#visualizaci%C3%B3n-del-desempe%C3%B1o-curva-roc-y-auc"><i class="fa fa-check"></i><b>2.2.5</b> Visualización del Desempeño: Curva ROC y AUC</a></li>
+<li class="chapter" data-level="2.2.6" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-log%C3%ADstica-logit-probit"><i class="fa fa-check"></i><b>2.2.6</b> Regresión Logística (Logit) / Probit</a></li>
+<li class="chapter" data-level="2.2.7" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#naive-bayes"><i class="fa fa-check"></i><b>2.2.7</b> Naive Bayes</a></li>
+<li class="chapter" data-level="2.2.8" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#k-nearest-neighbors-knn"><i class="fa fa-check"></i><b>2.2.8</b> k-Nearest Neighbors (kNN)</a></li>
+<li class="chapter" data-level="2.2.9" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-decisi%C3%B3n-cart-c5.0"><i class="fa fa-check"></i><b>2.2.9</b> Árboles de Decisión (CART / C5.0)</a></li>
+<li class="chapter" data-level="2.2.10" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann"><i class="fa fa-check"></i><b>2.2.10</b> Redes Neuronales Artificiales (ANN)</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -318,6 +332,222 @@ div.csl-indent {
 <li>Se puede usar los métodos de agrupamiento para mejorar el rendimiento del modelo, muchas veces como una variable de estrato.</li>
 <li>Para garantizar que el modelo este libre de multicolinealidad se recomienda usar componentes principales</li>
 </ul>
+</div>
+</div>
+<div id="clasificación" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Clasificación<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#clasificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La clasificación es una tarea de <strong>aprendizaje automático supervisado</strong> que consiste en identificar la categoría o “clase” a la que pertenece una nueva observación basándose en un modelo construido a partir de datos históricos ya etiquetados. A diferencia de la regresión, que predice valores numéricos continuos, la clasificación trabaja con una variable objetivo cualitativa denominada “clase”, la cual se divide en categorías llamadas “niveles”.</p>
+<p>De manera formal, se busca entender la relación:</p>
+<p><span class="math display">\[y = f(x)\]</span></p>
+<p>Donde <span class="math inline">\(y\)</span> es la variable <strong>dependiente</strong> (categórica) y <span class="math inline">\(x\)</span> representa el conjunto de variables <strong>independientes</strong> o predictores. Esta técnica es fundamental en la <strong>analítica predictiva</strong> para predecir comportamientos futuros basándose en datos estructurados y no estructurados.</p>
+<p><strong>Ejemplos de aplicación:</strong></p>
+<ul>
+<li><strong>Negocios:</strong> Identificación de clientes con riesgo de impago (<em>loan default</em>) o probabilidad de cancelar un servicio (<em>churn</em>).</li>
+<li><strong>Salud:</strong> Diagnóstico de patologías a partir de síntomas, temperatura o radiografías.</li>
+<li><strong>Seguridad:</strong> Filtrado de mensajes de spam y detección de actividad criminal o intrusiones en redes.</li>
+</ul>
+<div class="rmdtip">
+<p><strong>Actividad en el Aula (5 min): “Cazadores de Clases”</strong></p>
+<p>Identifiquen un problema de clasificación en su área (economía o negocios) y definan:</p>
+<ul>
+<li>¿Cuál es la variable objetivo (y)?.</li>
+<li>¿Es binaria o multinomial?.</li>
+<li>¿Qué predictores (x) usarían?.</li>
+</ul>
+</div>
+<div id="pasos-genéricos" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Pasos Genéricos<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#pasos-gen%C3%A9ricos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un proyecto de clasificación exitoso no depende solo del algoritmo, sino de un flujo de trabajo riguroso y repetible. Se identifican cinco pasos fundamentales <span class="citation">Lantz (2013)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Recolección de datos:</strong> Identificación de variables estructurales <span class="math inline">\(X\)</span> y la variable objetivo <span class="math inline">\(Y\)</span>.</li>
+<li><strong>Exploración y Preparación (IDA/EDA):</strong> Limpieza, manejo de valores perdidos y <strong>normalización</strong> (vital para algoritmos basados en distancia). Esta fase consume aproximadamente el 80% del esfuerzo del proyecto.</li>
+<li><strong>Entrenamiento del modelo:</strong> Selección del algoritmo adecuado basado en la naturaleza del problema.</li>
+<li><strong>Evaluación del desempeño:</strong> Uso de métricas para verificar si el algoritmo aprendió patrones o solo memorizó los datos.</li>
+<li><strong>Mejora del modelo:</strong> Ajuste de parámetros o uso de métodos de ensamble para maximizar la precisión.</li>
+</ol>
+</div>
+<div id="validación-y-muestreo-estrategias-contra-el-sesgo" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Validación y Muestreo: Estrategias contra el Sesgo<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#validaci%C3%B3n-y-muestreo-estrategias-contra-el-sesgo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para garantizar que el modelo sea capaz de <strong>generalizar</strong> ante datos no vistos, es imperativo realizar particiones del dataset.</p>
+<div id="a.-el-método-holdout-y-el-three-way-split" class="section level4 hasAnchor" number="2.2.2.1">
+<h4><span class="header-section-number">2.2.2.1</span> A. El Método Holdout y el “Three-Way Split”<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#a.-el-m%C3%A9todo-holdout-y-el-three-way-split" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Tradicionalmente se divide el dataset en <strong>Entrenamiento</strong> (70-80%) y <strong>Prueba</strong> (20-30%). Sin embargo, para problemas complejos o con muchas variables categóricas, se recomienda una división triple <span class="citation">Zumel and Mount (2019)</span>:</p>
+<ul>
+<li><strong>Entrenamiento:</strong> Para construir el modelo.</li>
+<li><strong>Calibración:</strong> Para ajustar umbrales de decisión (thresholds) y evitar el sobreajuste en el plan de tratamiento de datos.</li>
+<li><strong>Prueba (Test):</strong> Reservado estrictamente para la evaluación final.</li>
+</ul>
+</div>
+<div id="b.-validación-cruzada-k-fold-cv" class="section level4 hasAnchor" number="2.2.2.2">
+<h4><span class="header-section-number">2.2.2.2</span> B. Validación Cruzada (k-fold CV)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#b.-validaci%C3%B3n-cruzada-k-fold-cv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Divide los datos en <span class="math inline">\(k\)</span> particiones aleatorias (folds). El modelo se entrena <span class="math inline">\(k\)</span> veces, rotando el fold de validación en cada iteración. Este método es el estándar para estimar la estabilidad del modelo <span class="citation">Lantz (2013)</span>.</p>
+</div>
+<div id="c.-criterios-ad-hoc-y-balanceo" class="section level4 hasAnchor" number="2.2.2.3">
+<h4><span class="header-section-number">2.2.2.3</span> C. Criterios Ad-hoc y Balanceo<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#c.-criterios-ad-hoc-y-balanceo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Estratificación: Es vital asegurar que la proporción de las clases sea similar en cada partición, especialmente en eventos raros.</li>
+<li>Base Error Rate: Un modelo solo es útil si su precisión supera la proporción de la clase mayoritaria (ej. si el 70% de los préstamos son buenos, cualquier modelo debe ser mejor que el 70% de exactitud)</li>
+</ul>
+</div>
+<div id="d.-tratamiento-del-desbalance-de-clases-class-imbalance" class="section level4 hasAnchor" number="2.2.2.4">
+<h4><span class="header-section-number">2.2.2.4</span> D. Tratamiento del Desbalance de Clases (Class Imbalance)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#d.-tratamiento-del-desbalance-de-clases-class-imbalance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El problema de desbalance ocurre cuando el dataset tiene una gran mayoría de registros pertenecientes a una sola categoría. Esto es común en casos de detección de fraude, donde el evento de interés (fraude) suele ser una pequeña fracción del total (ej. menos del 10%).</p>
+<ul>
+<li>El Riesgo: Muchos algoritmos fallan al intentar minimizar el error global, sesgándose hacia la clase mayoritaria y fallando en identificar la minoritaria. En estos casos, la Exactitud deja de ser una métrica útil y se debe priorizar la Sensibilidad o el Kappa.</li>
+<li>Técnicas de Re-muestreo (Resampling): Se utilizan para “facilitar el aprendizaje” del algoritmo ajustando las proporciones en el set de entrenamiento:</li>
+<li>Sobre-muestreo (Oversampling): Incrementa artificialmente el número de ejemplos de la clase minoritaria (ej. duplicándolos o creando casos sintéticos) hasta alcanzar una proporción más equilibrada, como un 50/50.</li>
+<li>Bajo-muestreo (Undersampling): Reduce el número de ejemplos de la clase mayoritaria para igualarlos a la minoritaria. Es útil en Big Data para reducir costos computacionales.</li>
+<li>Criterio Fundamental: Aunque el entrenamiento se realice con datos balanceados (50/50) para mejorar la detección de patrones, la evaluación final en el set de prueba siempre debe hacerse con la distribución real de los datos para conocer el rendimiento real del modelo en producción.</li>
+</ul>
+<div class="rmdtip">
+<p><strong>Actividad en el Aula (5 min): “La trampa del 99%”</strong></p>
+<p>“Un médico tiene un test para una enfermedad que afecta a 1 de cada 100 personas. Si su test siempre dice ‘Saludable’ (independientemente del paciente), ¿cuál es su exactitud?”.
+- Pregunta: “¿Es un buen test médico?”.</p>
+</div>
+</div>
+</div>
+<div id="taxonomía-de-métodos-de-clasificación" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Taxonomía de Métodos de Clasificación<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#taxonom%C3%ADa-de-m%C3%A9todos-de-clasificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Existen múltiples familias de algoritmos según su enfoque matemático. A continuación, se listan los principales métodos y sus variantes:</p>
+<ul>
+<li>Regresión Lineal y Generalizada:
+<ul>
+<li>Regresión Logística (<strong>Logit</strong>): Binaria, Multinomial y Ordenada.</li>
+<li><strong>Probit</strong>: Basada en la distribución normal acumulada.</li>
+</ul></li>
+<li>Métodos Probabilísticos:
+<ul>
+<li><strong>Naive Bayes</strong>: Incluye variantes como Gaussiana, Multinomial y Bernoulli.</li>
+<li>Redes Bayesianas.</li>
+</ul></li>
+<li>Aprendizaje Basado en Instancias (Lazy Learning):
+<ul>
+<li><strong>k-Nearest Neighbors</strong> (kNN): Clasificación por vecindad y distancia.</li>
+<li>Learning Vector Quantization (LVQ).</li>
+</ul></li>
+<li>Métodos de “Divide y Vencerás” (Árboles y Reglas):
+<ul>
+<li>Árboles de Decisión: <strong>CART</strong> (rpart), ID3, C4.5, C5.0, CHAID.</li>
+<li>Reglas de Clasificación: 1R, RIPPER.</li>
+</ul></li>
+<li>Métodos de “Caja Negra” (No Lineales):
+<ul>
+<li><strong>Redes Neuronales Artificiales</strong> (ANN): Perceptrón, Multicapa con Backpropagation y Deep Learning.</li>
+<li>Máquinas de Soporte Vectorial (SVM): Lineales y con funciones de Kernel.</li>
+</ul></li>
+<li>Métodos de Ensamble (Avanzado):
+<ul>
+<li>Bagging y Random Forest.</li>
+<li>Boosting: AdaBoost, Gradient Boosting (XGBoost).</li>
+<li>Stacking y Blending.</li>
+</ul></li>
+</ul>
+</div>
+<div id="medidas-de-calidad-y-evaluación-del-desempeño" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Medidas de Calidad y Evaluación del Desempeño<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#medidas-de-calidad-y-evaluaci%C3%B3n-del-desempe%C3%B1o" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La evaluación del desempeño permite determinar si el modelo es exitoso en su propósito y capaz de generalizar ante datos no vistos en lugar de simplemente memorizar el entrenamiento.</p>
+<div id="a.-la-matriz-de-confusión" class="section level4 hasAnchor" number="2.2.4.1">
+<h4><span class="header-section-number">2.2.4.1</span> A. La Matriz de Confusión<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#a.-la-matriz-de-confusi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Es una herramienta esencial que tabula las clasificaciones reales frente a las predicciones del modelo. Para un caso binario, se estructura de la siguiente forma:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Real: Negativo</th>
+<th>Real: Positivo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Predicho: Negativo</strong></td>
+<td>Verdadero Negativo (TN)</td>
+<td>Falso Negativo (FN)</td>
+</tr>
+<tr class="even">
+<td><strong>Predicho: Positivo</strong></td>
+<td>Falso Positivo (FP)</td>
+<td>Verdadero Positivo (TP)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Verdadero Positivo (TP):</strong> Clasificado correctamente en la clase de interés.</li>
+<li><strong>Verdadero Negativo (TN):</strong> Clasificado correctamente fuera de la clase de interés.</li>
+<li><strong>Falso Positivo (FP):</strong> Clasificado incorrectamente en la clase de interés (Error Tipo I).</li>
+<li><strong>Falso Negativo (FN):</strong> Clasificado incorrectamente fuera de la clase de interés (Error Tipo II).</li>
+</ul>
+</div>
+<div id="b.-métricas-derivadas" class="section level4 hasAnchor" number="2.2.4.2">
+<h4><span class="header-section-number">2.2.4.2</span> B. Métricas Derivadas<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#b.-m%C3%A9tricas-derivadas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Exactitud (Accuracy):</strong> Proporción de predicciones correctas sobre el total.
+<span class="math display">\[Accuracy = \frac{TP + TN}{TP + TN + FP + FN}\]</span></li>
+<li><strong>Tasa de Error:</strong> Proporción de casos mal clasificados (<span class="math inline">\(1 - Accuracy\)</span>).
+<span class="math display">\[Error Rate = \frac{FP + FN}{TP + TN + FP + FN}\]</span></li>
+<li><strong>Sensibilidad (Recall / TPR):</strong> Capacidad del modelo para identificar correctamente los casos positivos.
+<span class="math display">\[Sensitivity = \frac{TP}{TP + FN}\]</span></li>
+<li><strong>Especificidad (TNR):</strong> Capacidad de identificar correctamente los casos negativos.
+<span class="math display">\[Specificity = \frac{TN}{TN + FP}\]</span></li>
+<li><strong>Precisión (PPV):</strong> Confiabilidad del modelo cuando predice la clase positiva.
+<span class="math display">\[Precision = \frac{TP}{TP + FP}\]</span></li>
+<li><strong>Medida F (F-measure / F1):</strong> Media armónica que combina precisión y sensibilidad en un solo valor.
+<span class="math display">\[F = \frac{2 \times Precision \times Recall}{Precision + Recall}\]</span></li>
+<li><strong>Estadístico Kappa (<span class="math inline">\(\kappa\)</span>):</strong> Ajusta la exactitud considerando la posibilidad de aciertos por puro azar.
+<span class="math display">\[\kappa = \frac{Pr(a) - Pr(e)}{1 - Pr(e)}\]</span></li>
+</ul>
+<p>Donde <span class="math inline">\(Pr(a)\)</span> es el acuerdo observado y <span class="math inline">\(Pr(e)\)</span> es el esperado por azar.</p>
+</div>
+</div>
+<div id="visualización-del-desempeño-curva-roc-y-auc" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Visualización del Desempeño: Curva ROC y AUC<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#visualizaci%C3%B3n-del-desempe%C3%B1o-curva-roc-y-auc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando un modelo entrega probabilidades, se debe seleccionar un <strong>umbral (threshold)</strong> para decidir la clase final.</p>
+<ul>
+<li><strong>Curva ROC:</strong> Grafica la Sensibilidad (TPR) frente a la Tasa de Falsos Positivos (<span class="math inline">\(1 - Especificidad\)</span>) a través de diversos puntos de corte. Permite examinar el compromiso (<em>trade-off</em>) entre detectar positivos y evitar falsos positivos.</li>
+<li><strong>Área Bajo la Curva (AUC):</strong> Resume la curva ROC en un número entre <span class="math inline">\(0.5\)</span> (sin capacidad de discriminación) y <span class="math inline">\(1.0\)</span> (clasificador perfecto). Valores entre <span class="math inline">\(0.8\)</span> y <span class="math inline">\(0.9\)</span> se consideran excelentes/buenos.</li>
+</ul>
+</div>
+<div id="regresión-logística-logit-probit" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Regresión Logística (Logit) / Probit<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-log%C3%ADstica-logit-probit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pertenece a los Modelos Lineales Generalizados (GLM). Predice la probabilidad de pertenencia a una clase binaria utilizando una <strong>función de enlace</strong> para mapear resultados al rango <span class="math inline">\((0,1)\)</span>.</p>
+<ul>
+<li><strong>Logit:</strong> Utiliza la función sigmoide para transformar el <strong>log-odds</strong> (logaritmo de la razón de probabilidades) en una probabilidad.
+<span class="math display">\[\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n\]</span></li>
+<li><strong>Probabilidad:</strong>
+<span class="math display">\[P(x) = \frac{1}{1 + e^{-(\beta&#39;x)}}\]</span></li>
+<li><strong>Probit:</strong> Utiliza la función de distribución acumulada de la normal.</li>
+</ul>
+</div>
+<div id="naive-bayes" class="section level3 hasAnchor" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> Naive Bayes<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#naive-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Algoritmo basado en el <strong>Teorema de Bayes</strong> que considera simultáneamente la información de múltiples atributos para estimar la probabilidad de un resultado.
+<span class="math display">\[P(Y|X) = \frac{P(X|Y) \cdot P(Y)}{P(X)}\]</span>
+Su nombre proviene del supuesto “ingenuo” de que todos los predictores son independientes entre sí dados la clase.</p>
+</div>
+<div id="k-nearest-neighbors-knn" class="section level3 hasAnchor" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> k-Nearest Neighbors (kNN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#k-nearest-neighbors-knn" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Es un algoritmo de <strong>aprendizaje perezoso</strong> (<em>lazy learning</em>) que no construye un modelo abstracto, sino que almacena los datos de entrenamiento. Clasifica nuevas instancias basándose en la clase mayoritaria de sus <span class="math inline">\(k\)</span> vecinos más cercanos en un espacio multidimensional, calculando distancias (usualmente Euclidianas).
+<span class="math display">\[d(x,y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}\]</span></p>
+</div>
+<div id="árboles-de-decisión-cart-c5.0" class="section level3 hasAnchor" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Árboles de Decisión (CART / C5.0)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-decisi%C3%B3n-cart-c5.0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Utilizan una estrategia de <strong>“divide y vencerás”</strong> para segmentar los datos en grupos homogéneos mediante reglas lógicas <code>if-else</code> basadas en los atributos más importantes.
+* <strong>Criterio C5.0 (Entropía):</strong> Busca maximizar la ganancia de información reduciendo el desorden en los datos.
+<span class="math display">\[Entropy(X) = \sum -p_i \log_2(p_i)\]</span>
+* <strong>Criterio Gini:</strong> Otra medida común de impureza para realizar divisiones.
+* <strong>Poda (Pruning):</strong> Se utiliza para eliminar secciones que no aportan poder de clasificación y así evitar el sobreajuste.</p>
+</div>
+<div id="redes-neuronales-artificiales-ann" class="section level3 hasAnchor" number="2.2.10">
+<h3><span class="header-section-number">2.2.10</span> Redes Neuronales Artificiales (ANN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Considerados métodos de <strong>“caja negra”</strong>, imitan la estructura biológica del cerebro con neuronas artificiales interconectadas por pesos (<span class="math inline">\(w\)</span>).
+* <strong>Estructura:</strong> Capas de entrada, ocultas (donde ocurre el aprendizaje de patrones complejos) y de salida.
+* <strong>Función de Activación:</strong> Mecanismo (como la sigmoide) por el cual la neurona procesa la información antes de pasarla a la siguiente capa.
+* <strong>Entrenamiento:</strong> Utiliza el algoritmo de <strong>retropropagación</strong> (<em>backpropagation</em>) y el descenso del gradiente para ajustar los pesos y minimizar el error.
+<span class="math display">\[\theta_{nueva} = \theta_{anterior} - \eta \cdot \frac{\partial E}{\partial \theta}\]</span></p>
 
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div class="csl-entry">
@@ -339,6 +569,15 @@ Fayyad, Usama, Gregory Piatetsky-Shapiro, and Padhraic Smyth. 1996. <span>“Fro
 Hand, D. J., Heikki Mannila, and Padhraic Smyth. 2001. <em>Principles of Data Mining</em>. Adaptive Computation and Machine Learning. Cambridge, Mass: MIT Press.
 </div>
 <div class="csl-entry">
+Johnson, Richard A., and Dean W. Wichern. 2007. <em>Applied Multivariate Statistical Analysis</em>. 6th ed. Prentice Hall.
+</div>
+<div class="csl-entry">
+Kwartler, Ted. 2017. <em>Text Mining in Practice with r</em>. John Wiley &amp; Sons.
+</div>
+<div class="csl-entry">
+Lantz, Brett. 2013. <em>Machine Learning with r</em>. Packt Publishing.
+</div>
+<div class="csl-entry">
 <span>“Machine <span>Learning</span> with <span>R</span> <span>Cookbook</span>.”</span> n.d.
 </div>
 <div class="csl-entry">
@@ -351,6 +590,9 @@ Matignon, Randall. 2007. <em>Data Mining Using SAS Enterprise Miner: A Case Stud
 <span>“Practical <span>Data</span> <span>Cleaning</span> - 19 <span>Essential</span> <span>Tips</span> to <span>Scrub</span> <span>Your</span> <span>Dirty</span> <span>Data</span> (and Keep Your Boss Happy).”</span> n.d.
 </div>
 <div class="csl-entry">
+Ramasubramanian, Karthik, and Abhishek Singh. 2019. <em>Machine Learning Using r</em>. 2nd ed. Apress.
+</div>
+<div class="csl-entry">
 SAS Institute. 2017. <em>SAS Enterprise Miner 14.3: SEMMA Methodology</em>.
 </div>
 <div class="csl-entry">
@@ -361,6 +603,9 @@ Tan, Pang-Ning, Michael Steinbach, and Vipin Kumar. 2014. <em>Introduction to Da
 </div>
 <div class="csl-entry">
 Torgo, Luis. n.d. <span>“Data <span>Mining</span> with <span>R</span>.”</span>
+</div>
+<div class="csl-entry">
+Zumel, Nina, and John Mount. 2019. <em>Practical Data Science with r</em>. 2nd ed. Manning Publications.
 </div>
 </div>
 </div>

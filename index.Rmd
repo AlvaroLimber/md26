@@ -6,8 +6,8 @@ description: "Apuntes para la materia de Minería de Datos II"
 date: "Periodo I-2026"
 site: bookdown::bookdown_site
 output: 
-  bookdown::gitbook: default
-  bookdown::epub_book: default
+  bookdown::gitbook:
+    css: style.css
 documentclass: book
 graphics: yes
 github-repo: alvarolimber/md26

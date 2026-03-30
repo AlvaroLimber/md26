@@ -99,3 +99,183 @@ A diferencia de OLS/MCO, donde los errores $\epsilon_i \sim N(0, \sigma^2)$, aqu
 - Para incorporar este tratamiento en encuestas por muestreo se recomienda usar la librería survey y srvyr
 - Se puede usar los métodos de agrupamiento para mejorar el rendimiento del modelo, muchas veces como una variable de estrato.
 - Para garantizar que el modelo este libre de multicolinealidad se recomienda usar componentes principales
+
+## Clasificación
+
+La clasificación es una tarea de **aprendizaje automático supervisado** que consiste en identificar la categoría o "clase" a la que pertenece una nueva observación basándose en un modelo construido a partir de datos históricos ya etiquetados. A diferencia de la regresión, que predice valores numéricos continuos, la clasificación trabaja con una variable objetivo cualitativa denominada "clase", la cual se divide en categorías llamadas "niveles".
+
+De manera formal, se busca entender la relación:
+
+$$y = f(x)$$
+
+Donde $y$ es la variable **dependiente** (categórica) y $x$ representa el conjunto de variables **independientes** o predictores. Esta técnica es fundamental en la **analítica predictiva** para predecir comportamientos futuros basándose en datos estructurados y no estructurados.
+
+**Ejemplos de aplicación:**
+
+*   **Negocios:** Identificación de clientes con riesgo de impago (*loan default*) o probabilidad de cancelar un servicio (*churn*).
+*   **Salud:** Diagnóstico de patologías a partir de síntomas, temperatura o radiografías.
+*   **Seguridad:** Filtrado de mensajes de spam y detección de actividad criminal o intrusiones en redes.
+
+::: {.rmdtip}
+**Actividad en el Aula (5 min): "Cazadores de Clases"**  
+
+Identifiquen un problema de clasificación en su área (economía o negocios) y definan:
+
+- ¿Cuál es la variable objetivo (y)?.
+- ¿Es binaria o multinomial?.
+- ¿Qué predictores (x) usarían?.
+::: 
+
+### Pasos Genéricos
+
+Un proyecto de clasificación exitoso no depende solo del algoritmo, sino de un flujo de trabajo riguroso y repetible. Se identifican cinco pasos fundamentales @lantz2013:
+
+1.  **Recolección de datos:** Identificación de variables estructurales $X$ y la variable objetivo $Y$.
+2.  **Exploración y Preparación (IDA/EDA):** Limpieza, manejo de valores perdidos y **normalización** (vital para algoritmos basados en distancia). Esta fase consume aproximadamente el 80% del esfuerzo del proyecto.
+3.  **Entrenamiento del modelo:** Selección del algoritmo adecuado basado en la naturaleza del problema.
+4.  **Evaluación del desempeño:** Uso de métricas para verificar si el algoritmo aprendió patrones o solo memorizó los datos.
+5.  **Mejora del modelo:** Ajuste de parámetros o uso de métodos de ensamble para maximizar la precisión.
+
+### Validación y Muestreo: Estrategias contra el Sesgo
+
+Para garantizar que el modelo sea capaz de **generalizar** ante datos no vistos, es imperativo realizar particiones del dataset.
+
+#### A. El Método Holdout y el "Three-Way Split"
+
+Tradicionalmente se divide el dataset en **Entrenamiento** (70-80%) y **Prueba** (20-30%). Sin embargo, para problemas complejos o con muchas variables categóricas, se recomienda una división triple @zumel2019:
+
+*   **Entrenamiento:** Para construir el modelo.
+*   **Calibración:** Para ajustar umbrales de decisión (thresholds) y evitar el sobreajuste en el plan de tratamiento de datos.
+*   **Prueba (Test):** Reservado estrictamente para la evaluación final.
+
+#### B. Validación Cruzada (k-fold CV)
+
+Divide los datos en $k$ particiones aleatorias (folds). El modelo se entrena $k$ veces, rotando el fold de validación en cada iteración. Este método es el estándar para estimar la estabilidad del modelo @lantz2013.
+
+#### C. Criterios Ad-hoc y Balanceo
+
+- Estratificación: Es vital asegurar que la proporción de las clases sea similar en cada partición, especialmente en eventos raros.
+- Base Error Rate: Un modelo solo es útil si su precisión supera la proporción de la clase mayoritaria (ej. si el 70% de los préstamos son buenos, cualquier modelo debe ser mejor que el 70% de exactitud)
+
+#### D. Tratamiento del Desbalance de Clases (Class Imbalance)
+
+El problema de desbalance ocurre cuando el dataset tiene una gran mayoría de registros pertenecientes a una sola categoría. Esto es común en casos de detección de fraude, donde el evento de interés (fraude) suele ser una pequeña fracción del total (ej. menos del 10%).
+
+- El Riesgo: Muchos algoritmos fallan al intentar minimizar el error global, sesgándose hacia la clase mayoritaria y fallando en identificar la minoritaria. En estos casos, la Exactitud deja de ser una métrica útil y se debe priorizar la Sensibilidad o el Kappa.
+- Técnicas de Re-muestreo (Resampling): Se utilizan para "facilitar el aprendizaje" del algoritmo ajustando las proporciones en el set de entrenamiento:
+- Sobre-muestreo (Oversampling): Incrementa artificialmente el número de ejemplos de la clase minoritaria (ej. duplicándolos o creando casos sintéticos) hasta alcanzar una proporción más equilibrada, como un 50/50.
+- Bajo-muestreo (Undersampling): Reduce el número de ejemplos de la clase mayoritaria para igualarlos a la minoritaria. Es útil en Big Data para reducir costos computacionales.
+- Criterio Fundamental: Aunque el entrenamiento se realice con datos balanceados (50/50) para mejorar la detección de patrones, la evaluación final en el set de prueba siempre debe hacerse con la distribución real de los datos para conocer el rendimiento real del modelo en producción.
+
+::: {.rmdtip}
+**Actividad en el Aula (5 min): "La trampa del 99%"** 
+
+"Un médico tiene un test para una enfermedad que afecta a 1 de cada 100 personas. Si su test siempre dice 'Saludable' (independientemente del paciente), ¿cuál es su exactitud?". 
+- Pregunta: "¿Es un buen test médico?". 
+::: 
+
+### Taxonomía de Métodos de Clasificación
+
+Existen múltiples familias de algoritmos según su enfoque matemático. A continuación, se listan los principales métodos y sus variantes:
+
+- Regresión Lineal y Generalizada:
+    + Regresión Logística (**Logit**): Binaria, Multinomial y Ordenada.
+    + **Probit**: Basada en la distribución normal acumulada.
+- Métodos Probabilísticos:
+    + **Naive Bayes**: Incluye variantes como Gaussiana, Multinomial y Bernoulli.
+    + Redes Bayesianas.
+- Aprendizaje Basado en Instancias (Lazy Learning):
+    + **k-Nearest Neighbors** (kNN): Clasificación por vecindad y distancia.
+    + Learning Vector Quantization (LVQ).
+- Métodos de "Divide y Vencerás" (Árboles y Reglas):
+    + Árboles de Decisión: **CART** (rpart), ID3, C4.5, C5.0, CHAID.
+    + Reglas de Clasificación: 1R, RIPPER.
+- Métodos de "Caja Negra" (No Lineales):
+    + **Redes Neuronales Artificiales** (ANN): Perceptrón, Multicapa con Backpropagation y Deep Learning.
+    + Máquinas de Soporte Vectorial (SVM): Lineales y con funciones de Kernel.
+- Métodos de Ensamble (Avanzado):
+    + Bagging y Random Forest.
+    + Boosting: AdaBoost, Gradient Boosting (XGBoost).
+    + Stacking y Blending.
+
+###  Medidas de Calidad y Evaluación del Desempeño
+
+La evaluación del desempeño permite determinar si el modelo es exitoso en su propósito y capaz de generalizar ante datos no vistos en lugar de simplemente memorizar el entrenamiento.
+
+#### A. La Matriz de Confusión
+
+Es una herramienta esencial que tabula las clasificaciones reales frente a las predicciones del modelo. Para un caso binario, se estructura de la siguiente forma:
+
+| | Real: Negativo | Real: Positivo |
+|---|---|---|
+| **Predicho: Negativo** | Verdadero Negativo (TN) | Falso Negativo (FN) |
+| **Predicho: Positivo** | Falso Positivo (FP) | Verdadero Positivo (TP) |
+
+*   **Verdadero Positivo (TP):** Clasificado correctamente en la clase de interés.
+*   **Verdadero Negativo (TN):** Clasificado correctamente fuera de la clase de interés.
+*   **Falso Positivo (FP):** Clasificado incorrectamente en la clase de interés (Error Tipo I).
+*   **Falso Negativo (FN):** Clasificado incorrectamente fuera de la clase de interés (Error Tipo II).
+
+#### B. Métricas Derivadas
+
+*   **Exactitud (Accuracy):** Proporción de predicciones correctas sobre el total.
+$$Accuracy = \frac{TP + TN}{TP + TN + FP + FN}$$
+*   **Tasa de Error:** Proporción de casos mal clasificados ($1 - Accuracy$).
+$$Error Rate = \frac{FP + FN}{TP + TN + FP + FN}$$
+*   **Sensibilidad (Recall / TPR):** Capacidad del modelo para identificar correctamente los casos positivos.
+$$Sensitivity = \frac{TP}{TP + FN}$$
+*   **Especificidad (TNR):** Capacidad de identificar correctamente los casos negativos.
+$$Specificity = \frac{TN}{TN + FP}$$
+*   **Precisión (PPV):** Confiabilidad del modelo cuando predice la clase positiva.
+$$Precision = \frac{TP}{TP + FP}$$
+*   **Medida F (F-measure / F1):** Media armónica que combina precisión y sensibilidad en un solo valor.
+$$F = \frac{2 \times Precision \times Recall}{Precision + Recall}$$
+*   **Estadístico Kappa ($\kappa$):** Ajusta la exactitud considerando la posibilidad de aciertos por puro azar.
+$$\kappa = \frac{Pr(a) - Pr(e)}{1 - Pr(e)}$$
+
+Donde $Pr(a)$ es el acuerdo observado y $Pr(e)$ es el esperado por azar.
+
+### Visualización del Desempeño: Curva ROC y AUC
+
+Cuando un modelo entrega probabilidades, se debe seleccionar un **umbral (threshold)** para decidir la clase final.
+
+*   **Curva ROC:** Grafica la Sensibilidad (TPR) frente a la Tasa de Falsos Positivos ($1 - Especificidad$) a través de diversos puntos de corte. Permite examinar el compromiso (*trade-off*) entre detectar positivos y evitar falsos positivos.
+*   **Área Bajo la Curva (AUC):** Resume la curva ROC en un número entre $0.5$ (sin capacidad de discriminación) y $1.0$ (clasificador perfecto). Valores entre $0.8$ y $0.9$ se consideran excelentes/buenos.
+
+
+###  Regresión Logística (Logit) / Probit
+
+Pertenece a los Modelos Lineales Generalizados (GLM). Predice la probabilidad de pertenencia a una clase binaria utilizando una **función de enlace** para mapear resultados al rango $(0,1)$.
+
+*   **Logit:** Utiliza la función sigmoide para transformar el **log-odds** (logaritmo de la razón de probabilidades) en una probabilidad.
+    $$\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n$$
+*   **Probabilidad:**
+    $$P(x) = \frac{1}{1 + e^{-(\beta'x)}}$$
+*   **Probit:** Utiliza la función de distribución acumulada de la normal.
+
+### Naive Bayes
+
+Algoritmo basado en el **Teorema de Bayes** que considera simultáneamente la información de múltiples atributos para estimar la probabilidad de un resultado.
+$$P(Y|X) = \frac{P(X|Y) \cdot P(Y)}{P(X)}$$
+Su nombre proviene del supuesto "ingenuo" de que todos los predictores son independientes entre sí dados la clase.
+
+### k-Nearest Neighbors (kNN)
+
+Es un algoritmo de **aprendizaje perezoso** (*lazy learning*) que no construye un modelo abstracto, sino que almacena los datos de entrenamiento. Clasifica nuevas instancias basándose en la clase mayoritaria de sus $k$ vecinos más cercanos en un espacio multidimensional, calculando distancias (usualmente Euclidianas).
+$$d(x,y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$$
+
+### Árboles de Decisión (CART / C5.0)
+
+Utilizan una estrategia de **"divide y vencerás"** para segmentar los datos en grupos homogéneos mediante reglas lógicas `if-else` basadas en los atributos más importantes.
+*   **Criterio C5.0 (Entropía):** Busca maximizar la ganancia de información reduciendo el desorden en los datos.
+    $$Entropy(X) = \sum -p_i \log_2(p_i)$$
+*   **Criterio Gini:** Otra medida común de impureza para realizar divisiones.
+*   **Poda (Pruning):** Se utiliza para eliminar secciones que no aportan poder de clasificación y así evitar el sobreajuste.
+
+### Redes Neuronales Artificiales (ANN)
+
+Considerados métodos de **"caja negra"**, imitan la estructura biológica del cerebro con neuronas artificiales interconectadas por pesos ($w$).
+*   **Estructura:** Capas de entrada, ocultas (donde ocurre el aprendizaje de patrones complejos) y de salida.
+*   **Función de Activación:** Mecanismo (como la sigmoide) por el cual la neurona procesa la información antes de pasarla a la siguiente capa.
+*   **Entrenamiento:** Utiliza el algoritmo de **retropropagación** (*backpropagation*) y el descenso del gradiente para ajustar los pesos y minimizar el error.
+$$\theta_{nueva} = \theta_{anterior} - \eta \cdot \frac{\partial E}{\partial \theta}$$

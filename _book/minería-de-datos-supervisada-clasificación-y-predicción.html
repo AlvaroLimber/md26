@@ -495,9 +495,9 @@ div.csl-indent {
 <span class="math display">\[Specificity = \frac{TN}{TN + FP}\]</span></li>
 <li><strong>Precisión (PPV):</strong> Confiabilidad del modelo cuando predice la clase positiva.
 <span class="math display">\[Precision = \frac{TP}{TP + FP}\]</span></li>
-<li><strong>Medida F (F-measure / F1):</strong> Media armónica que combina precisión y sensibilidad en un solo valor.
+<li><strong>Medida F (F-measure / F1):</strong> Media armónica que combina precisión y sensibilidad en un solo valor. (<span class="math inline">\(&gt;0.60\)</span> útil)
 <span class="math display">\[F = \frac{2 \times Precision \times Recall}{Precision + Recall}\]</span></li>
-<li><strong>Estadístico Kappa (<span class="math inline">\(\kappa\)</span>):</strong> Ajusta la exactitud considerando la posibilidad de aciertos por puro azar.
+<li><strong>Estadístico Kappa (<span class="math inline">\(\kappa\)</span>):</strong> Ajusta la exactitud considerando la posibilidad de aciertos por puro azar. (<span class="math inline">\(&gt;0.21\)</span> aceptable)
 <span class="math display">\[\kappa = \frac{Pr(a) - Pr(e)}{1 - Pr(e)}\]</span></li>
 </ul>
 <p>Donde <span class="math inline">\(Pr(a)\)</span> es el acuerdo observado y <span class="math inline">\(Pr(e)\)</span> es el esperado por azar.</p>
@@ -515,10 +515,11 @@ div.csl-indent {
 <h3><span class="header-section-number">2.2.6</span> Regresión Logística (Logit) / Probit<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-log%C3%ADstica-logit-probit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pertenece a los Modelos Lineales Generalizados (GLM). Predice la probabilidad de pertenencia a una clase binaria utilizando una <strong>función de enlace</strong> para mapear resultados al rango <span class="math inline">\((0,1)\)</span>.</p>
 <ul>
-<li><strong>Logit:</strong> Utiliza la función sigmoide para transformar el <strong>log-odds</strong> (logaritmo de la razón de probabilidades) en una probabilidad.
-<span class="math display">\[\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n\]</span></li>
-<li><strong>Probabilidad:</strong>
-<span class="math display">\[P(x) = \frac{1}{1 + e^{-(\beta&#39;x)}}\]</span></li>
+<li><strong>Logit:</strong> Utiliza la función sigmoide para transformar el <strong>log-odds</strong> (logaritmo de la razón de probabilidades) en una probabilidad.</li>
+</ul>
+<p><span class="math display">\[\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n\]</span></p>
+<p><span class="math display">\[P(Y=1 | X) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x_1 + ... + \beta_n x_n)}}\]</span></p>
+<ul>
 <li><strong>Probit:</strong> Utiliza la función de distribución acumulada de la normal.</li>
 </ul>
 </div>

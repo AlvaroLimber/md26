@@ -228,9 +228,9 @@ $$Sensitivity = \frac{TP}{TP + FN}$$
 $$Specificity = \frac{TN}{TN + FP}$$
 *   **Precisión (PPV):** Confiabilidad del modelo cuando predice la clase positiva.
 $$Precision = \frac{TP}{TP + FP}$$
-*   **Medida F (F-measure / F1):** Media armónica que combina precisión y sensibilidad en un solo valor.
+*   **Medida F (F-measure / F1):** Media armónica que combina precisión y sensibilidad en un solo valor. ($>0.60$ útil)
 $$F = \frac{2 \times Precision \times Recall}{Precision + Recall}$$
-*   **Estadístico Kappa ($\kappa$):** Ajusta la exactitud considerando la posibilidad de aciertos por puro azar.
+*   **Estadístico Kappa ($\kappa$):** Ajusta la exactitud considerando la posibilidad de aciertos por puro azar. ($>0.21$ aceptable)
 $$\kappa = \frac{Pr(a) - Pr(e)}{1 - Pr(e)}$$
 
 Donde $Pr(a)$ es el acuerdo observado y $Pr(e)$ es el esperado por azar.

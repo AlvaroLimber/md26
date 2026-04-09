@@ -63,7 +63,7 @@ results %>%
   conf_mat(truth = y, estimate = .pred_class) 
 
 # B. Métricas de Calidad: Exactitud, Sensibilidad, Especificidad y Kappa 
-eval_metrics <- metric_set(accuracy, sens, spec, kap, precision, recall)
+eval_metrics <- metric_set(accuracy, sens, spec, f_meas, kap, precision, recall)
 results %>% 
   eval_metrics(truth = y, estimate = .pred_class)
 

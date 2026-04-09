@@ -248,10 +248,14 @@ Cuando un modelo entrega probabilidades, se debe seleccionar un **umbral (thresh
 Pertenece a los Modelos Lineales Generalizados (GLM). Predice la probabilidad de pertenencia a una clase binaria utilizando una **función de enlace** para mapear resultados al rango $(0,1)$.
 
 *   **Logit:** Utiliza la función sigmoide para transformar el **log-odds** (logaritmo de la razón de probabilidades) en una probabilidad.
-    $$\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n$$
-*   **Probabilidad:**
-    $$P(x) = \frac{1}{1 + e^{-(\beta'x)}}$$
+
+$$\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n$$
+
+$$P(Y=1 | X) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x_1 + ... + \beta_n x_n)}}$$
+
 *   **Probit:** Utiliza la función de distribución acumulada de la normal.
+
+
 
 ### Naive Bayes
 

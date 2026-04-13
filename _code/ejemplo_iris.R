@@ -1,18 +1,18 @@
 rm(list=ls())
 library(tidyverse)
-library(tidymodels)# https://rstudio.github.io/cheatsheets/ml-preprocessing-data.pdf
+library(tidymodels)# https://www.tidymodels.org/cheatsheets/
 library(modeldata)
 library(ExPanDaR)
 library(probably)
 ################################
 #1. Recolección de datos: Identificación de variables estructurales X y la variable objetivo Y.
-data("mlc_churn") # ?modeldata::mlc_churn 
-bd<-mlc_churn
+data("iris")
+bd<-iris
+bd<-bd %>% mutate(y=Species==unique(bd$Species)[2])
+bd$y<-factor(bd$y, c(T, F), c("yes", "no"))
 ################################
 #2. Exploración y Preparación (IDA/EDA): Limpieza, manejo de valores perdidos y normalización
 glimpse(bd)#resumen rápido
-#ExPanD(bd)
-bd<-bd %>% rename(y=churn)
 #partición
 set.seed(1122)
 data_split <- initial_split(bd, prop = 0.80, strata = y)
@@ -24,30 +24,19 @@ logit_spec <- logistic_reg() %>%
   set_engine("glm") %>% 
   set_mode("classification")
 
-probit_spec <- logistic_reg() %>% 
-  set_engine("glm", family = binomial(link = "probit")) %>% 
-  set_mode("classification")
 # Definición de la receta (Preprocesamiento)
-churn_recipe <- recipe(y ~ ., data = train_data) %>% 
-  step_rm() %>% 
-  step_dummy(all_nominal_predictors()) %>% 
+y_recipe <- recipe(y ~ ., data = train_data) %>% 
+  step_rm(Species) %>% 
   step_zv(all_predictors()) %>% 
   step_normalize(all_numeric_predictors())
 
 # Creación del Workflow (Flujo de trabajo)
-churn_wfl <- workflow() %>% 
+y_wfl <- workflow() %>% 
   add_model(logit_spec) %>% 
-  add_recipe(churn_recipe)
-
-churn_wfp <- workflow() %>% 
-  add_model(logit_spec) %>% 
-  add_recipe(churn_recipe)
+  add_recipe(y_recipe)
 
 # Ajuste del modelo sobre los datos de entrenamiento
-logit_fit <- churn_wfl %>% 
-  fit(data = train_data)
-
-probit_fit <- churn_wfp %>% 
+logit_fit <- y_wfl %>% 
   fit(data = train_data)
 
 ################################
@@ -79,7 +68,7 @@ results %>%
 results %>%
   gain_curve(truth = y, .pred_yes) %>%
   autoplot() +
-  labs(title = "Curva de Ganancia: ¿Qué tan rápido encontramos a los desertores?")
+  labs(title = "Curva de Ganancia")
 
 # Gráfico de Elevación (Lift)
 results %>%
@@ -113,7 +102,7 @@ best_threshold <- threshold_data %>%
   filter(.metric == "j_index") %>%
   slice_max(.estimate) %>%
   pull(.threshold)
-
+best_threshold<-best_threshold[1]
 # Aplicar el nuevo umbral a tus resultados
 results_final <- results %>%
   mutate(.pred_class_custom = make_two_class_pred(.pred_yes, levels(y), threshold = best_threshold))

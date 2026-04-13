@@ -56,4 +56,3 @@ test_data  <- testing(data_split)
 prop.table(table(bd$event))
 prop.table(table(train_data$event))
 prop.table(table(test_data$event))
-##############################################################

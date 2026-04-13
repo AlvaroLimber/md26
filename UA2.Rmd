@@ -242,6 +242,9 @@ Cuando un modelo entrega probabilidades, se debe seleccionar un **umbral (thresh
 *   **Curva ROC:** Grafica la Sensibilidad (TPR) frente a la Tasa de Falsos Positivos ($1 - Especificidad$) a través de diversos puntos de corte. Permite examinar el compromiso (*trade-off*) entre detectar positivos y evitar falsos positivos.
 *   **Área Bajo la Curva (AUC):** Resume la curva ROC en un número entre $0.5$ (sin capacidad de discriminación) y $1.0$ (clasificador perfecto). Valores entre $0.8$ y $0.9$ se consideran excelentes/buenos.
 
+Criterio para elegir el punto de corte para modelos con criterios de probabilidad J-Index (Índice de Youden). 
+
+$$J=Sensibilidad+Especificidad-1$$
 
 ###  Regresión Logística (Logit) / Probit
 
@@ -254,8 +257,6 @@ $$\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n$$
 $$P(Y=1 | X) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x_1 + ... + \beta_n x_n)}}$$
 
 *   **Probit:** Utiliza la función de distribución acumulada de la normal.
-
-
 
 ### Naive Bayes
 

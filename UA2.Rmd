@@ -261,14 +261,47 @@ $$P(Y=1 | X) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 x_1 + ... + \beta_n x_n)}}$$
 ### Naive Bayes
 
 Algoritmo basado en el **Teorema de Bayes** que considera simultáneamente la información de múltiples atributos para estimar la probabilidad de un resultado.
+
 $$P(Y|X) = \frac{P(X|Y) \cdot P(Y)}{P(X)}$$
+
+  * $P(Y/X)$ Probabilidad Posterior 
+  * $P(Y)$ Probabilidad a Priori
+  * $P(X/Y)$ Verosimilitud
+  * $P(X)$ Marginal
+
+Si se tiene varios predictores ($X$) se supone independencia, esto es:
+
+$$P(Y/X) =  \frac{P(X_1/Y)*P(X_2/Y)*\ldots *P(X_p/Y)*P(Y)}{P(X)}$$
+
 Su nombre proviene del supuesto "ingenuo" de que todos los predictores son independientes entre sí dados la clase.
 
 ### k-Nearest Neighbors (kNN)
 
 Es un algoritmo de **aprendizaje perezoso** (*lazy learning*) que no construye un modelo abstracto, sino que almacena los datos de entrenamiento. Clasifica nuevas instancias basándose en la clase mayoritaria de sus $k$ vecinos más cercanos en un espacio multidimensional, calculando distancias (usualmente Euclidianas).
-$$d(x,y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$$
 
+Esta basado en las distancias más cercanas
+
+Fortalezas
+
+- Sencillo y efectivo
+- Fase de entrenamiento rápido
+- No hace suposiciones sobre la distribución de datos subyacente
+
+Debilidades
+
+- No produce un modelo
+- Fase de clasificación lenta
+- Requiere una gran cantidad de memoria
+  
+Basado en distancias, principalmente la euclideana (cuantitativas, binarias).
+
+$$d(x,y)=\sqrt{\sum (x_i-y_i)^2}$$
+
+- K representa el número de vecinos cercanos
+- La clase se clasifica según la proporción de clase más alta de los k vecinos más cercanos
+- Se recomienda escalar las covariables a una misma unidad de medida, si existen múltiples unidades de medida.
+  
+$$k=||\sqrt{n_{train}}||$$
 ### Árboles de Decisión (CART / C5.0)
 
 Utilizan una estrategia de **"divide y vencerás"** para segmentar los datos en grupos homogéneos mediante reglas lógicas `if-else` basadas en los atributos más importantes.

@@ -48,5 +48,4 @@ visualización-del-desempeño-curva-roc-y-auc
 regresión-logística-logit-probit
 naive-bayes
 k-nearest-neighbors-knn
-árboles-de-decisión-cart-c5.0
 redes-neuronales-artificiales-ann

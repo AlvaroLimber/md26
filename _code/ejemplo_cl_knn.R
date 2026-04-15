@@ -4,8 +4,7 @@ library(tidymodels)# https://rstudio.github.io/cheatsheets/ml-preprocessing-data
 library(modeldata)
 library(ExPanDaR)
 library(probably)
-library(discrim)
-library(klaR)
+library(kknn)
 ################################
 #1. Recolección de datos: Identificación de variables estructurales X y la variable objetivo Y.
 data("mlc_churn") # ?modeldata::mlc_churn 
@@ -22,24 +21,26 @@ train_data <- training(data_split)
 test_data  <- testing(data_split)
 ################################
 # 3. Entrenamiento del modelo: Selección del algoritmo adecuado basado en la naturaleza del problema.
-naive_spec <- naive_Bayes() %>% 
-  set_engine("klaR") %>% 
+k<-floor(sqrt(nrow(train_data)))
+knn_spec <- nearest_neighbor(neighbors = k) %>% 
+  set_engine("kknn") %>% 
   set_mode("classification")
 
 # Definición de la receta (Preprocesamiento)
 churn_recipe <- recipe(y ~ ., data = train_data) %>% 
   step_rm() %>% 
+  step_dummy(all_nominal_predictors()) %>% 
   step_zv(all_predictors()) %>% 
   step_normalize(all_numeric_predictors()) %>%
   step_corr(all_numeric_predictors(), threshold = 0.9)
 
 # Creación del Workflow (Flujo de trabajo)
 churn_wfl <- workflow() %>% 
-  add_model(naive_spec) %>% 
+  add_model(knn_spec) %>% 
   add_recipe(churn_recipe)
 
 # Ajuste del modelo sobre los datos de entrenamiento
-naive_fit <- churn_wfl %>% 
+knn_fit <- churn_wfl %>% 
   fit(data = train_data)
 
 ################################
@@ -47,8 +48,8 @@ naive_fit <- churn_wfl %>%
 # Predicciones sobre el conjunto de prueba 
 results <- test_data %>%
   dplyr::select(y) %>%
-  bind_cols(predict(naive_fit, test_data, type = "class")) %>%
-  bind_cols(predict(naive_fit, test_data, type = "prob"))
+  bind_cols(predict(knn_fit, test_data, type = "class")) %>%
+  bind_cols(predict(knn_fit, test_data, type = "prob"))
 
 # A. Matriz de Confusión 
 results %>% 

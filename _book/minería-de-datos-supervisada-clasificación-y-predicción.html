@@ -221,8 +221,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.2.6" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-log%C3%ADstica-logit-probit"><i class="fa fa-check"></i><b>2.2.6</b> Regresión Logística (Logit) / Probit</a></li>
 <li class="chapter" data-level="2.2.7" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#naive-bayes"><i class="fa fa-check"></i><b>2.2.7</b> Naive Bayes</a></li>
 <li class="chapter" data-level="2.2.8" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#k-nearest-neighbors-knn"><i class="fa fa-check"></i><b>2.2.8</b> k-Nearest Neighbors (kNN)</a></li>
-<li class="chapter" data-level="2.2.9" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-decisi%C3%B3n-cart-c5.0"><i class="fa fa-check"></i><b>2.2.9</b> Árboles de Decisión (CART / C5.0)</a></li>
-<li class="chapter" data-level="2.2.10" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann"><i class="fa fa-check"></i><b>2.2.10</b> Redes Neuronales Artificiales (ANN)</a></li>
+<li class="chapter" data-level="2.2.9" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann"><i class="fa fa-check"></i><b>2.2.9</b> Redes Neuronales Artificiales (ANN)</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -527,25 +526,51 @@ div.csl-indent {
 </div>
 <div id="naive-bayes" class="section level3 hasAnchor" number="2.2.7">
 <h3><span class="header-section-number">2.2.7</span> Naive Bayes<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#naive-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Algoritmo basado en el <strong>Teorema de Bayes</strong> que considera simultáneamente la información de múltiples atributos para estimar la probabilidad de un resultado.
-<span class="math display">\[P(Y|X) = \frac{P(X|Y) \cdot P(Y)}{P(X)}\]</span>
-Su nombre proviene del supuesto “ingenuo” de que todos los predictores son independientes entre sí dados la clase.</p>
+<p>Algoritmo basado en el <strong>Teorema de Bayes</strong> que considera simultáneamente la información de múltiples atributos para estimar la probabilidad de un resultado.</p>
+<p><span class="math display">\[P(Y|X) = \frac{P(X|Y) \cdot P(Y)}{P(X)}\]</span></p>
+<ul>
+<li><span class="math inline">\(P(Y/X)\)</span> Probabilidad Posterior</li>
+<li><span class="math inline">\(P(Y)\)</span> Probabilidad a Priori</li>
+<li><span class="math inline">\(P(X/Y)\)</span> Verosimilitud</li>
+<li><span class="math inline">\(P(X)\)</span> Marginal</li>
+</ul>
+<p>Si se tiene varios predictores (<span class="math inline">\(X\)</span>) se supone independencia, esto es:</p>
+<p><span class="math display">\[P(Y/X) =  \frac{P(X_1/Y)*P(X_2/Y)*\ldots *P(X_p/Y)*P(Y)}{P(X)}\]</span></p>
+<p>Su nombre proviene del supuesto “ingenuo” de que todos los predictores son independientes entre sí dados la clase.</p>
 </div>
 <div id="k-nearest-neighbors-knn" class="section level3 hasAnchor" number="2.2.8">
 <h3><span class="header-section-number">2.2.8</span> k-Nearest Neighbors (kNN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#k-nearest-neighbors-knn" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Es un algoritmo de <strong>aprendizaje perezoso</strong> (<em>lazy learning</em>) que no construye un modelo abstracto, sino que almacena los datos de entrenamiento. Clasifica nuevas instancias basándose en la clase mayoritaria de sus <span class="math inline">\(k\)</span> vecinos más cercanos en un espacio multidimensional, calculando distancias (usualmente Euclidianas).
-<span class="math display">\[d(x,y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}\]</span></p>
-</div>
-<div id="árboles-de-decisión-cart-c5.0" class="section level3 hasAnchor" number="2.2.9">
-<h3><span class="header-section-number">2.2.9</span> Árboles de Decisión (CART / C5.0)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-decisi%C3%B3n-cart-c5.0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Es un algoritmo de <strong>aprendizaje perezoso</strong> (<em>lazy learning</em>) que no construye un modelo abstracto, sino que almacena los datos de entrenamiento. Clasifica nuevas instancias basándose en la clase mayoritaria de sus <span class="math inline">\(k\)</span> vecinos más cercanos en un espacio multidimensional, calculando distancias (usualmente Euclidianas).</p>
+<p>Esta basado en las distancias más cercanas</p>
+<p>Fortalezas</p>
+<ul>
+<li>Sencillo y efectivo</li>
+<li>Fase de entrenamiento rápido</li>
+<li>No hace suposiciones sobre la distribución de datos subyacente</li>
+</ul>
+<p>Debilidades</p>
+<ul>
+<li>No produce un modelo</li>
+<li>Fase de clasificación lenta</li>
+<li>Requiere una gran cantidad de memoria</li>
+</ul>
+<p>Basado en distancias, principalmente la euclideana (cuantitativas, binarias).</p>
+<p><span class="math display">\[d(x,y)=\sqrt{\sum (x_i-y_i)^2}\]</span></p>
+<ul>
+<li>K representa el número de vecinos cercanos</li>
+<li>La clase se clasifica según la proporción de clase más alta de los k vecinos más cercanos</li>
+<li>Se recomienda escalar las covariables a una misma unidad de medida, si existen múltiples unidades de medida.</li>
+</ul>
+<p><span class="math display">\[k=||\sqrt{n_{train}}||\]</span>
+### Árboles de Decisión (CART / C5.0)</p>
 <p>Utilizan una estrategia de <strong>“divide y vencerás”</strong> para segmentar los datos en grupos homogéneos mediante reglas lógicas <code>if-else</code> basadas en los atributos más importantes.
 * <strong>Criterio C5.0 (Entropía):</strong> Busca maximizar la ganancia de información reduciendo el desorden en los datos.
 <span class="math display">\[Entropy(X) = \sum -p_i \log_2(p_i)\]</span>
 * <strong>Criterio Gini:</strong> Otra medida común de impureza para realizar divisiones.
 * <strong>Poda (Pruning):</strong> Se utiliza para eliminar secciones que no aportan poder de clasificación y así evitar el sobreajuste.</p>
 </div>
-<div id="redes-neuronales-artificiales-ann" class="section level3 hasAnchor" number="2.2.10">
-<h3><span class="header-section-number">2.2.10</span> Redes Neuronales Artificiales (ANN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="redes-neuronales-artificiales-ann" class="section level3 hasAnchor" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Redes Neuronales Artificiales (ANN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Considerados métodos de <strong>“caja negra”</strong>, imitan la estructura biológica del cerebro con neuronas artificiales interconectadas por pesos (<span class="math inline">\(w\)</span>).
 * <strong>Estructura:</strong> Capas de entrada, ocultas (donde ocurre el aprendizaje de patrones complejos) y de salida.
 * <strong>Función de Activación:</strong> Mecanismo (como la sigmoide) por el cual la neurona procesa la información antes de pasarla a la siguiente capa.

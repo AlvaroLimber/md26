@@ -1,0 +1,38 @@
+---
+title: "**MINERÍA DE DATOS II**"
+subtitle: "Examen Recuperatorio - Unidad I"
+author: "MSc. Alvaro Chirino"
+date: "Abril, 2026"
+output: 
+  pdf_document:
+    number_sections: false
+editor_options: 
+  chunk_output_type: console
+---
+
+**Instrucciones:** Se debe subir a la plataforma un solo archivo con las respuestas a las tres preguntas, ya sea .R o .Rmd. El archivo debe llamarse: `recu1_apellido.R` ó `recu1_apellido.Rmd`.
+
+# Pregunta 1. Componentes Principales (50 pts)
+
+Para esta pregunta utilizaremos el dataset **`swiss`** (disponible de forma nativa en R), el cual contiene medidas socioeconómicas y de fertilidad de 47 provincias de Suiza en 1888.
+
+  - **(10 pt.) Elección de Matriz:** Basándose en la dispersión y las unidades de medida de las variables (Fertility, Agriculture, Examination, Education, Catholic, Infant.Mortality), ¿es más apropiado utilizar la matriz de covarianzas ($\Sigma$) o la matriz de correlación ($\rho$)? Justifique su respuesta. Use el enfoque elegido para el resto del ejercicio.
+  - **(20 pts.) Retención y Explicación:** Realice el ACP y retenga los componentes necesarios para explicar al menos el **80% de la variabilidad total**. ¿Qué interpretación puede darle a los componentes retenidos?.
+  - **(10 pt.) Reconstrucción:** Reproduzca la matriz elegida ($\rho$ ó $\Sigma$) utilizando únicamente los componentes principales retenidos en el punto anterior. 
+  - **(10 pts.) Dependencia Lineal:** Identifique qué variable tiene la menor contribución o está más "conectada" al último componente principal. Omita dicha variable y repita el ACP. ¿Cómo cambia la proporción de varianza explicada por el primer componente?
+
+# Pregunta 2. Agrupamiento (50 pts)
+
+Usando el dataset de la **Encuesta a Hogares 2024**, enfoque su análisis en la **SECCIÓN 1. CARACTERÍSTICAS DE LA VIVIENDA** (EH2024_Vivienda.sav).
+
+* **Preparación de los datos (10 pts.):**
+  - Cree 6 variables binarias (0/1) que identifiquen condiciones de habitabilidad (ej. si tiene servicio de alcantarillado, si cocina con gas, si tiene energía eléctrica, etc.) basándose en las preguntas de la sección.
+  - Filtre el dataset para trabajar únicamente con hogares que tengan un número de cuartos para dormir mayor a 1.
+  - Cree una variable binaria que identifique si el hogar pertenece al área urbana.
+* **Métodos de Centroide (K-center) (20 pts.):** Utilizando las variables binarias creadas y la variable de área, identifique el valor óptimo de $k$ entre 2 y 5 utilizando el coeficiente de silueta. Compare los resultados de:
+  - El algoritmo **k-means** clásico.
+  - El algoritmo **k-medoides (PAM)**.
+* **Métodos Jerárquicos (20 pts.):** Identifique el mejor valor de $k$ (entre 2 y 5) utilizando agrupamiento jerárquico. Pruebe los siguientes métodos de enlace:
+  - Enlace **Promedio (Average)**.
+  - Método de **Ward (Ward.D2)**.
+* **Selección de Modelo (5 pts.):** Identifique cuál de todos los modelos anteriores es el mejor y describa brevemente las características socioeconómicas de los grupos hallados.

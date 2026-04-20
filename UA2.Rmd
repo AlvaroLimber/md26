@@ -302,13 +302,40 @@ $$d(x,y)=\sqrt{\sum (x_i-y_i)^2}$$
 - Se recomienda escalar las covariables a una misma unidad de medida, si existen múltiples unidades de medida.
   
 $$k=||\sqrt{n_{train}}||$$
-### Árboles de Decisión (CART / C5.0)
+### Árboles de clasificación 
 
-Utilizan una estrategia de **"divide y vencerás"** para segmentar los datos en grupos homogéneos mediante reglas lógicas `if-else` basadas en los atributos más importantes.
-*   **Criterio C5.0 (Entropía):** Busca maximizar la ganancia de información reduciendo el desorden en los datos.
-    $$Entropy(X) = \sum -p_i \log_2(p_i)$$
-*   **Criterio Gini:** Otra medida común de impureza para realizar divisiones.
-*   **Poda (Pruning):** Se utiliza para eliminar secciones que no aportan poder de clasificación y así evitar el sobreajuste.
+Los árboles de clasificación son métodos de aprendizaje supervisado no paramétricos que segmentan el espacio de los predictores en una serie de regiones rectangulares disjuntas mediante reglas lógicas. A diferencia de los modelos lineales, no asumen una forma funcional predefinida (como una línea o curva) entre las variables $X$ y la respuesta $Y$. 
+
+Su estructura jerárquica emula el proceso de toma de decisiones: cada **nodo interno** representa una partición basada en una variable, y cada **hoja final** representa una asignación de clase (ej. "Abandona" o "Se queda") o una distribución de probabilidad. Utilizan una estrategia de **"divide y vencerás"** para segmentar los datos en grupos homogéneos mediante reglas lógicas.
+
+La diferencia principal entre los métodos no radica solo en cómo construyen el árbol, sino en cómo combinan múltiples árboles para mejorar la precisión y reducir el error.
+
+| Característica | **CART** | **C5.0** | **Random Forest** |
+| :--- | :--- | :--- | :--- |
+| **Estructura** | Árbol Único | Ensamble (Boosting) | Ensamble (Bagging) |
+| **Relación de Árboles** | Independiente | **Secuencial**: Cada árbol intenta corregir el error del anterior. | **Paralela**: Cientos de árboles independientes votan. |
+| **División de Nodos** | Binaria (siempre 2 ramas) | Múltiple (puede tener >2 ramas) | Binaria |
+| **Criterio de Selección** | **Índice de Gini**: Minimiza la probabilidad de clasificación errónea. | **Entropía / Ganancia de Información**: Maximiza la reducción de incertidumbre. | Generalmente **Gini** (pero aplicado a subconjuntos aleatorios). |
+| **Manejo del Error** | Tiende a la **Varianza** (Overfitting) si es muy profundo. | Reduce el **Sesgo** (Bias) mediante el aprendizaje continuo. | Reduce la **Varianza** mediante el promedio de muchos árboles. |
+
+Los criterios de impureza.
+
+* **Criterio C5.0 (Entropía):** Busca maximizar la ganancia de información reduciendo el desorden en los datos.
+
+$$Entropy(X) = \sum -p_i \log_2(p_i)$$
+
+* **Criterio Gini:** Otra medida común de impureza para realizar divisiones.
+
+$$
+Gini(t) = 1 - \sum_{i=1}^{k} p_i^2
+$$
+
+#### Construcción del Modelo: El Primer Nodo y los Siguientes
+
+El proceso de construcción de un árbol es **recursivo y voraz** (greedy):
+
+1.  **Definición del Nodo Raíz (Primer Nodo):** El algoritmo evalúa todas las variables disponibles. Selecciona aquella que logra la mejor separación inicial de las clases según el criterio (Gini o Entropía). Es, por definición, la variable con mayor poder predictivo global.
+2.  **Particiones Sucesivas:** Una vez dividido el primer nodo, los datos resultantes se tratan como "nuevas bases de datos" y el proceso se repite. Un predictor que se usó en el primer nodo puede volver a usarse más abajo con un punto de corte distinto.
 
 ### Redes Neuronales Artificiales (ANN)
 

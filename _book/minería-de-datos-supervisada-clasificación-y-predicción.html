@@ -53,6 +53,71 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -497,12 +562,77 @@ div.csl-indent {
 <li>Se recomienda escalar las covariables a una misma unidad de medida, si existen múltiples unidades de medida.</li>
 </ul>
 <p><span class="math display">\[k=||\sqrt{n_{train}}||\]</span>
-### Árboles de Decisión (CART / C5.0)</p>
-<p>Utilizan una estrategia de <strong>“divide y vencerás”</strong> para segmentar los datos en grupos homogéneos mediante reglas lógicas <code>if-else</code> basadas en los atributos más importantes.
-* <strong>Criterio C5.0 (Entropía):</strong> Busca maximizar la ganancia de información reduciendo el desorden en los datos.
-<span class="math display">\[Entropy(X) = \sum -p_i \log_2(p_i)\]</span>
-* <strong>Criterio Gini:</strong> Otra medida común de impureza para realizar divisiones.
-* <strong>Poda (Pruning):</strong> Se utiliza para eliminar secciones que no aportan poder de clasificación y así evitar el sobreajuste.</p>
+### Árboles de clasificación</p>
+<p>Los árboles de clasificación son métodos de aprendizaje supervisado no paramétricos que segmentan el espacio de los predictores en una serie de regiones rectangulares disjuntas mediante reglas lógicas. A diferencia de los modelos lineales, no asumen una forma funcional predefinida (como una línea o curva) entre las variables <span class="math inline">\(X\)</span> y la respuesta <span class="math inline">\(Y\)</span>.</p>
+<p>Su estructura jerárquica emula el proceso de toma de decisiones: cada <strong>nodo interno</strong> representa una partición basada en una variable, y cada <strong>hoja final</strong> representa una asignación de clase (ej. “Abandona” o “Se queda”) o una distribución de probabilidad. Utilizan una estrategia de <strong>“divide y vencerás”</strong> para segmentar los datos en grupos homogéneos mediante reglas lógicas.</p>
+<p>La diferencia principal entre los métodos no radica solo en cómo construyen el árbol, sino en cómo combinan múltiples árboles para mejorar la precisión y reducir el error.</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Característica</th>
+<th align="left"><strong>CART</strong></th>
+<th align="left"><strong>C5.0</strong></th>
+<th align="left"><strong>Random Forest</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Estructura</strong></td>
+<td align="left">Árbol Único</td>
+<td align="left">Ensamble (Boosting)</td>
+<td align="left">Ensamble (Bagging)</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Relación de Árboles</strong></td>
+<td align="left">Independiente</td>
+<td align="left"><strong>Secuencial</strong>: Cada árbol intenta corregir el error del anterior.</td>
+<td align="left"><strong>Paralela</strong>: Cientos de árboles independientes votan.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>División de Nodos</strong></td>
+<td align="left">Binaria (siempre 2 ramas)</td>
+<td align="left">Múltiple (puede tener &gt;2 ramas)</td>
+<td align="left">Binaria</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Criterio de Selección</strong></td>
+<td align="left"><strong>Índice de Gini</strong>: Minimiza la probabilidad de clasificación errónea.</td>
+<td align="left"><strong>Entropía / Ganancia de Información</strong>: Maximiza la reducción de incertidumbre.</td>
+<td align="left">Generalmente <strong>Gini</strong> (pero aplicado a subconjuntos aleatorios).</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Manejo del Error</strong></td>
+<td align="left">Tiende a la <strong>Varianza</strong> (Overfitting) si es muy profundo.</td>
+<td align="left">Reduce el <strong>Sesgo</strong> (Bias) mediante el aprendizaje continuo.</td>
+<td align="left">Reduce la <strong>Varianza</strong> mediante el promedio de muchos árboles.</td>
+</tr>
+</tbody>
+</table>
+<p>Los criterios de impureza.</p>
+<ul>
+<li><strong>Criterio C5.0 (Entropía):</strong> Busca maximizar la ganancia de información reduciendo el desorden en los datos.</li>
+</ul>
+<p><span class="math display">\[Entropy(X) = \sum -p_i \log_2(p_i)\]</span></p>
+<ul>
+<li><strong>Criterio Gini:</strong> Otra medida común de impureza para realizar divisiones.</li>
+</ul>
+<p><span class="math display">\[
+Gini(t) = 1 - \sum_{i=1}^{k} p_i^2
+\]</span></p>
+<div id="construcción-del-modelo-el-primer-nodo-y-los-siguientes" class="section level4 hasAnchor" number="2.2.8.1">
+<h4><span class="header-section-number">2.2.8.1</span> Construcción del Modelo: El Primer Nodo y los Siguientes<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#construcci%C3%B3n-del-modelo-el-primer-nodo-y-los-siguientes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El proceso de construcción de un árbol es <strong>recursivo y voraz</strong> (greedy):</p>
+<ol style="list-style-type: decimal">
+<li><strong>Definición del Nodo Raíz (Primer Nodo):</strong> El algoritmo evalúa todas las variables disponibles. Selecciona aquella que logra la mejor separación inicial de las clases según el criterio (Gini o Entropía). Es, por definición, la variable con mayor poder predictivo global.</li>
+<li><strong>Particiones Sucesivas:</strong> Una vez dividido el primer nodo, los datos resultantes se tratan como “nuevas bases de datos” y el proceso se repite. Un predictor que se usó en el primer nodo puede volver a usarse más abajo con un punto de corte distinto.</li>
+</ol>
+</div>
 </div>
 <div id="redes-neuronales-artificiales-ann" class="section level3 hasAnchor" number="2.2.9">
 <h3><span class="header-section-number">2.2.9</span> Redes Neuronales Artificiales (ANN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann" class="anchor-section" aria-label="Anchor link to header"></a></h3>

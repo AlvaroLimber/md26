@@ -302,6 +302,7 @@ $$d(x,y)=\sqrt{\sum (x_i-y_i)^2}$$
 - Se recomienda escalar las covariables a una misma unidad de medida, si existen múltiples unidades de medida.
   
 $$k=||\sqrt{n_{train}}||$$
+
 ### Árboles de clasificación 
 
 Los árboles de clasificación son métodos de aprendizaje supervisado no paramétricos que segmentan el espacio de los predictores en una serie de regiones rectangulares disjuntas mediante reglas lógicas. A diferencia de los modelos lineales, no asumen una forma funcional predefinida (como una línea o curva) entre las variables $X$ y la respuesta $Y$. 
@@ -329,8 +330,6 @@ $$Entropy(X) = \sum -p_i \log_2(p_i)$$
 $$
 Gini(t) = 1 - \sum_{i=1}^{k} p_i^2
 $$
-
-#### Construcción del Modelo: El Primer Nodo y los Siguientes
 
 El proceso de construcción de un árbol es **recursivo y voraz** (greedy):
 

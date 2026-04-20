@@ -48,5 +48,5 @@ visualización-del-desempeño-curva-roc-y-auc
 regresión-logística-logit-probit
 naive-bayes
 k-nearest-neighbors-knn
-construcción-del-modelo-el-primer-nodo-y-los-siguientes
+árboles-de-clasificación
 redes-neuronales-artificiales-ann

@@ -221,7 +221,8 @@ div.csl-indent {
 <li class="chapter" data-level="2.2.6" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#regresi%C3%B3n-log%C3%ADstica-logit-probit"><i class="fa fa-check"></i><b>2.2.6</b> Regresión Logística (Logit) / Probit</a></li>
 <li class="chapter" data-level="2.2.7" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#naive-bayes"><i class="fa fa-check"></i><b>2.2.7</b> Naive Bayes</a></li>
 <li class="chapter" data-level="2.2.8" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#k-nearest-neighbors-knn"><i class="fa fa-check"></i><b>2.2.8</b> k-Nearest Neighbors (kNN)</a></li>
-<li class="chapter" data-level="2.2.9" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann"><i class="fa fa-check"></i><b>2.2.9</b> Redes Neuronales Artificiales (ANN)</a></li>
+<li class="chapter" data-level="2.2.9" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>2.2.9</b> Árboles de clasificación</a></li>
+<li class="chapter" data-level="2.2.10" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann"><i class="fa fa-check"></i><b>2.2.10</b> Redes Neuronales Artificiales (ANN)</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -561,8 +562,10 @@ div.csl-indent {
 <li>La clase se clasifica según la proporción de clase más alta de los k vecinos más cercanos</li>
 <li>Se recomienda escalar las covariables a una misma unidad de medida, si existen múltiples unidades de medida.</li>
 </ul>
-<p><span class="math display">\[k=||\sqrt{n_{train}}||\]</span>
-### Árboles de clasificación</p>
+<p><span class="math display">\[k=||\sqrt{n_{train}}||\]</span></p>
+</div>
+<div id="árboles-de-clasificación" class="section level3 hasAnchor" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Árboles de clasificación<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-clasificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Los árboles de clasificación son métodos de aprendizaje supervisado no paramétricos que segmentan el espacio de los predictores en una serie de regiones rectangulares disjuntas mediante reglas lógicas. A diferencia de los modelos lineales, no asumen una forma funcional predefinida (como una línea o curva) entre las variables <span class="math inline">\(X\)</span> y la respuesta <span class="math inline">\(Y\)</span>.</p>
 <p>Su estructura jerárquica emula el proceso de toma de decisiones: cada <strong>nodo interno</strong> representa una partición basada en una variable, y cada <strong>hoja final</strong> representa una asignación de clase (ej. “Abandona” o “Se queda”) o una distribución de probabilidad. Utilizan una estrategia de <strong>“divide y vencerás”</strong> para segmentar los datos en grupos homogéneos mediante reglas lógicas.</p>
 <p>La diferencia principal entre los métodos no radica solo en cómo construyen el árbol, sino en cómo combinan múltiples árboles para mejorar la precisión y reducir el error.</p>
@@ -625,17 +628,14 @@ div.csl-indent {
 <p><span class="math display">\[
 Gini(t) = 1 - \sum_{i=1}^{k} p_i^2
 \]</span></p>
-<div id="construcción-del-modelo-el-primer-nodo-y-los-siguientes" class="section level4 hasAnchor" number="2.2.8.1">
-<h4><span class="header-section-number">2.2.8.1</span> Construcción del Modelo: El Primer Nodo y los Siguientes<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#construcci%C3%B3n-del-modelo-el-primer-nodo-y-los-siguientes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>El proceso de construcción de un árbol es <strong>recursivo y voraz</strong> (greedy):</p>
 <ol style="list-style-type: decimal">
 <li><strong>Definición del Nodo Raíz (Primer Nodo):</strong> El algoritmo evalúa todas las variables disponibles. Selecciona aquella que logra la mejor separación inicial de las clases según el criterio (Gini o Entropía). Es, por definición, la variable con mayor poder predictivo global.</li>
 <li><strong>Particiones Sucesivas:</strong> Una vez dividido el primer nodo, los datos resultantes se tratan como “nuevas bases de datos” y el proceso se repite. Un predictor que se usó en el primer nodo puede volver a usarse más abajo con un punto de corte distinto.</li>
 </ol>
 </div>
-</div>
-<div id="redes-neuronales-artificiales-ann" class="section level3 hasAnchor" number="2.2.9">
-<h3><span class="header-section-number">2.2.9</span> Redes Neuronales Artificiales (ANN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="redes-neuronales-artificiales-ann" class="section level3 hasAnchor" number="2.2.10">
+<h3><span class="header-section-number">2.2.10</span> Redes Neuronales Artificiales (ANN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Considerados métodos de <strong>“caja negra”</strong>, imitan la estructura biológica del cerebro con neuronas artificiales interconectadas por pesos (<span class="math inline">\(w\)</span>).
 * <strong>Estructura:</strong> Capas de entrada, ocultas (donde ocurre el aprendizaje de patrones complejos) y de salida.
 * <strong>Función de Activación:</strong> Mecanismo (como la sigmoide) por el cual la neurona procesa la información antes de pasarla a la siguiente capa.

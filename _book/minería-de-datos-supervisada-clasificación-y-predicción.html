@@ -636,11 +636,242 @@ Gini(t) = 1 - \sum_{i=1}^{k} p_i^2
 </div>
 <div id="redes-neuronales-artificiales-ann" class="section level3 hasAnchor" number="2.2.10">
 <h3><span class="header-section-number">2.2.10</span> Redes Neuronales Artificiales (ANN)<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Considerados métodos de <strong>“caja negra”</strong>, imitan la estructura biológica del cerebro con neuronas artificiales interconectadas por pesos (<span class="math inline">\(w\)</span>).
-* <strong>Estructura:</strong> Capas de entrada, ocultas (donde ocurre el aprendizaje de patrones complejos) y de salida.
-* <strong>Función de Activación:</strong> Mecanismo (como la sigmoide) por el cual la neurona procesa la información antes de pasarla a la siguiente capa.
-* <strong>Entrenamiento:</strong> Utiliza el algoritmo de <strong>retropropagación</strong> (<em>backpropagation</em>) y el descenso del gradiente para ajustar los pesos y minimizar el error.
-<span class="math display">\[\theta_{nueva} = \theta_{anterior} - \eta \cdot \frac{\partial E}{\partial \theta}\]</span></p>
+<p>(Ver google trends)</p>
+<p>ANN (Artificial <em>Neural</em> Network) es conocido como un método <strong>Black Box</strong>.</p>
+<ul>
+<li><em>El cerebro humano</em> está compuesto por alrededor de <em>85 mil millones</em> de neuronas</li>
+<li>Una red capaz de almacenar una enorme cantidad de conocimiento</li>
+<li>Un <em>gato</em> tiene aproximadamente <em>mil millones de neuronas</em></li>
+<li>Un <em>ratón</em> tiene alrededor de <em>75 millones de neuronas</em></li>
+<li>Una <em>cucaracha</em> tiene solo alrededor de un <em>millón de neuronas</em>.</li>
+</ul>
+<p><img src="_fig/neural.PNG" /></p>
+<p>Muchas ANN contienen muchas menos neuronas, generalmente solo <em>varios cientos</em>.</p>
+<ul>
+<li>Un cerebro de mosca de la fruta con 100,000 neuronas supera el estado actual de ANN.</li>
+</ul>
+<p>Una <em>ANN</em> <em>modela la relación</em> entre un conjunto de <em>señales de entrada</em> y una <em>señal de salida</em> utilizando un modelo derivado de nuestra comprensión de cómo un cerebro biológico responde a los estímulos de las entradas sensoriales. Así como un cerebro usa una red de células interconectadas llamadas neuronas para crear un procesador paralelo masivo, la <em>ANN</em> usa una red de <em>neuronas artificiales</em> o <em>nodos</em> para resolver problemas de aprendizaje.</p>
+<p>Topología de una red</p>
+<ul>
+<li>El número de capas (layers)</li>
+<li>Si se permite que la información en la red viaje hacia atrás</li>
+<li>El número de nodos dentro de cada capa de la red</li>
+</ul>
+<p>La <em>topología</em> determina la <em>complejidad</em> de las tareas que la red puede aprender. Generalmente, las redes más grandes y complejas son capaces de identificar patrones más sutiles y límites de decisión complejos. Sin embargo, la potencia de una red no solo depende del tamaño de la red, sino también de la forma en que se organizan las unidades.</p>
+<p>La red neuronal se construye con un grupo de <em>nodos interconectados</em>, que involucra la entrada, los <em>pesos</em> conectados, el elemento de procesamiento y la salida. Las redes neuronales se pueden aplicar a muchas áreas (entrada, salida), como la <em>clasificación</em>, el <em>agrupamiento</em> y la <em>predicción</em>.</p>
+<div class="float">
+<img src="_fig/neural1.PNG" alt="Neurona simple" />
+<div class="figcaption">Neurona simple</div>
+</div>
+<ul>
+<li>Dendritas: <span class="math inline">\(X\)</span> (input)</li>
+<li>Axon terminal: <span class="math inline">\(Y\)</span> (output)</li>
+<li>Señal de la dendrita: <span class="math inline">\(w_i\)</span> (peso)</li>
+<li>Función de activación: <span class="math inline">\(f\)</span></li>
+</ul>
+<p><span class="math display">\[y(x)=f\left(\sum_{i=1}^n w_i*x_i \right)\]</span></p>
+<p>Características de una red:</p>
+<ul>
+<li>Función de activación: <span class="math inline">\(f\)</span></li>
+<li>Topología de la red: Arquitectura</li>
+<li>Algoritmo de entrenamiento: Como se establecen los pesos</li>
+</ul>
+<p>Funciones de activación</p>
+<p>La función de activación es el <em>mecanismo</em> por el cual la <em>neurona artificial</em> <em>procesa la información</em> y la pasa <em>a través de la red</em>. Así como la neurona artificial está modelada según la versión biológica, también la función de activación está modelada según el diseño de la naturaleza.</p>
+<p>En el caso <em>biológico</em>, la función de activación podría imaginarse como un proceso que consiste en sumar la señal de entrada total y determinar si alcanza el umbral de <em>disparo</em>. Si es así, la neurona transmite la señal; de lo contrario, no hace nada. En términos de ANN, esto se conoce como <em>función de activación de umbral</em>, ya que da como resultado una señal de salida solo una vez que se ha alcanzado un umbral de entrada específico.</p>
+<p>En la naturaleza esta función sería:</p>
+<div class="float">
+<img src="_fig/neural2.PNG" alt="Activación natural" />
+<div class="figcaption">Activación natural</div>
+</div>
+<p>Aunque la función de activación del umbral es interesante debido a sus paralelismos con la biología, rara vez se usa en redes neuronales artificiales. Liberadas de las limitaciones de la bioquímica, las funciones de activación de ANN se pueden elegir en función de su capacidad para demostrar características matemáticas deseables y modelar relaciones entre datos.</p>
+<div class="float">
+<img src="_fig/neural3.PNG" alt="Sigmoid" />
+<div class="figcaption">Sigmoid</div>
+</div>
+<div class="float">
+<img src="_fig/neural3.PNG" alt="Otras funciones" />
+<div class="figcaption">Otras funciones</div>
+</div>
+<div id="redes-neuronales-para-la-clasificación" class="section level4 hasAnchor" number="2.2.10.1">
+<h4><span class="header-section-number">2.2.10.1</span> Redes neuronales para la clasificación<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-para-la-clasificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>La red neuronal es una red formada por neuronas artificiales (o nodos). Hay tres tipos de neuronas dentro de la red: neuronas de <em>entrada</em> (<span class="math inline">\(X\)</span>), neuronas <em>ocultas</em> (variable latentes) y neuronas de <em>salida</em> (<span class="math inline">\(Y\)</span>). En la red, las neuronas están conectadas; la fuerza de conexión entre las neuronas se llama pesos (<span class="math inline">\(w\)</span>). Las neuronas de entrada reciben la información de entrada; cuanto mayor sea el valor de entrada, mayor será la activación.</p>
+<p>Las ventajas de una red neuronal son: primero, puede detectar relaciones <strong>no lineales</strong> entre la variable dependiente e independiente. En segundo lugar, uno puede entrenar de manera <em>eficiente</em> <em>grandes conjuntos de datos</em> utilizando la arquitectura <em>paralela</em>. Tercero, es un modelo <em>no paramétrico</em> por lo que se pueden eliminar errores en la estimación de parámetros.</p>
+<p>Las principales desventajas de una red neuronal son que a menudo converge al mínimo local en lugar del mínimo global. Además, puede sobreajustarse cuando el proceso de entrenamiento dura demasiado.</p>
+<p>Para la clasificación es importante tener presente de manera previa al modelo:</p>
+<ul>
+<li>Las unidades de medida afectan las funciones de activación, para evitar esto se recomienda estandarizar las variables.</li>
+<li>En general, el número de nodos ocultos no cuenta con una regla respecto su valor, solo se recomienda no tener demasiados nodos ocultos, ya que esto genera un sobre ajuste. Como recomendación general, se puede tener una cantidad máxima equivalente al número de covariables (X).</li>
+</ul>
+<p>Considerados métodos de <strong>“caja negra”</strong>, imitan la estructura biológica del cerebro con neuronas artificiales interconectadas por pesos (<span class="math inline">\(w\)</span>).</p>
+<ul>
+<li><strong>Estructura:</strong> Capas de entrada, ocultas (donde ocurre el aprendizaje de patrones complejos) y de salida.</li>
+<li><strong>Función de Activación:</strong> Mecanismo (como la sigmoide) por el cual la neurona procesa la información antes de pasarla a la siguiente capa.</li>
+<li><strong>Entrenamiento:</strong> Utiliza el algoritmo de <strong>retropropagación</strong> (<em>backpropagation</em>) y el descenso del gradiente para ajustar los pesos y minimizar el error.</li>
+</ul>
+<p><span class="math display">\[\theta_{nueva} = \theta_{anterior} - \eta \cdot \frac{\partial E}{\partial \theta}\]</span></p>
+</div>
+<div id="ejemplo-del-funcionamiento-de-una-red-neuronal" class="section level4 hasAnchor" number="2.2.10.2">
+<h4><span class="header-section-number">2.2.10.2</span> Ejemplo del funcionamiento de una red neuronal<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#ejemplo-del-funcionamiento-de-una-red-neuronal" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Dataset con 2 covariables y una y (binaria)</li>
+<li>La capa oculta tiene 2 neuronas</li>
+<li>1 salida con activación sigmoide</li>
+<li>Pesos aleatorios</li>
+<li>2 iteraciones usando el algoritmo backpropagation con descenso del gradiente</li>
+</ul>
+<p><span class="math display">\[\sigma(z)=\frac{1}{1+e^{-z}}\]</span>
+Capa oculta</p>
+<p><span class="math display">\[
+\begin{aligned}
+  z_{h1} &amp;= w_{11}x_1 + w_{12}x_2 + b_1 \\
+  a_{h1} &amp;= \sigma(z_{h1}) \\
+  z_{h2} &amp;= w_{21}x_1 + w_{22}x_2 + b_2 \\
+  a_{h2} &amp;= \sigma(z_{h2})
+\end{aligned}
+\]</span></p>
+<p>Capa de salida:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  z_o &amp;= w_{o1}a_{h1} + w_{o2}a_{h2} + b_o \\
+  \hat{y} &amp;= \sigma(z_o)
+\end{aligned}
+\]</span></p>
+<p>SGD es un método de optimización para minimizar la función de error actualizando los pesos con <strong>una sola observación a la vez</strong>.</p>
+<p><span class="math display">\[
+\theta^{(t+1)} = \theta^{(t)} - \eta \cdot \nabla_\theta \, \mathcal{L}^{(i)}(\theta)
+\]</span></p>
+<p>Donde:
+- <span class="math inline">\(\theta\)</span>: peso o parámetro a ajustar
+- <span class="math inline">\(\eta\)</span>: tasa de aprendizaje
+- <span class="math inline">\(\mathcal{L}^{(i)}\)</span>: función de pérdida para la i-ésima observación
+- <span class="math inline">\(\nabla_\theta \mathcal{L}^{(i)}\)</span>: gradiente (derivada) del error con respecto a ese peso</p>
+<p><span class="math display">\[
+\begin{aligned}
+  \delta_o &amp;= (\hat{y} - y) \cdot \sigma&#39;(z_o) \\
+  \delta_{h1} &amp;= \delta_o \cdot w_{o1} \cdot \sigma&#39;(z_{h1}) \\
+  \delta_{h2} &amp;= \delta_o \cdot w_{o2} \cdot \sigma&#39;(z_{h2})
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\theta_{nueva} = \theta_{anterior} - \eta \cdot \frac{\partial E}{\partial \theta}
+\]</span></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(nnet)</span>
+<span id="cb2-2"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-2" tabindex="-1"></a><span class="co"># Dataset</span></span>
+<span id="cb2-3"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-4"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-4" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">c</span>(<span class="fl">0.00</span>, <span class="fl">0.77</span>),  <span class="co"># edad normalizada</span></span>
+<span id="cb2-5"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-5" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.67</span>)   <span class="co"># presión normalizada</span></span>
+<span id="cb2-6"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-6" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-7" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb2-8"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-9" tabindex="-1"></a><span class="co">#Pesos aleatorios</span></span>
+<span id="cb2-10"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-10" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb2-11"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-11" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">9</span>, <span class="at">min =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">max =</span> <span class="fl">0.5</span>)</span>
+<span id="cb2-12"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-12" tabindex="-1"></a><span class="fu">names</span>(w) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-13"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-13" tabindex="-1"></a>  <span class="st">&quot;w11&quot;</span>, <span class="st">&quot;w12&quot;</span>, <span class="st">&quot;b1&quot;</span>,     <span class="co"># pesos para h1</span></span>
+<span id="cb2-14"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-14" tabindex="-1"></a>  <span class="st">&quot;w21&quot;</span>, <span class="st">&quot;w22&quot;</span>, <span class="st">&quot;b2&quot;</span>,     <span class="co"># pesos para h2</span></span>
+<span id="cb2-15"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-15" tabindex="-1"></a>  <span class="st">&quot;wo1&quot;</span>, <span class="st">&quot;wo2&quot;</span>, <span class="st">&quot;bo&quot;</span>      <span class="co"># pesos para salida</span></span>
+<span id="cb2-16"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-16" tabindex="-1"></a>)</span>
+<span id="cb2-17"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb2-17" tabindex="-1"></a>w</span></code></pre></div>
+<pre><code>##         w11         w12          b1         w21 
+## -0.21242248  0.28830514 -0.09102308  0.38301740 
+##         w22          b2         wo1         wo2 
+##  0.44046728 -0.45444350  0.02810549  0.39241904 
+##          bo 
+##  0.05143501</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-1" tabindex="-1"></a><span class="co">#Sigmoide y su derivada</span></span>
+<span id="cb4-2"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-2" tabindex="-1"></a>sigmoid <span class="ot">&lt;-</span> <span class="cf">function</span>(z) <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>z))</span>
+<span id="cb4-3"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-3" tabindex="-1"></a>sigmoid_deriv <span class="ot">&lt;-</span> <span class="cf">function</span>(z) <span class="fu">sigmoid</span>(z) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sigmoid</span>(z))</span>
+<span id="cb4-4"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-5" tabindex="-1"></a><span class="co">#iteración</span></span>
+<span id="cb4-6"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-6" tabindex="-1"></a>iteracion_manual <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, x2, y_true, w, <span class="at">lr =</span> <span class="fl">0.1</span>) {</span>
+<span id="cb4-7"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-7" tabindex="-1"></a>  <span class="co"># Propagación</span></span>
+<span id="cb4-8"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-8" tabindex="-1"></a>  zh1 <span class="ot">&lt;-</span> w[<span class="st">&quot;w11&quot;</span>] <span class="sc">*</span> x1 <span class="sc">+</span> w[<span class="st">&quot;w12&quot;</span>] <span class="sc">*</span> x2 <span class="sc">+</span> w[<span class="st">&quot;b1&quot;</span>]</span>
+<span id="cb4-9"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-9" tabindex="-1"></a>  ah1 <span class="ot">&lt;-</span> <span class="fu">sigmoid</span>(zh1)</span>
+<span id="cb4-10"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-10" tabindex="-1"></a>  </span>
+<span id="cb4-11"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-11" tabindex="-1"></a>  zh2 <span class="ot">&lt;-</span> w[<span class="st">&quot;w21&quot;</span>] <span class="sc">*</span> x1 <span class="sc">+</span> w[<span class="st">&quot;w22&quot;</span>] <span class="sc">*</span> x2 <span class="sc">+</span> w[<span class="st">&quot;b2&quot;</span>]</span>
+<span id="cb4-12"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-12" tabindex="-1"></a>  ah2 <span class="ot">&lt;-</span> <span class="fu">sigmoid</span>(zh2)</span>
+<span id="cb4-13"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-13" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-14" tabindex="-1"></a>  zo <span class="ot">&lt;-</span> w[<span class="st">&quot;wo1&quot;</span>] <span class="sc">*</span> ah1 <span class="sc">+</span> w[<span class="st">&quot;wo2&quot;</span>] <span class="sc">*</span> ah2 <span class="sc">+</span> w[<span class="st">&quot;bo&quot;</span>]</span>
+<span id="cb4-15"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-15" tabindex="-1"></a>  y_hat <span class="ot">&lt;-</span> <span class="fu">sigmoid</span>(zo)</span>
+<span id="cb4-16"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-16" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-17" tabindex="-1"></a>  <span class="co"># Errores</span></span>
+<span id="cb4-18"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-18" tabindex="-1"></a>  delta_o <span class="ot">&lt;-</span> (y_hat <span class="sc">-</span> y_true) <span class="sc">*</span> <span class="fu">sigmoid_deriv</span>(zo)</span>
+<span id="cb4-19"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-19" tabindex="-1"></a>  delta_h1 <span class="ot">&lt;-</span> delta_o <span class="sc">*</span> w[<span class="st">&quot;wo1&quot;</span>] <span class="sc">*</span> <span class="fu">sigmoid_deriv</span>(zh1)</span>
+<span id="cb4-20"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-20" tabindex="-1"></a>  delta_h2 <span class="ot">&lt;-</span> delta_o <span class="sc">*</span> w[<span class="st">&quot;wo2&quot;</span>] <span class="sc">*</span> <span class="fu">sigmoid_deriv</span>(zh2)</span>
+<span id="cb4-21"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-21" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-22" tabindex="-1"></a>  <span class="co"># Actualización de pesos salida</span></span>
+<span id="cb4-23"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-23" tabindex="-1"></a>  w[<span class="st">&quot;wo1&quot;</span>] <span class="ot">&lt;-</span> w[<span class="st">&quot;wo1&quot;</span>] <span class="sc">-</span> lr <span class="sc">*</span> delta_o <span class="sc">*</span> ah1</span>
+<span id="cb4-24"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-24" tabindex="-1"></a>  w[<span class="st">&quot;wo2&quot;</span>] <span class="ot">&lt;-</span> w[<span class="st">&quot;wo2&quot;</span>] <span class="sc">-</span> lr <span class="sc">*</span> delta_o <span class="sc">*</span> ah2</span>
+<span id="cb4-25"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-25" tabindex="-1"></a>  w[<span class="st">&quot;bo&quot;</span>]  <span class="ot">&lt;-</span> w[<span class="st">&quot;bo&quot;</span>]  <span class="sc">-</span> lr <span class="sc">*</span> delta_o</span>
+<span id="cb4-26"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-26" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-27" tabindex="-1"></a>  <span class="co"># Actualización pesos ocultos</span></span>
+<span id="cb4-28"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-28" tabindex="-1"></a>  w[<span class="st">&quot;w11&quot;</span>] <span class="ot">&lt;-</span> w[<span class="st">&quot;w11&quot;</span>] <span class="sc">-</span> lr <span class="sc">*</span> delta_h1 <span class="sc">*</span> x1</span>
+<span id="cb4-29"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-29" tabindex="-1"></a>  w[<span class="st">&quot;w12&quot;</span>] <span class="ot">&lt;-</span> w[<span class="st">&quot;w12&quot;</span>] <span class="sc">-</span> lr <span class="sc">*</span> delta_h1 <span class="sc">*</span> x2</span>
+<span id="cb4-30"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-30" tabindex="-1"></a>  w[<span class="st">&quot;b1&quot;</span>]  <span class="ot">&lt;-</span> w[<span class="st">&quot;b1&quot;</span>]  <span class="sc">-</span> lr <span class="sc">*</span> delta_h1</span>
+<span id="cb4-31"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-31" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-32" tabindex="-1"></a>  w[<span class="st">&quot;w21&quot;</span>] <span class="ot">&lt;-</span> w[<span class="st">&quot;w21&quot;</span>] <span class="sc">-</span> lr <span class="sc">*</span> delta_h2 <span class="sc">*</span> x1</span>
+<span id="cb4-33"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-33" tabindex="-1"></a>  w[<span class="st">&quot;w22&quot;</span>] <span class="ot">&lt;-</span> w[<span class="st">&quot;w22&quot;</span>] <span class="sc">-</span> lr <span class="sc">*</span> delta_h2 <span class="sc">*</span> x2</span>
+<span id="cb4-34"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-34" tabindex="-1"></a>  w[<span class="st">&quot;b2&quot;</span>]  <span class="ot">&lt;-</span> w[<span class="st">&quot;b2&quot;</span>]  <span class="sc">-</span> lr <span class="sc">*</span> delta_h2</span>
+<span id="cb4-35"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-35" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-36" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">y_hat =</span> y_hat, <span class="at">pesos =</span> w)</span>
+<span id="cb4-37"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-37" tabindex="-1"></a>}</span>
+<span id="cb4-38"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-38" tabindex="-1"></a><span class="co">#Primera iteración</span></span>
+<span id="cb4-39"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-39" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> <span class="fu">iteracion_manual</span>(x[<span class="dv">1</span>,<span class="dv">1</span>], x[<span class="dv">1</span>,<span class="dv">2</span>], y[<span class="dv">1</span>], w)</span>
+<span id="cb4-40"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb4-40" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Predicción 1: &quot;</span>, <span class="fu">round</span>(w1<span class="sc">$</span>y_hat, <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Predicción 1:  0.5568</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb6-1" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> <span class="fu">iteracion_manual</span>(x[<span class="dv">2</span>,<span class="dv">1</span>], x[<span class="dv">2</span>,<span class="dv">2</span>], y[<span class="dv">2</span>], w1<span class="sc">$</span>pesos)</span>
+<span id="cb6-2"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb6-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Predicción 2: &quot;</span>, <span class="fu">round</span>(w2<span class="sc">$</span>y_hat, <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Predicción 2:  0.5632</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb8-1" tabindex="-1"></a><span class="co">#Segunda iteración</span></span>
+<span id="cb8-2"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb8-2" tabindex="-1"></a>w3 <span class="ot">&lt;-</span> <span class="fu">iteracion_manual</span>(x[<span class="dv">1</span>,<span class="dv">1</span>], x[<span class="dv">1</span>,<span class="dv">2</span>], y[<span class="dv">1</span>], w2<span class="sc">$</span>pesos)</span>
+<span id="cb8-3"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb8-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Predicción 3: &quot;</span>, <span class="fu">round</span>(w3<span class="sc">$</span>y_hat, <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Predicción 3:  0.5558</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb10-1" tabindex="-1"></a>w4 <span class="ot">&lt;-</span> <span class="fu">iteracion_manual</span>(x[<span class="dv">2</span>,<span class="dv">1</span>], x[<span class="dv">2</span>,<span class="dv">2</span>], y[<span class="dv">2</span>], w3<span class="sc">$</span>pesos)</span>
+<span id="cb10-2"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb10-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Predicción 4: &quot;</span>, <span class="fu">round</span>(w4<span class="sc">$</span>y_hat, <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Predicción 4:  0.5623</code></pre>
+</div>
+<div id="red-neuronal-vs-ols" class="section level4 hasAnchor" number="2.2.10.3">
+<h4><span class="header-section-number">2.2.10.3</span> Red Neuronal VS OLS<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#red-neuronal-vs-ols" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Un modelo OLS coincide en resultados con una red neuronal cuando: no se define capa oculta, función lineal y sin entrenamiento en la capa de salida.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb12-1" tabindex="-1"></a><span class="co">#ols</span></span>
+<span id="cb12-2"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb12-2" tabindex="-1"></a>m0<span class="ot">&lt;-</span><span class="fu">lm</span>(Murder<span class="sc">~</span>., <span class="at">data=</span>USArrests)</span>
+<span id="cb12-3"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb12-3" tabindex="-1"></a><span class="fu">summary</span>(m0)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Murder ~ ., data = USArrests)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.3990 -1.9127 -0.3444  1.2557  7.4279 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  3.276639   1.737997   1.885   0.0657
+## Assault      0.039777   0.005912   6.729 2.33e-08
+## UrbanPop    -0.054694   0.027880  -1.962   0.0559
+## Rape         0.061399   0.055740   1.102   0.2764
+##                
+## (Intercept) .  
+## Assault     ***
+## UrbanPop    .  
+## Rape           
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.574 on 46 degrees of freedom
+## Multiple R-squared:  0.6721, Adjusted R-squared:  0.6507 
+## F-statistic: 31.42 on 3 and 46 DF,  p-value: 3.322e-11</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb14-1" tabindex="-1"></a><span class="co">#nnet</span></span>
+<span id="cb14-2"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb14-2" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">nnet</span>(Murder  <span class="sc">~</span> . , <span class="at">data =</span> USArrests, </span>
+<span id="cb14-3"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb14-3" tabindex="-1"></a>                    <span class="at">size =</span> <span class="dv">0</span>,</span>
+<span id="cb14-4"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb14-4" tabindex="-1"></a>                    <span class="at">linout =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb14-5"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb14-5" tabindex="-1"></a>                    <span class="at">skip =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb14-6"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb14-6" tabindex="-1"></a>                    <span class="at">trace =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb14-7"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb14-7" tabindex="-1"></a>                    <span class="at">maxit =</span> <span class="dv">500</span>)</span>
+<span id="cb14-8"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#cb14-8" tabindex="-1"></a>m1<span class="sc">$</span>wts  <span class="co"># Pesos de la red</span></span></code></pre></div>
+<pre><code>## [1]  3.27663821  0.03977717 -0.05469362  0.06139942</code></pre>
 
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div class="csl-entry">
@@ -699,6 +930,7 @@ Torgo, Luis. n.d. <span>“Data <span>Mining</span> with <span>R</span>.”</spa
 </div>
 <div class="csl-entry">
 Zumel, Nina, and John Mount. 2019. <em>Practical Data Science with r</em>. 2nd ed. Manning Publications.
+</div>
 </div>
 </div>
 </div>

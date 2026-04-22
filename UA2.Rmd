@@ -338,8 +338,221 @@ El proceso de construcción de un árbol es **recursivo y voraz** (greedy):
 
 ### Redes Neuronales Artificiales (ANN)
 
+(Ver google trends)
+
+ANN (Artificial *Neural* Network) es conocido como un método **Black Box**.
+
+  - *El cerebro humano* está compuesto por alrededor de *85 mil millones* de neuronas
+  - Una red capaz de almacenar una enorme cantidad de conocimiento
+  - Un *gato* tiene aproximadamente *mil millones de neuronas*
+  - Un *ratón* tiene alrededor de *75 millones de neuronas* 
+  - Una *cucaracha* tiene solo alrededor de un *millón de neuronas*.
+
+![](_fig/neural.PNG)
+
+Muchas ANN contienen muchas menos neuronas, generalmente solo *varios cientos*.
+
+  - Un cerebro de mosca de la fruta con 100,000 neuronas supera el estado actual de ANN.
+  
+Una *ANN* *modela la relación* entre un conjunto de *señales de entrada* y una *señal de salida* utilizando un modelo derivado de nuestra comprensión de cómo un cerebro biológico responde a los estímulos de las entradas sensoriales. Así como un cerebro usa una red de células interconectadas llamadas neuronas para crear un procesador paralelo masivo, la *ANN* usa una red de *neuronas artificiales* o *nodos* para resolver problemas de aprendizaje.  
+
+Topología de una red  
+
+  + El número de capas (layers)
+  + Si se permite que la información en la red viaje hacia atrás
+  + El número de nodos dentro de cada capa de la red
+
+La *topología* determina la *complejidad* de las tareas que la red puede aprender. Generalmente, las redes más grandes y complejas son capaces de identificar patrones más sutiles y límites de decisión complejos. Sin embargo, la potencia de una red no solo depende del tamaño de la red, sino también de la forma en que se organizan las unidades.
+
+La red neuronal se construye con un grupo de *nodos interconectados*, que involucra la entrada, los *pesos* conectados, el elemento de procesamiento y la salida. Las redes neuronales se pueden aplicar a muchas áreas (entrada, salida), como la *clasificación*, el *agrupamiento* y la *predicción*. 
+
+![Neurona simple](_fig/neural1.PNG)
+
+  + Dendritas: $X$ (input)
+  + Axon terminal: $Y$ (output)
+  + Señal de la dendrita: $w_i$ (peso)
+  + Función de activación: $f$
+  
+$$y(x)=f\left(\sum_{i=1}^n w_i*x_i \right)$$
+  
+Características de una red:
+  
+  + Función de activación: $f$
+  + Topología de la red: Arquitectura
+  + Algoritmo de entrenamiento: Como se establecen los pesos
+  
+Funciones de activación
+
+La función de activación es el *mecanismo* por el cual la *neurona artificial* *procesa la información* y la pasa *a través de la red*. Así como la neurona artificial está modelada según la versión biológica, también la función de activación está modelada según el diseño de la naturaleza.
+
+En el caso *biológico*, la función de activación podría imaginarse como un proceso que consiste en sumar la señal de entrada total y determinar si alcanza el umbral de *disparo*. Si es así, la neurona transmite la señal; de lo contrario, no hace nada. En términos de ANN, esto se conoce como *función de activación de umbral*, ya que da como resultado una señal de salida solo una vez que se ha alcanzado un umbral de entrada específico.
+
+En la naturaleza esta función sería:
+
+![Activación natural](_fig/neural2.PNG)
+
+Aunque la función de activación del umbral es interesante debido a sus paralelismos con la biología, rara vez se usa en redes neuronales artificiales. Liberadas de las limitaciones de la bioquímica, las funciones de activación de ANN se pueden elegir en función de su capacidad para demostrar características matemáticas deseables y modelar relaciones entre datos.
+
+![Sigmoid](_fig/neural3.PNG)
+
+![Otras funciones](_fig/neural3.PNG)
+
+#### Redes neuronales para la clasificación
+
+La red neuronal es una red formada por neuronas artificiales (o nodos). Hay tres tipos de neuronas dentro de la red: neuronas de *entrada* ($X$), neuronas *ocultas* (variable latentes) y neuronas de *salida* ($Y$). En la red, las neuronas están conectadas; la fuerza de conexión entre las neuronas se llama pesos ($w$). Las neuronas de entrada reciben la información de entrada; cuanto mayor sea el valor de entrada, mayor será la activación.
+
+Las ventajas de una red neuronal son: primero, puede detectar relaciones **no lineales** entre la variable dependiente e independiente. En segundo lugar, uno puede entrenar de manera *eficiente* *grandes conjuntos de datos* utilizando la arquitectura *paralela*. Tercero, es un modelo *no paramétrico* por lo que se pueden eliminar errores en la estimación de parámetros. 
+
+Las principales desventajas de una red neuronal son que a menudo converge al mínimo local en lugar del mínimo global. Además, puede sobreajustarse cuando el proceso de entrenamiento dura demasiado.
+
+Para la clasificación es importante tener presente de manera previa al modelo:
+
+  + Las unidades de medida afectan las funciones de activación, para evitar esto se recomienda estandarizar las variables.
+  + En general, el número de nodos ocultos no cuenta con una regla respecto su valor, solo se recomienda no tener demasiados nodos ocultos, ya que esto genera un sobre ajuste. Como recomendación general, se puede tener una cantidad máxima equivalente al número de covariables (X).
+
 Considerados métodos de **"caja negra"**, imitan la estructura biológica del cerebro con neuronas artificiales interconectadas por pesos ($w$).
+
 *   **Estructura:** Capas de entrada, ocultas (donde ocurre el aprendizaje de patrones complejos) y de salida.
 *   **Función de Activación:** Mecanismo (como la sigmoide) por el cual la neurona procesa la información antes de pasarla a la siguiente capa.
 *   **Entrenamiento:** Utiliza el algoritmo de **retropropagación** (*backpropagation*) y el descenso del gradiente para ajustar los pesos y minimizar el error.
+
 $$\theta_{nueva} = \theta_{anterior} - \eta \cdot \frac{\partial E}{\partial \theta}$$
+
+#### Ejemplo del funcionamiento de una red neuronal
+
+- Dataset con 2 covariables y una y (binaria)
+- La capa oculta tiene 2 neuronas
+- 1 salida con activación sigmoide
+- Pesos aleatorios
+- 2 iteraciones usando el algoritmo backpropagation con descenso del gradiente
+
+$$\sigma(z)=\frac{1}{1+e^{-z}}$$
+Capa oculta
+
+$$
+\begin{aligned}
+  z_{h1} &= w_{11}x_1 + w_{12}x_2 + b_1 \\
+  a_{h1} &= \sigma(z_{h1}) \\
+  z_{h2} &= w_{21}x_1 + w_{22}x_2 + b_2 \\
+  a_{h2} &= \sigma(z_{h2})
+\end{aligned}
+$$
+
+Capa de salida:
+
+$$
+\begin{aligned}
+  z_o &= w_{o1}a_{h1} + w_{o2}a_{h2} + b_o \\
+  \hat{y} &= \sigma(z_o)
+\end{aligned}
+$$
+
+SGD es un método de optimización para minimizar la función de error actualizando los pesos con **una sola observación a la vez**.
+
+$$
+\theta^{(t+1)} = \theta^{(t)} - \eta \cdot \nabla_\theta \, \mathcal{L}^{(i)}(\theta)
+$$
+
+Donde:
+- $\theta$: peso o parámetro a ajustar
+- $\eta$: tasa de aprendizaje
+- $\mathcal{L}^{(i)}$: función de pérdida para la i-ésima observación
+- $\nabla_\theta \mathcal{L}^{(i)}$: gradiente (derivada) del error con respecto a ese peso
+
+$$
+\begin{aligned}
+  \delta_o &= (\hat{y} - y) \cdot \sigma'(z_o) \\
+  \delta_{h1} &= \delta_o \cdot w_{o1} \cdot \sigma'(z_{h1}) \\
+  \delta_{h2} &= \delta_o \cdot w_{o2} \cdot \sigma'(z_{h2})
+\end{aligned}
+$$
+
+$$
+\theta_{nueva} = \theta_{anterior} - \eta \cdot \frac{\partial E}{\partial \theta}
+$$
+
+```{r}
+library(nnet)
+# Dataset
+x <- data.frame(
+  x1 = c(0.00, 0.77),  # edad normalizada
+  x2 = c(0.25, 0.67)   # presión normalizada
+)
+y <- c(0, 1)
+
+#Pesos aleatorios
+set.seed(123)
+w <- runif(9, min = -0.5, max = 0.5)
+names(w) <- c(
+  "w11", "w12", "b1",     # pesos para h1
+  "w21", "w22", "b2",     # pesos para h2
+  "wo1", "wo2", "bo"      # pesos para salida
+)
+w
+#Sigmoide y su derivada
+sigmoid <- function(z) 1 / (1 + exp(-z))
+sigmoid_deriv <- function(z) sigmoid(z) * (1 - sigmoid(z))
+
+#iteración
+iteracion_manual <- function(x1, x2, y_true, w, lr = 0.1) {
+  # Propagación
+  zh1 <- w["w11"] * x1 + w["w12"] * x2 + w["b1"]
+  ah1 <- sigmoid(zh1)
+  
+  zh2 <- w["w21"] * x1 + w["w22"] * x2 + w["b2"]
+  ah2 <- sigmoid(zh2)
+
+  zo <- w["wo1"] * ah1 + w["wo2"] * ah2 + w["bo"]
+  y_hat <- sigmoid(zo)
+
+  # Errores
+  delta_o <- (y_hat - y_true) * sigmoid_deriv(zo)
+  delta_h1 <- delta_o * w["wo1"] * sigmoid_deriv(zh1)
+  delta_h2 <- delta_o * w["wo2"] * sigmoid_deriv(zh2)
+
+  # Actualización de pesos salida
+  w["wo1"] <- w["wo1"] - lr * delta_o * ah1
+  w["wo2"] <- w["wo2"] - lr * delta_o * ah2
+  w["bo"]  <- w["bo"]  - lr * delta_o
+
+  # Actualización pesos ocultos
+  w["w11"] <- w["w11"] - lr * delta_h1 * x1
+  w["w12"] <- w["w12"] - lr * delta_h1 * x2
+  w["b1"]  <- w["b1"]  - lr * delta_h1
+
+  w["w21"] <- w["w21"] - lr * delta_h2 * x1
+  w["w22"] <- w["w22"] - lr * delta_h2 * x2
+  w["b2"]  <- w["b2"]  - lr * delta_h2
+
+  list(y_hat = y_hat, pesos = w)
+}
+#Primera iteración
+w1 <- iteracion_manual(x[1,1], x[1,2], y[1], w)
+cat("Predicción 1: ", round(w1$y_hat, 4), "\n")
+
+w2 <- iteracion_manual(x[2,1], x[2,2], y[2], w1$pesos)
+cat("Predicción 2: ", round(w2$y_hat, 4), "\n")
+#Segunda iteración
+w3 <- iteracion_manual(x[1,1], x[1,2], y[1], w2$pesos)
+cat("Predicción 3: ", round(w3$y_hat, 4), "\n")
+
+w4 <- iteracion_manual(x[2,1], x[2,2], y[2], w3$pesos)
+cat("Predicción 4: ", round(w4$y_hat, 4), "\n")
+```
+#### Red Neuronal VS OLS
+
+Un modelo OLS coincide en resultados con una red neuronal cuando: no se define capa oculta, función lineal y sin entrenamiento en la capa de salida.
+
+```{r}
+#ols
+m0<-lm(Murder~., data=USArrests)
+summary(m0)
+#nnet
+m1 <- nnet(Murder  ~ . , data = USArrests, 
+                    size = 0,
+                    linout = TRUE,
+                    skip = TRUE,
+                    trace = FALSE,
+                    maxit = 500)
+m1$wts  # Pesos de la red
+```

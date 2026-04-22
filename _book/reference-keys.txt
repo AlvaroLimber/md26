@@ -49,7 +49,3 @@ regresión-logística-logit-probit
 naive-bayes
 k-nearest-neighbors-knn
 árboles-de-clasificación
-redes-neuronales-artificiales-ann
-redes-neuronales-para-la-clasificación
-ejemplo-del-funcionamiento-de-una-red-neuronal
-red-neuronal-vs-ols

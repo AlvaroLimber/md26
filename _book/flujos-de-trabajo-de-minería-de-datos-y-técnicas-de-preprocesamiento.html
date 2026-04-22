@@ -128,7 +128,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -222,7 +221,6 @@ div.csl-indent {
 <li class="chapter" data-level="2.2.7" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#naive-bayes"><i class="fa fa-check"></i><b>2.2.7</b> Naive Bayes</a></li>
 <li class="chapter" data-level="2.2.8" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#k-nearest-neighbors-knn"><i class="fa fa-check"></i><b>2.2.8</b> k-Nearest Neighbors (kNN)</a></li>
 <li class="chapter" data-level="2.2.9" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>2.2.9</b> Árboles de clasificación</a></li>
-<li class="chapter" data-level="2.2.10" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#redes-neuronales-artificiales-ann"><i class="fa fa-check"></i><b>2.2.10</b> Redes Neuronales Artificiales (ANN)</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -248,7 +246,7 @@ div.csl-indent {
 <h2><span class="header-section-number">1.1</span> Definiendo Minería de datos<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#definiendo-miner%C3%ADa-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A continuación se presentan tres definiciones fundamentales de la disciplina:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Enfoque de Proceso KDD</strong>: La minería de datos es una etapa específica dentro del proceso de Descubrimiento de Conocimiento en Bases de Datos (KDD) que consiste en la aplicación de algoritmos de análisis y descubrimiento que producen una enumeración de patrones sobre los datos <span class="citation">(Fayyad, Piatetsky-Shapiro, and Smyth 1996)</span>.</p></li>
+<li><p><strong>Enfoque de Proceso KDD</strong>: La minería de datos es una etapa específica dentro del proceso de Descubrimiento de Conocimiento en Bases de Datos (KDD) que consiste en la aplicación de algoritmos de análisis y descubrimiento que producen una enumeración de patrones sobre los datos <span class="citation">(Fayyad et al. 1996)</span>.</p></li>
 <li><p><strong>Enfoque de Descubrimiento de Conocimiento</strong>: Se define como el proceso de descubrir patrones interesantes y conocimiento a partir de grandes cantidades de datos almacenados en bases de datos, almacenes de datos (data warehouses) u otros depósitos de información <span class="citation">(<strong>han2011?</strong>)</span>.</p></li>
 <li><p><strong>Enfoque Estadístico</strong>: Es el análisis de conjuntos de datos observacionales (frecuentemente grandes) con el fin de encontrar relaciones insospechadas y resumir los datos de formas novedosas que sean tanto comprensibles como útiles para el propietario de los mismos <span class="citation">(<strong>hand2001?</strong>)</span>.</p></li>
 </ol>
@@ -269,7 +267,7 @@ div.csl-indent {
 <div id="kdd-knowledge-discovery-in-databases" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> KDD (Knowledge Discovery in Databases)<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#kdd-knowledge-discovery-in-databases" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><strong>Origen</strong>: Propuesto por <span class="citation">Fayyad, Piatetsky-Shapiro, and Smyth (1996)</span> en el ámbito académico para distinguir el proceso global de descubrimiento de la etapa específica de aplicación de algoritmos.</li>
+<li><strong>Origen</strong>: Propuesto por <span class="citation">Fayyad et al. (1996)</span> en el ámbito académico para distinguir el proceso global de descubrimiento de la etapa específica de aplicación de algoritmos.</li>
 <li><strong>Fases</strong>: 1. Selección, 2. Preprocesamiento, 3. Transformación, 4. Minería de datos, 5. Interpretación/Evaluación.</li>
 <li><strong>Enfoque</strong>: Científico y centrado en la purificación técnica de los datos.</li>
 </ul>
@@ -277,7 +275,7 @@ div.csl-indent {
 <div id="crisp-dm-cross-industry-standard-process-for-data-mining" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> CRISP-DM (Cross-Industry Standard Process for Data Mining)<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#crisp-dm-cross-industry-standard-process-for-data-mining" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><strong>Origen</strong>: Surgió de un consorcio europeo a finales de los 90 (NCR, SPSS, Daimler-Benz) para crear un estándar no propietario adaptado a la industria <span class="citation">(Chapman et al. 2000)</span>.</li>
+<li><strong>Origen</strong>: Surgió de un consorcio europeo a finales de los 90 (NCR, SPSS, Daimler-Benz) para crear un estándar no propietario adaptado a la industria <span class="citation">(<strong>chapman2000?</strong>)</span>.</li>
 <li><strong>Fases</strong>: 1. Comprensión del Negocio, 2. Comprensión de los Datos, 3. Preparación de los Datos, 4. Modelado, 5. Evaluación, 6. Despliegue.</li>
 <li><strong>Enfoque</strong>: Cíclico e iterativo, priorizando los objetivos del negocio.</li>
 </ul>
@@ -293,7 +291,7 @@ div.csl-indent {
 <div id="osemn" class="section level3 hasAnchor" number="1.2.4">
 <h3><span class="header-section-number">1.2.4</span> OSEMN<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html#osemn" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><strong>Origen</strong>: Acuñado por <span class="citation">Mason and Wiggins (2010)</span> para simplificar el flujo de trabajo en la ciencia de datos moderna basada en scripts (R/Python).</li>
+<li><strong>Origen</strong>: Acuñado por <span class="citation">(<strong>mason2010?</strong>)</span> para simplificar el flujo de trabajo en la ciencia de datos moderna basada en scripts (R/Python).</li>
 <li><strong>Fases</strong>: 1. Obtain (Obtener), 2. Scrub (Limpiar), 3. Explore (Explorar), 4. Model (Modelar), 5. iNterpret (Interpretar).</li>
 <li><strong>Enfoque</strong>: Pragmático y ágil, ideal para entornos de desarrollo rápido y programación fluida.</li>
 </ul>
@@ -317,10 +315,10 @@ div.csl-indent {
 <tbody>
 <tr class="odd">
 <td align="left"><strong>Autor / Referencia</strong></td>
-<td align="left"><span class="citation">Fayyad, Piatetsky-Shapiro, and Smyth (1996)</span></td>
-<td align="left"><span class="citation">Chapman et al. (2000)</span></td>
+<td align="left"><span class="citation">Fayyad et al. (1996)</span></td>
+<td align="left"><span class="citation">(<strong>chapman2000?</strong>)</span></td>
 <td align="left"><span class="citation">Matignon (2007)</span></td>
-<td align="left"><span class="citation">Mason and Wiggins (2010)</span></td>
+<td align="left"><span class="citation">(<strong>mason2010?</strong>)</span></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Origen</strong></td>
@@ -400,7 +398,7 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p><strong>Pregunta de reflexión:</strong> ¿Por qué el flujo de <span class="citation">Mason and Wiggins (2010)</span> es más natural para un analista que trabaja solo, mientras que el de <span class="citation">Chapman et al. (2000)</span> es indispensable para un equipo que trabaja para un cliente externo?</p>
+<p><strong>Pregunta de reflexión:</strong> ¿Por qué el flujo de <span class="citation">(<strong>mason2010?</strong>)</span> es más natural para un analista que trabaja solo, mientras que el de <span class="citation">(<strong>chapman2000?</strong>)</span> es indispensable para un equipo que trabaja para un cliente externo?</p>
 <p>Lectura sugerida: <a href="https://ijisr.issr-journals.org/abstract.php?article=IJISR-14-281-04" class="uri">https://ijisr.issr-journals.org/abstract.php?article=IJISR-14-281-04</a></p>
 </div>
 </div>

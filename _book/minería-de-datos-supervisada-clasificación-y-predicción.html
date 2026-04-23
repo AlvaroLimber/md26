@@ -221,6 +221,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.2.7" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#naive-bayes"><i class="fa fa-check"></i><b>2.2.7</b> Naive Bayes</a></li>
 <li class="chapter" data-level="2.2.8" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#k-nearest-neighbors-knn"><i class="fa fa-check"></i><b>2.2.8</b> k-Nearest Neighbors (kNN)</a></li>
 <li class="chapter" data-level="2.2.9" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>2.2.9</b> Árboles de clasificación</a></li>
+<li class="chapter" data-level="2.2.10" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#ejercicio-predicci%C3%B3n-de-adopci%C3%B3n-felina"><i class="fa fa-check"></i><b>2.2.10</b> Ejercicio: Predicción de Adopción Felina</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -631,6 +632,21 @@ Gini(t) = 1 - \sum_{i=1}^{k} p_i^2
 <li><strong>Definición del Nodo Raíz (Primer Nodo):</strong> El algoritmo evalúa todas las variables disponibles. Selecciona aquella que logra la mejor separación inicial de las clases según el criterio (Gini o Entropía). Es, por definición, la variable con mayor poder predictivo global.</li>
 <li><strong>Particiones Sucesivas:</strong> Una vez dividido el primer nodo, los datos resultantes se tratan como “nuevas bases de datos” y el proceso se repite. Un predictor que se usó en el primer nodo puede volver a usarse más abajo con un punto de corte distinto.</li>
 </ol>
+</div>
+<div id="ejercicio-predicción-de-adopción-felina" class="section level3 hasAnchor" number="2.2.10">
+<h3><span class="header-section-number">2.2.10</span> Ejercicio: Predicción de Adopción Felina<a href="minería-de-datos-supervisada-clasificación-y-predicción.html#ejercicio-predicci%C3%B3n-de-adopci%C3%B3n-felina" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Utilizando el dataset <code>cat_adoption</code>, construya un modelo para predecir la probabilidad de que un gato <strong>no sea adoptado</strong>.</p>
+<p>No se enfoque en la perfección del código, sino en su <strong>criterio estadístico</strong>. Puede usar: <code>logit</code>, <code>probit</code>, <code>naive bayes</code>, <code>knn</code>, <code>rpart</code>, <code>C50</code> o <code>randomForest</code>.</p>
+<p>En un breve resumen, prepare su defensa para los siguientes puntos:</p>
+<ul>
+<li><strong>Selección de Atributos:</strong> ¿Qué variables (edad, color, salud, etc.) incluyó y por qué cree que afectan la adopción?</li>
+<li><strong>Justificación del Modelo:</strong> ¿Por qué eligió ese algoritmo sobre los otros vistos en clase?</li>
+<li><strong>Métricas de Valor:</strong> ¿Qué priorizó: detectar a todos los gatos en riesgo (Recall) o estar muy seguro de sus predicciones (Precisión)?</li>
+<li><strong>Interpretación:</strong> Según su modelo, ¿cuál es el perfil del gato con menor probabilidad de salir del refugio?</li>
+</ul>
+<blockquote>
+<p>Tiempo estimado: 20 minutos</p>
+</blockquote>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">

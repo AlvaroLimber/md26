@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Minería de Datos II</title>
+  <title>3 Métodos de asociación | Minería de Datos II</title>
   <meta name="description" content="Apuntes para la materia de Minería de Datos II" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Minería de Datos II" />
+  <meta property="og:title" content="3 Métodos de asociación | Minería de Datos II" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Apuntes para la materia de Minería de Datos II" />
   <meta name="github-repo" content="alvarolimber/md26" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Minería de Datos II" />
+  <meta name="twitter:title" content="3 Métodos de asociación | Minería de Datos II" />
   
   <meta name="twitter:description" content="Apuntes para la materia de Minería de Datos II" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="minería-de-datos-supervisada-clasificación-y-predicción.html"/>
 
-<link rel="next" href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -252,18 +252,210 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Minería de Datos II</h1>
-<h2 class="subtitle"><em>Economía e Inteligencia de Negocios</em></h2>
-<p class="author"><em>MSc. Alvaro Chirino Gutierrez</em></p>
-<p class="date"><em>Periodo I-2026</em></p>
+<div id="métodos-de-asociación" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Métodos de asociación<a href="métodos-de-asociación.html#m%C3%A9todos-de-asociaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<p>Encontrar patrones en un dataset</p>
+</blockquote>
+<ul>
+<li>La <strong>regla de asociación</strong> se utiliza para descubrir patrones y relaciones ocultas en conjuntos de datos.</li>
+<li>La regla de asociación se basa en la <strong>teoría de probabilidad</strong> y estadística, y se utiliza para identificar <strong>la probabilidad de que un elemento esté asociado</strong> con otro elemento en un conjunto de datos.</li>
+<li>Los métodos de asociación son útiles para identificar <strong>patrones de comportamiento y preferencias</strong> de los clientes, lo que puede ayudar a las empresas a <strong>tomar decisiones</strong> de marketing y ventas más informadas.</li>
+<li>Los métodos de asociación pueden ayudar a <strong>predecir qué productos o servicios son más propensos a ser comprados juntos</strong>, lo que puede ayudar a los minoristas a mejorar su <strong>eficiencia de inventario</strong> y <strong>aumentar las ventas</strong>.</li>
+<li>Los métodos de asociación también se utilizan en la minería de datos, la inteligencia empresarial y la investigación de mercado para identificar patrones y tendencias en <strong>grandes conjuntos de datos</strong>.</li>
+</ul>
+<p><span class="math display">\[\{Pan, tomate, cebolla\} \Rightarrow \{ \text{Carne para hamburguesa}\}\]</span></p>
+<div id="dataset" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Dataset<a href="métodos-de-asociación.html#dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>POS: point-of-sale. Puntos de venta</p>
+</blockquote>
+<ul>
+<li>Supermercados</li>
+<li>Librerías</li>
+<li>Tráfico web</li>
+<li>Minería de texto RRSS</li>
+</ul>
+<p>La base de datos para este tipo de métodos esta basado en una colección de transacciones, una transacción la vamos a denotar como:</p>
+<p><span class="math display">\[T_i=\{I_1,I_2,I_3, \ldots \}\]</span></p>
+<p>Normalmente estas bases de datos se las puede expresar como una base de datos de 0 y 1. Donde el número de filas es cantidad de transacciones y el número de columnas es el total de item/productos.</p>
+<p>Algunos ejemplos:</p>
+<ol style="list-style-type: decimal">
+<li>A partir de la siguientes 3 transacciones, genere una base de datos</li>
+</ol>
+<ul>
+<li>{leche, huevo, pan, chocolate}</li>
+<li>{harina, leche, tomate}</li>
+<li>{pan, huevo, soda, pescado}</li>
+</ul>
 </div>
-<div id="prefacio" class="section level1 unnumbered hasAnchor">
-<h1>Prefacio<a href="index.html#prefacio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Este documento de <a href="https://twitter/alvarochirinog">Alvaro Chirino</a> esta bajo la licencia de <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
-<div id="referencias" class="section level2 unnumbered hasAnchor">
-<h2>Referencias<a href="index.html#referencias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="fundamentos" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Fundamentos<a href="métodos-de-asociación.html#fundamentos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Soporte</strong>: El soporte de un conjunto de elementos es la proporción de transacciones en las que aparece ese conjunto. Un conjunto con un alto soporte indica que es común en el conjunto de datos.</li>
+</ul>
+<p><span class="math display">\[supp(X)=\text{Proporción de X en el dataset}\]</span></p>
+<ul>
+<li><strong>Confianza</strong>: La confianza mide la probabilidad de que un elemento de un conjunto aparezca en una transacción dado que otro elemento del mismo conjunto también aparece en esa transacción. Una alta confianza indica que los elementos del conjunto están fuertemente asociados. Mientras mas cercano a <span class="math inline">\(1\)</span> sea la confianza, mas fuerte es la regla de asociación</li>
+</ul>
+<p><span class="math display">\[P(X \Rightarrow Y)=\frac{supp(X\cup Y)}{supp(X)}=P(Y/X)=\frac{P(YX)}{P(X)}\]</span></p>
+<ul>
+<li><strong>Elevación</strong>: La elevación mide la fuerza de la relación entre dos conjuntos de elementos, teniendo en cuenta la frecuencia de cada conjunto por separado. Una elevación mayor que 1 indica que los elementos del conjunto están más asociados de lo que se esperaría por casualidad.</li>
+</ul>
+<p><span class="math display">\[lift(X \Rightarrow Y)=\frac{supp(X \cup Y)}{supp(X)*supp(Y)}=\frac{P(XY)}{P(X)P(Y)}\]</span></p>
+<ul>
+<li><strong>Frecuencia de itemsets</strong>: La frecuencia de itemsets se refiere a la cantidad de veces que aparece un conjunto de elementos en el conjunto de datos. Este concepto es importante porque los algoritmos de asociación utilizan la frecuencia para identificar los patrones de asociación.</li>
+<li><strong>Conjunto de datos</strong>: El conjunto de datos es el conjunto de transacciones que se utilizan para el análisis de asociación. Es importante seleccionar un conjunto de datos representativo y de alta calidad para obtener resultados precisos. Cuando el dataset es extremadamente grande (RAM es es superado) se recomienda tomar una muestra aleatoria.</li>
+<li><strong>Regla de asociación:</strong> Una regla de asociación es una relación entre dos o más elementos de un conjunto de datos. La regla se expresa en forma de “si-entonces” y muestra la probabilidad de que un elemento se asocie con otro.</li>
+</ul>
+<p><span class="math display">\[LHS \Rightarrow RHS\]</span></p>
+<blockquote>
+<p>Pregunta: En una bolsa de mercado (dataset) con 4 item/elementos, ¿cuántas posibles reglas de asociación existiran?</p>
+</blockquote>
+<p>{A,B,C,D}</p>
+<ul>
+<li><strong>Algoritmos de asociación:</strong> Los algoritmos de asociación son técnicas utilizadas para <em>descubrir patrones</em> y relaciones ocultas en los conjuntos de datos. Los algoritmos más comunes son <em>Apriori</em>, <em>Eclat</em> y FP-Growth.</li>
+</ul>
+<p><span class="math display">\[\alpha \Rightarrow \beta\]</span></p>
+<div id="ejercicio" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Ejercicio<a href="métodos-de-asociación.html#ejercicio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dada las siguientes transacciones en una farmacia:</p>
+<ul>
+<li>{vitaminas, antigripal, paracetamol}</li>
+<li>{ibuprofeno, complejoB, aspirina}</li>
+<li>{complejoB, vitaminas}</li>
+<li>{antigripal, paracetamol, aspirina}</li>
+<li>{jarabe para la tos, vitaminas}</li>
+</ul>
+<p>Encontrar los soportes de LHS, RHS y conjunto, confianza y elevación de las siguientes reglas de asociación</p>
+<p><span class="math display">\[\{antigripal\}\Rightarrow\{paracetamol\}\]</span>
+<span class="math display">\[supp(antigripal)=\frac{2}{5}\quad supp(paracetamol)=\frac{2}{5}\]</span>
+<span class="math display">\[supp(paracetamol,antigripal)=\frac{2}{5}\]</span></p>
+<p><span class="math display">\[conf(antigripal\Rightarrow paracetamol)=\frac{supp(anti,para)}{supp(anti)}=1\]</span></p>
+<p><span class="math display">\[lift=\frac{conf}{supp_R}=\frac{1}{\frac{2}{5}}=2.5\]</span></p>
+<p><span class="math display">\[\{antigripal,paracetamol\}\Rightarrow\{complejoB\}\]</span></p>
+</div>
+</div>
+<div id="pasos" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Pasos<a href="métodos-de-asociación.html#pasos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><em>Preprocesamiento de datos:</em> En esta etapa, se preparan los datos para el análisis de asociación. Esto incluye la eliminación de datos faltantes, la transformación de los datos categóricos a numéricos y la eliminación de datos redundantes. Se recomienda armar la dataset en cualquiera de los tres formatos:
++ Lista
++ Matriz
++ Base de datos (data frame)</li>
+<li><em>Selección de los parámetros:</em> Se deben seleccionar los parámetros adecuados para el algoritmo de asociación, como el <em>soporte mínimo</em> y la <em>confianza mínima</em>, que controlan la calidad de las reglas descubiertas.</li>
+<li><strong>Ejecución del algoritmo:</strong> Se aplica el algoritmo de asociación seleccionado para buscar reglas de asociación en el conjunto de datos. Los algoritmos comunes incluyen Apriori, FP-Growth y Eclat.</li>
+<li><strong>Generación de reglas de asociación:</strong> Se generan las <em>reglas de asociación</em>, que indican la relación entre los elementos en el conjunto de datos. Se pueden generar reglas de asociación en base al soporte, la confianza, la elevación o cualquier combinación de estos criterios.</li>
+<li><em>Evaluación y validación de las reglas:</em> Las reglas de asociación generadas deben evaluarse y validar para determinar su utilidad y relevancia en el contexto de la aplicación específica. Esto puede incluir la evaluación de la calidad de las reglas en términos de precisión y relevancia, así como la interpretación de las reglas para identificar patrones y relaciones significativos.</li>
+<li><strong>Interpretación y uso de las reglas:</strong> Finalmente, las reglas de asociación pueden ser interpretadas y utilizadas para <em>tomar decisiones</em> de negocios informadas y para identificar oportunidades para mejorar la eficiencia y la eficacia de las operaciones empresariales.</li>
+</ol>
+</div>
+<div id="algoritmo-apriori" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Algoritmo Apriori<a href="métodos-de-asociación.html#algoritmo-apriori" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El algoritmo Apriori se basa en la idea de que si un conjunto de elementos <em>aparece con suficiente frecuencia</em> en un conjunto de datos, entonces es probable que <em>estén relacionados entre sí</em>.</p>
+<p>Los parámetros del algoritmo apriori son:</p>
+<ul>
+<li><em>Soporte mínimo (obligatorio):</em> Contribuye a la reducción de la bolsa de items</li>
+<li><em>Confianza (opcional):</em> Ayuda a reducir la cantidad de reglas de asociación encontradas con base al soporte mínimo</li>
+</ul>
+<p>Pasos:</p>
+<ol style="list-style-type: decimal">
+<li>Seleccionar un <em>umbral mínimo de soporte</em>: Este umbral se utiliza para determinar qué conjuntos de elementos se consideran frecuentes. Los conjuntos que aparecen con frecuencia igual o superior al umbral mínimo de soporte se denominan <em>conjuntos frecuentes</em>.</li>
+<li>Generar <em>conjuntos de candidatos</em>: En este paso, <em>se crean conjuntos</em> de elementos candidatos utilizando los <em>conjuntos frecuentes</em> encontrados en el <em>paso anterior</em>.</li>
+<li>Calcular la <em>frecuencia de los conjuntos candidatos</em>: En este paso, se cuentan las ocurrencias de los conjuntos de elementos candidatos en el conjunto de datos actual.</li>
+<li><em>Eliminar</em> conjuntos candidatos que no cumplen con el <em>umbral de soporte</em> mínimo: En este paso, se eliminan los conjuntos candidatos que no aparecen con la frecuencia mínima especificada en el paso 1.</li>
+<li>Repetir los <em>pasos 2 a 4</em> hasta que no se puedan generar más conjuntos candidatos o todos los conjuntos candidatos restantes satisfagan el umbral de soporte mínimo.</li>
+<li>Se utiliza los conjuntos de candidatos que cumplen el soporte mínimo y se generan las reglas de asociación con base a las diferentes combinaciones de los conjuntos de candidatos.</li>
+<li>(opcional) Se eliminan las reglas de asociación que no cumplan con la confianza establecida.</li>
+</ol>
+<blockquote>
+<p>Ejemplo:</p>
+</blockquote>
+<ul>
+<li>Compra 1: ABCD<br />
+</li>
+<li>Compra 2: ACD</li>
+<li>Compra 3: BCD</li>
+<li>Compra 4: AD<br />
+</li>
+<li>Compra 5: ACD</li>
+</ul>
+<p>A partir de algún item</p>
+</div>
+<div id="algoritmo-eclat" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Algoritmo ECLAT<a href="métodos-de-asociación.html#algoritmo-eclat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En términos de resultados, este algoritmo logra exactamente el mismo conjunto de items que algoritmo apriori, este tiene dos principales diferencias:</p>
+<ul>
+<li>Su enfoque no es encontrar reglas de asociación, se enfoca en encontrar los conjuntos de items <strong>más frecuentes</strong>.</li>
+<li>El ECLAT es más rápido en su procesamiento debido a que la manera en que busca los conjunto de items frecuentes sigue un criterio vertical.</li>
+</ul>
+<p>El algoritmo tiene un parámetro obligatorio y otro opcional:</p>
+<ul>
+<li>Soporte mínimo (obligatorio)</li>
+<li>Cantidad de items de inicio (opcional, por defecto es 1)</li>
+</ul>
+<p>Pasos:</p>
+<ol style="list-style-type: decimal">
+<li>Se selecciona a los conjuntos de items que cumplan el parámetro de cantidad de items, si este no asigno el valor es 1.</li>
+<li>Se calcula el soporte de estos conjuntos de items, se identifica el conjunto con el mayor soporte como punto de partida. Se omiten los conjuntos que no cumplan el soporte mínimo.</li>
+<li>A partir del punto de referencia (partida) se calculan las conjuntos de items adicionando un item (+1) que contenga al conjunto de item de partida.</li>
+<li>Se vuelve al paso 2 hasta que no existan mas conjuntos de items que cumplan el soporte mínimo. Cuando pase esto se salta al siguiente conjunto de items del inicio.</li>
+</ol>
+<p><img src="_fig/apriori_eclat.PNG" /></p>
 
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Bramer, Max. 2020. <em>Principles of <span>Data</span> <span>Mining</span></em>. Undergraduate <span>Topics</span> in <span>Computer</span> <span>Science</span>. Springer London. <a href="https://doi.org/10.1007/978-1-4471-7493-6">https://doi.org/10.1007/978-1-4471-7493-6</a>.
+</div>
+<div class="csl-entry">
+Buttrey, Samuel. 2017. <em>A <span>Data</span> <span>Scientist</span>’s <span>Guide</span> to <span>Acquiring</span>, <span>Cleaning</span> and <span>Managing</span> <span>Data</span> in <span>R</span></em>. 1st ed. Wiley. <a href="https://doi.org/10.1002/9781119080053">https://doi.org/10.1002/9781119080053</a>.
+</div>
+<div class="csl-entry">
+Cichosz, Pawel. n.d. <em>Data <span>Mining</span> <span>Algorithms</span></em>.
+</div>
+<div class="csl-entry">
+Fayyad, Usama, Gregory Piatetsky-Shapiro, and Padhraic Smyth. 1996. <span>“From Data Mining to Knowledge Discovery in Databases.”</span> <em>AI Magazine</em> 17 (3): 37–54.
+</div>
+<div class="csl-entry">
+Hand, D. J., Heikki Mannila, and Padhraic Smyth. 2001. <em>Principles of Data Mining</em>. Adaptive Computation and Machine Learning. MIT Press.
+</div>
+<div class="csl-entry">
+Johnson, Richard A., and Dean W. Wichern. 2007. <em>Applied Multivariate Statistical Analysis</em>. 6th ed. Prentice Hall.
+</div>
+<div class="csl-entry">
+Kwartler, Ted. 2017. <em>Text Mining in Practice with r</em>. John Wiley &amp; Sons.
+</div>
+<div class="csl-entry">
+Lantz, Brett. 2013. <em>Machine Learning with r</em>. Packt Publishing.
+</div>
+<div class="csl-entry">
+<em>Machine <span>Learning</span> with <span>R</span> <span>Cookbook</span></em>. n.d.
+</div>
+<div class="csl-entry">
+Matignon, Randall. 2007. <em>Data Mining Using SAS Enterprise Miner: A Case Study Approach</em>. John Wiley &amp; Sons.
+</div>
+<div class="csl-entry">
+<em>Practical <span>Data</span> <span>Cleaning</span> - 19 <span>Essential</span> <span>Tips</span> to <span>Scrub</span> <span>Your</span> <span>Dirty</span> <span>Data</span> (and Keep Your Boss Happy)</em>. n.d.
+</div>
+<div class="csl-entry">
+Ramasubramanian, Karthik, and Abhishek Singh. 2019. <em>Machine Learning Using r</em>. 2nd ed. Apress.
+</div>
+<div class="csl-entry">
+SAS Institute. 2017. <em>SAS Enterprise Miner 14.3: SEMMA Methodology</em>.
+</div>
+<div class="csl-entry">
+Tan, Pang-Ning, Michael Steinbach, and Vipin Kumar. 2014. <em>Introduction to Data Mining</em>. New internat. edition. Always Learning. Pearson.
+</div>
+<div class="csl-entry">
+Tan, Pang-Ning, Michael Steinbach, and Vipin Kumar. n.d. <em>Introduction to <span>Data</span> <span>Mining</span></em>.
+</div>
+<div class="csl-entry">
+Torgo, Luis. n.d. <em>Data <span>Mining</span> with <span>R</span></em>.
+</div>
+<div class="csl-entry">
+Zumel, Nina, and John Mount. 2019. <em>Practical Data Science with r</em>. 2nd ed. Manning Publications.
+</div>
+</div>
 </div>
 </div>
             </section>
@@ -271,8 +463,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
+<a href="minería-de-datos-supervisada-clasificación-y-predicción.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -50,3 +50,10 @@ naive-bayes
 k-nearest-neighbors-knn
 árboles-de-clasificación
 ejercicio-predicción-de-adopción-felina
+métodos-de-asociación
+dataset
+fundamentos
+ejercicio
+pasos
+algoritmo-apriori
+algoritmo-eclat

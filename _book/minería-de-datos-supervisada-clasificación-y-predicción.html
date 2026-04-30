@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html"/>
-
+<link rel="next" href="métodos-de-asociación.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -223,6 +223,17 @@ div.csl-indent {
 <li class="chapter" data-level="2.2.9" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#%C3%A1rboles-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>2.2.9</b> Árboles de clasificación</a></li>
 <li class="chapter" data-level="2.2.10" data-path="minería-de-datos-supervisada-clasificación-y-predicción.html"><a href="minería-de-datos-supervisada-clasificación-y-predicción.html#ejercicio-predicci%C3%B3n-de-adopci%C3%B3n-felina"><i class="fa fa-check"></i><b>2.2.10</b> Ejercicio: Predicción de Adopción Felina</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="métodos-de-asociación.html"><a href="métodos-de-asociación.html"><i class="fa fa-check"></i><b>3</b> Métodos de asociación</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="métodos-de-asociación.html"><a href="métodos-de-asociación.html#dataset"><i class="fa fa-check"></i><b>3.1</b> Dataset</a></li>
+<li class="chapter" data-level="3.2" data-path="métodos-de-asociación.html"><a href="métodos-de-asociación.html#fundamentos"><i class="fa fa-check"></i><b>3.2</b> Fundamentos</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="métodos-de-asociación.html"><a href="métodos-de-asociación.html#ejercicio"><i class="fa fa-check"></i><b>3.2.1</b> Ejercicio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="métodos-de-asociación.html"><a href="métodos-de-asociación.html#pasos"><i class="fa fa-check"></i><b>3.3</b> Pasos</a></li>
+<li class="chapter" data-level="3.4" data-path="métodos-de-asociación.html"><a href="métodos-de-asociación.html#algoritmo-apriori"><i class="fa fa-check"></i><b>3.4</b> Algoritmo Apriori</a></li>
+<li class="chapter" data-level="3.5" data-path="métodos-de-asociación.html"><a href="métodos-de-asociación.html#algoritmo-eclat"><i class="fa fa-check"></i><b>3.5</b> Algoritmo ECLAT</a></li>
 </ul></li>
 </ul>
 
@@ -648,59 +659,6 @@ Gini(t) = 1 - \sum_{i=1}^{k} p_i^2
 <p>Tiempo estimado: 20 minutos</p>
 </blockquote>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Bramer, Max. 2020. <em>Principles of <span>Data</span> <span>Mining</span></em>. Undergraduate <span>Topics</span> in <span>Computer</span> <span>Science</span>. Springer London. <a href="https://doi.org/10.1007/978-1-4471-7493-6">https://doi.org/10.1007/978-1-4471-7493-6</a>.
-</div>
-<div class="csl-entry">
-Buttrey, Samuel. 2017. <em>A <span>Data</span> <span>Scientist</span>’s <span>Guide</span> to <span>Acquiring</span>, <span>Cleaning</span> and <span>Managing</span> <span>Data</span> in <span>R</span></em>. 1st ed. Wiley. <a href="https://doi.org/10.1002/9781119080053">https://doi.org/10.1002/9781119080053</a>.
-</div>
-<div class="csl-entry">
-Cichosz, Pawel. n.d. <em>Data <span>Mining</span> <span>Algorithms</span></em>.
-</div>
-<div class="csl-entry">
-Fayyad, Usama, Gregory Piatetsky-Shapiro, and Padhraic Smyth. 1996. <span>“From Data Mining to Knowledge Discovery in Databases.”</span> <em>AI Magazine</em> 17 (3): 37–54.
-</div>
-<div class="csl-entry">
-Hand, D. J., Heikki Mannila, and Padhraic Smyth. 2001. <em>Principles of Data Mining</em>. Adaptive Computation and Machine Learning. MIT Press.
-</div>
-<div class="csl-entry">
-Johnson, Richard A., and Dean W. Wichern. 2007. <em>Applied Multivariate Statistical Analysis</em>. 6th ed. Prentice Hall.
-</div>
-<div class="csl-entry">
-Kwartler, Ted. 2017. <em>Text Mining in Practice with r</em>. John Wiley &amp; Sons.
-</div>
-<div class="csl-entry">
-Lantz, Brett. 2013. <em>Machine Learning with r</em>. Packt Publishing.
-</div>
-<div class="csl-entry">
-<em>Machine <span>Learning</span> with <span>R</span> <span>Cookbook</span></em>. n.d.
-</div>
-<div class="csl-entry">
-Matignon, Randall. 2007. <em>Data Mining Using SAS Enterprise Miner: A Case Study Approach</em>. John Wiley &amp; Sons.
-</div>
-<div class="csl-entry">
-<em>Practical <span>Data</span> <span>Cleaning</span> - 19 <span>Essential</span> <span>Tips</span> to <span>Scrub</span> <span>Your</span> <span>Dirty</span> <span>Data</span> (and Keep Your Boss Happy)</em>. n.d.
-</div>
-<div class="csl-entry">
-Ramasubramanian, Karthik, and Abhishek Singh. 2019. <em>Machine Learning Using r</em>. 2nd ed. Apress.
-</div>
-<div class="csl-entry">
-SAS Institute. 2017. <em>SAS Enterprise Miner 14.3: SEMMA Methodology</em>.
-</div>
-<div class="csl-entry">
-Tan, Pang-Ning, Michael Steinbach, and Vipin Kumar. 2014. <em>Introduction to Data Mining</em>. New internat. edition. Always Learning. Pearson.
-</div>
-<div class="csl-entry">
-Tan, Pang-Ning, Michael Steinbach, and Vipin Kumar. n.d. <em>Introduction to <span>Data</span> <span>Mining</span></em>.
-</div>
-<div class="csl-entry">
-Torgo, Luis. n.d. <em>Data <span>Mining</span> with <span>R</span></em>.
-</div>
-<div class="csl-entry">
-Zumel, Nina, and John Mount. 2019. <em>Practical Data Science with r</em>. 2nd ed. Manning Publications.
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -709,8 +667,8 @@ Zumel, Nina, and John Mount. 2019. <em>Practical Data Science with r</em>. 2nd e
           </div>
         </div>
       </div>
-<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="flujos-de-trabajo-de-minería-de-datos-y-técnicas-de-preprocesamiento.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="métodos-de-asociación.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

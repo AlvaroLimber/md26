@@ -339,10 +339,14 @@ div.csl-indent {
 <div id="pasos" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Pasos<a href="métodos-de-asociación.html#pasos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><em>Preprocesamiento de datos:</em> En esta etapa, se preparan los datos para el análisis de asociación. Esto incluye la eliminación de datos faltantes, la transformación de los datos categóricos a numéricos y la eliminación de datos redundantes. Se recomienda armar la dataset en cualquiera de los tres formatos:
-+ Lista
-+ Matriz
-+ Base de datos (data frame)</li>
+<li><em>Preprocesamiento de datos:</em> En esta etapa, se preparan los datos para el análisis de asociación. Esto incluye la eliminación de datos faltantes, la transformación de los datos categóricos a numéricos y la eliminación de datos redundantes. Se recomienda armar la dataset en cualquiera de los tres formatos:</li>
+</ol>
+<ul>
+<li>Lista</li>
+<li>Matriz</li>
+<li>Base de datos (data frame)</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
 <li><em>Selección de los parámetros:</em> Se deben seleccionar los parámetros adecuados para el algoritmo de asociación, como el <em>soporte mínimo</em> y la <em>confianza mínima</em>, que controlan la calidad de las reglas descubiertas.</li>
 <li><strong>Ejecución del algoritmo:</strong> Se aplica el algoritmo de asociación seleccionado para buscar reglas de asociación en el conjunto de datos. Los algoritmos comunes incluyen Apriori, FP-Growth y Eclat.</li>
 <li><strong>Generación de reglas de asociación:</strong> Se generan las <em>reglas de asociación</em>, que indican la relación entre los elementos en el conjunto de datos. Se pueden generar reglas de asociación en base al soporte, la confianza, la elevación o cualquier combinación de estos criterios.</li>
@@ -368,19 +372,6 @@ div.csl-indent {
 <li>Se utiliza los conjuntos de candidatos que cumplen el soporte mínimo y se generan las reglas de asociación con base a las diferentes combinaciones de los conjuntos de candidatos.</li>
 <li>(opcional) Se eliminan las reglas de asociación que no cumplan con la confianza establecida.</li>
 </ol>
-<blockquote>
-<p>Ejemplo:</p>
-</blockquote>
-<ul>
-<li>Compra 1: ABCD<br />
-</li>
-<li>Compra 2: ACD</li>
-<li>Compra 3: BCD</li>
-<li>Compra 4: AD<br />
-</li>
-<li>Compra 5: ACD</li>
-</ul>
-<p>A partir de algún item</p>
 </div>
 <div id="algoritmo-eclat" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Algoritmo ECLAT<a href="métodos-de-asociación.html#algoritmo-eclat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
